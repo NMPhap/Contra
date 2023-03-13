@@ -1,0 +1,34 @@
+﻿  Animation.cpp
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+D:\Contra\Game.h(7,1): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h(48,1): message : see previous definition of 'DIRECTINPUT_VERSION'
+  Animations.cpp
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+D:\Contra\Game.h(7,1): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h(48,1): message : see previous definition of 'DIRECTINPUT_VERSION'
+  debug.cpp
+  Game.cpp
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+D:\Contra\Game.h(7,1): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h(48,1): message : see previous definition of 'DIRECTINPUT_VERSION'
+  main.cpp
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+D:\Contra\Game.h(7,1): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h(48,1): message : see previous definition of 'DIRECTINPUT_VERSION'
+  Sprite.cpp
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+D:\Contra\Game.h(7,1): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h(48,1): message : see previous definition of 'DIRECTINPUT_VERSION'
+  Sprites.cpp
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+D:\Contra\Game.h(7,1): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h(48,1): message : see previous definition of 'DIRECTINPUT_VERSION'
+  Textures.cpp
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+D:\Contra\Game.h(7,1): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h(48,1): message : see previous definition of 'DIRECTINPUT_VERSION'
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 26 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  Contra.vcxproj -> D:\Contra\x64\Release\Contra.exe
