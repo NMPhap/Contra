@@ -30,7 +30,7 @@ diving		112	123	129	131
 diving_01	112	123	129	132
 swimming_shot	191	113	217	131
 swimming_shot_01	191	113	217	132
-swimming_shotup	148	113	168	131
+swimming_shotup		148	113	168	131
 swimming_shotup_01	148	113	168	132
 swimming_shotup_stand	169	103	187	131
 swimming_shotup_stand_01	169	103	187	132
