@@ -107,7 +107,7 @@
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>d3d10.lib;dxguid.lib;dinput8.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
@@ -135,9 +135,12 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Animations.cpp" />
+    <ClCompile Include="Bill.cpp" />
     <ClCompile Include="debug.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="SampleKeyEventHandler.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Sprites.cpp" />
     <ClCompile Include="Textures.cpp" />
@@ -146,13 +149,20 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="AnimationFrame.h" />
     <ClInclude Include="Animations.h" />
+    <ClInclude Include="Bill.h" />
     <ClInclude Include="debug.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="KeyEventHandler.h" />
+    <ClInclude Include="SampleKeyEventHandler.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Sprites.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Textures.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\Images\bill_animation.png" />
+    <Image Include="Resources\Images\yellowfalcon.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

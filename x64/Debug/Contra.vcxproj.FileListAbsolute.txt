@@ -4,3 +4,9 @@ D:\Contra\x64\Debug\D3DCompiler_43.dll
 D:\Contra\x64\Debug\d3dx9d_43.dll
 D:\Contra\x64\Debug\d3dx10d_43.dll
 D:\Contra\x64\Debug\d3dx11d_43.dll
+C:\Users\Ideapad gaming 3\Downloads\contra\x64\Debug\Contra.exe
+C:\Users\Ideapad gaming 3\Downloads\contra\x64\Debug\D3DCompiler_43.dll
+C:\Users\Ideapad gaming 3\Downloads\contra\x64\Debug\d3dx9d_43.dll
+C:\Users\Ideapad gaming 3\Downloads\contra\x64\Debug\d3dx10d_43.dll
+C:\Users\Ideapad gaming 3\Downloads\contra\x64\Debug\Contra.vcxproj.CopyComplete
+C:\Users\Ideapad gaming 3\Downloads\contra\x64\Debug\d3dx11d_43.dll

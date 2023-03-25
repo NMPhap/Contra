@@ -6,6 +6,8 @@
 #include <dinput.h>
 #define DIRECTINPUT_VERSION 0x0800
 
+#include "GameObject.h"
+#include "Textures.h"
 #include "Texture.h"
 #include "KeyEventHandler.h"
 
@@ -21,6 +23,8 @@ class CGame
 {
 	static CGame* __instance;
 	HWND hWnd;									// Window handle
+
+	vector<LPGAMEOBJECT> objects;
 
 	int backBufferWidth = 0;					// Backbuffer width & height, will be set during Direct3D initialization
 	int backBufferHeight = 0;
@@ -80,8 +84,12 @@ public:
 
 	int GetBackBufferWidth() { return backBufferWidth; }
 	int GetBackBufferHeight() { return backBufferHeight; }
-	void Run();
 	static CGame* GetInstance();
+
+	void Render();
+	void Update(DWORD);
+	void Run();
+	void LoadResources();
 
 	~CGame();
 };

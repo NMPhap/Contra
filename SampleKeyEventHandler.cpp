@@ -3,9 +3,32 @@
 #include "debug.h"
 #include "Game.h"
 
-#include "Mario.h"
+#include "Bill.h"
 
-extern CMario* mario;
+extern CBill* bill;
+
+void CSampleKeyHandler::KeyState(BYTE* state)
+{
+	CGame* game = CGame::GetInstance();
+
+	if (game->IsKeyDown(DIK_RIGHT))
+	{
+		bill->SetState(BILL_STATE_WALKING_RIGHT);
+	}
+	else if (game->IsKeyDown(DIK_LEFT))
+	{
+		bill->SetState(BILL_STATE_WALKING_LEFT);
+	}
+	else
+		bill->SetState(BILL_STATE_IDLE);
+
+	// Sitting state has higher priority 
+	if (game->IsKeyDown(DIK_DOWN))
+	{
+		bill->SetState(BILL_STATE_LAY);
+	}
+
+}
 
 void CSampleKeyHandler::OnKeyDown(int KeyCode)
 {
@@ -13,7 +36,7 @@ void CSampleKeyHandler::OnKeyDown(int KeyCode)
 	switch (KeyCode)
 	{
 	case DIK_S:
-		mario->SetState(MARIO_STATE_JUMP);
+		bill->SetState(BILL_STATE_JUMP);
 		break;
 	}
 }
@@ -24,39 +47,12 @@ void CSampleKeyHandler::OnKeyUp(int KeyCode)
 	switch (KeyCode)
 	{
 	case DIK_S:
-		mario->SetState(MARIO_STATE_RELEASE_JUMP);
+		bill->SetState(BILL_STATE_RELEASE_JUMP);
 		break;
 	case DIK_DOWN:
-		mario->SetState(MARIO_STATE_SIT_RELEASE);
+		bill->SetState(BILL_STATE_LAY_RELEASE);
 		break;
 	}
 }
 
-void CSampleKeyHandler::KeyState(BYTE *states)
-{
-	CGame* game = CGame::GetInstance();
 
-	if (game->IsKeyDown(DIK_RIGHT))
-	{
-		if (game->IsKeyDown(DIK_A))
-			mario->SetState(MARIO_STATE_RUNNING_RIGHT);
-		else
-			mario->SetState(MARIO_STATE_WALKING_RIGHT);
-	}
-	else if (game->IsKeyDown(DIK_LEFT))
-	{
-		if (game->IsKeyDown(DIK_A))
-			mario->SetState(MARIO_STATE_RUNNING_LEFT);
-		else
-			mario->SetState(MARIO_STATE_WALKING_LEFT);
-	}
-	else
-		mario->SetState(MARIO_STATE_IDLE);
-	
-	// Sitting state has higher priority 
-	if (game->IsKeyDown(DIK_DOWN))
-	{
-		mario->SetState(MARIO_STATE_SIT);
-	}
-
-}
