@@ -38,6 +38,8 @@ public:
 	int getWidth() { return this->_width; }
 	int getHeight() { return this->_height; }
 
+	ID3D10Texture2D* GetTexture() { return _tex; }
+
 	~CTexture()
 	{
 		if (_rsview != NULL) this->_rsview->Release();
