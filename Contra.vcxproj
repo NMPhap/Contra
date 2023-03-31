@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -135,8 +135,17 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Animations.cpp" />
+    <ClCompile Include="Bill.cpp" />
+    <ClCompile Include="BillBullet.cpp" />
+    <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="BillInputHandler.cpp" />
+    <ClCompile Include="Falcon.cpp" />
+    <ClCompile Include="Gun.cpp" />
+    <ClCompile Include="Input.cpp" />
+    <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="debug.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Sprites.cpp" />
@@ -146,9 +155,17 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="AnimationFrame.h" />
     <ClInclude Include="Animations.h" />
+    <ClInclude Include="Bill.h" />
+    <ClInclude Include="BillBullet.h" />
+    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="BillInputHandler.h" />
+    <ClInclude Include="Falcon.h" />
+    <ClInclude Include="Gun.h" />
+    <ClInclude Include="Input.h" />
+    <ClInclude Include="InputHandler.h" />
     <ClInclude Include="debug.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="KeyEventHandler.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Sprites.h" />
     <ClInclude Include="Texture.h" />
