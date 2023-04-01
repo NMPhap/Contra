@@ -2,17 +2,14 @@
 #include <Windows.h>
 #include <d3d10.h>
 #include <d3dx10.h>
-
 #include <dinput.h>
 #define DIRECTINPUT_VERSION 0x0800
 
+#include "GameObject.h"
 #include "Texture.h"
-#include "KeyEventHandler.h"
-
 #define MAX_FRAME_RATE 60
 #define KEYBOARD_BUFFER_SIZE 1024
 #define KEYBOARD_STATE_SIZE 256
-
 
 /*
 	Our simple game framework
@@ -38,11 +35,10 @@ class CGame
 	BYTE  keyStates[KEYBOARD_STATE_SIZE];			// DirectInput keyboard state buffer 
 	DIDEVICEOBJECTDATA keyEvents[KEYBOARD_BUFFER_SIZE];		// Buffered keyboard data
 
-	LPKEYEVENTHANDLER keyHandler;
-
 	HINSTANCE hInstance;
 
 public:
+	vector<LPGAMEOBJECT> gameObjects;
 	// Init DirectX, Sprite Handler
 	void Init(HINSTANCE hInstance);
 	//Create game Window
@@ -66,7 +62,7 @@ public:
 	LPTEXTURE LoadTexture(LPCWSTR texturePath);
 
 	// Keyboard related functions 
-	void InitKeyboard(LPKEYEVENTHANDLER handler);
+	void InitKeyboard();
 	int IsKeyDown(int KeyCode);
 	void ProcessKeyboard();
 
@@ -82,6 +78,6 @@ public:
 	int GetBackBufferHeight() { return backBufferHeight; }
 	void Run();
 	static CGame* GetInstance();
-
+	HWND GetHWnd() { return hWnd; }
 	~CGame();
 };

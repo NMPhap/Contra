@@ -4,6 +4,9 @@
 #define CLASS_NAME L"CONTRA"
 #define WINDOW_ICON_PATH L"/Resources/Images/yellowfalcon.png"
 #define MAIN_WINDOW_TITLE L"Contra"
+
+#include "Bill.h"
+extern CBill* bill;
 LRESULT CALLBACK WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	switch (message) {
@@ -85,7 +88,6 @@ void CGame::Init(HINSTANCE hInstance)
 
 	// create the render target view
 	hr = pD3DDevice->CreateRenderTargetView(pBackBuffer, NULL, &pRenderTargetView);
-
 	pBackBuffer->Release();
 	if (hr != S_OK)
 	{
@@ -106,7 +108,12 @@ void CGame::Init(HINSTANCE hInstance)
 	viewPort.TopLeftY = 0;
 	pD3DDevice->RSSetViewports(1, &viewPort);
 
-
+	D3D10_RASTERIZER_DESC* rasterizer = new D3D10_RASTERIZER_DESC();
+	rasterizer->CullMode = D3D10_CULL_NONE;
+	rasterizer->FrontCounterClockwise = TRUE;
+	ID3D10RasterizerState* state;
+	pD3DDevice->CreateRasterizerState(rasterizer, &state);
+	pD3DDevice->RSSetState(state);
 	// create the sprite object to handle sprite drawing 
 	hr = D3DX10CreateSprite(pD3DDevice, 0, &spriteObject);
 
@@ -143,7 +150,6 @@ void CGame::Init(HINSTANCE hInstance)
 	pD3DDevice->CreateBlendState(&StateDesc, &this->pBlendStateAlpha);
 
 	DebugOut((wchar_t*)L"[INFO] InitDirectX has been successful\n");
-
 	return;
 }
 
@@ -166,7 +172,6 @@ HWND CGame::CreateGameWindow( int ScreenWidth, int ScreenHeight)
 	wc.hIconSm = NULL;
 
 	ATOM result = RegisterClassEx(&wc);
-
 	HWND hWnd = CreateWindow(
 		CLASS_NAME,
 		MAIN_WINDOW_TITLE,
@@ -327,7 +332,7 @@ int CGame::IsKeyDown(int KeyCode)
 	return (keyStates[KeyCode] & 0x80) > 0;
 }
 
-void CGame::InitKeyboard(LPKEYEVENTHANDLER handler)
+void CGame::InitKeyboard()
 {
 	HRESULT hr = DirectInput8Create(this->hInstance,DIRECTINPUT_VERSION,IID_IDirectInput8, (VOID**)&di, NULL);
 	if (hr != DI_OK)
@@ -381,9 +386,6 @@ void CGame::InitKeyboard(LPKEYEVENTHANDLER handler)
 		DebugOut(L"[ERROR] DINPUT8::Acquire failed!\n");
 		return;
 	}
-
-	this->keyHandler = handler;
-
 	DebugOut(L"[INFO] Keyboard has been initialized successfully\n");
 }
 
@@ -412,8 +414,6 @@ void CGame::ProcessKeyboard()
 		}
 	}
 
-	keyHandler->KeyState((BYTE *)&keyStates);
-
 	// Collect all buffered events
 	DWORD dwElements = KEYBOARD_BUFFER_SIZE;
 	hr = didv->GetDeviceData(sizeof(DIDEVICEOBJECTDATA), keyEvents, &dwElements, 0);
@@ -422,16 +422,21 @@ void CGame::ProcessKeyboard()
 		DebugOut(L"[ERROR] DINPUT::GetDeviceData failed. Error: %d\n", hr);
 		return;
 	}
-
+	std::vector<int> keys = CInputHandler::KeyToListen;
+	for(int i =0; i < keys.size(); i++)
+		if(IsKeyDown(keys[i]))
+			bill->handler->HandleInput(new CInput(keys[i], KEY_CLICK));
 	// Scan through all buffered events, check if the key is pressed or released
 	for (DWORD i = 0; i < dwElements; i++)
 	{
 		int KeyCode = keyEvents[i].dwOfs;
 		int KeyState = keyEvents[i].dwData;
 		if ((KeyState & 0x80) > 0)
-			keyHandler->OnKeyDown(KeyCode);
-		else
-			keyHandler->OnKeyUp(KeyCode);
+		{
+			bill->handler->HandleInput(new CInput(KeyCode, KEY_DOWN));
+		}
+		else 
+			bill->handler->HandleInput(new CInput(KeyCode, KEY_UP));
 	}
 }
 CGame::~CGame()
@@ -443,14 +448,6 @@ CGame::~CGame()
 	pD3DDevice->Release();
 }
 
-void CGame::Run()
-{
-	int done = 0;
-	while (!done)
-	{
-		Sleep(10);
-	}
-}
 
 CGame* CGame::GetInstance()
 {
