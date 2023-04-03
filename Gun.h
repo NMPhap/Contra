@@ -3,10 +3,9 @@
 class CGun
 {
 protected:
-	CBullet* bullet;
-	int recoil_time;
+	int lastShotTime;
 public:
+	CGun() { lastShotTime = GetTickCount64(); }
 	virtual void Shoot() { return; };
-
 };
 

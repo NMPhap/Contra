@@ -17,25 +17,8 @@ void CBill::Update(DWORD dt)
 		if(state == BILL_STATE_JUMP) CGame::GetInstance()->ProcessKeyboard();
 		if(state == BILL_STATE_JUMP) SetState(BILL_STATE_IDLE);
 	}
-	if(isShotting && (GetTickCount64() - CBillBullet::lastBulletTime) >= 100 )
-		if (faceDirection == 1)
-			if (shotDirection == 0)
-				CGame::GetInstance()->gameObjects.push_back(new CBillBullet(x + 8.0f, y - 6.0f, 0.5f, 0.0f));
-			else if (state == BILL_STATE_RUN)//Run shot
-				if (shotDirection == 1)//Run shot up
-					CGame::GetInstance()->gameObjects.push_back(new CBillBullet(x + 8.0f, y - 10.0f, 0.5f, -0.5f));
-				else
-					CGame::GetInstance()->gameObjects.push_back(new CBillBullet(x + 8.0f, y + 6.0f, 0.5f, 0.5f));
-			else CGame::GetInstance()->gameObjects.push_back(new CBillBullet(x - 18.0f, y - 15.0f, 0, -0.5f));
-		else
-			if (shotDirection == 0)
-				CGame::GetInstance()->gameObjects.push_back(new CBillBullet(x + 3.0f, y - 6.0f, -0.5f, 0.0f));
-			else if (state == BILL_STATE_RUN)
-				if (shotDirection == 1)//run shot up
-					CGame::GetInstance()->gameObjects.push_back(new CBillBullet(x - 3.0f, y - 10.0f, -0.5f, -0.5f));
-				else // run shot down
-					CGame::GetInstance()->gameObjects.push_back(new CBillBullet(x - 10.0f, y + 6.0f, -0.5f, 0.5f));
-			else CGame::GetInstance()->gameObjects.push_back(new CBillBullet(x - 5.0f, y - 15.0f, 0, -0.5f));
+	if (isShotting)
+		gun->Shoot();
 }
 
 void CBill::Render()
@@ -116,6 +99,11 @@ void CBill::Render()
 	else if (state == BILL_STATE_JUMP) if (faceDirection == 1) aniID = ID_ANI_BILL_JUMP_RIGHT; else aniID = ID_ANI_BILL_JUMP_LEFT;
 	else if (aniID == -1)
 		if (faceDirection == 1) aniID = ID_ANI_BILL_IDLE_RIGHT; else aniID = ID_ANI_BILL_IDLE_LEFT;
+	if (state == BILL_STATE_LAYDOWN)
+		if (faceDirection == 1)
+			aniID = ID_ANI_BILL_LAYDOWN_RIGHT;
+		else
+			aniID = ID_ANI_BILL_LAYDOWN_LEFT;
 	animations->Get(aniID)->Render(x, y);
 }
 
@@ -132,7 +120,6 @@ void CBill::SetState(int state)
 			isSitting = false;
 			break;
 		case BILL_STATE_LAYDOWN:
-			isSitting = true;
 			vx = 0;
 			break;
 		case BILL_STATE_RUN:
@@ -351,4 +338,63 @@ void CBill::LoadAnimation()
 	ani->Add(ID_ANI_BILL_SWIMMING_START);
 	ani->oneTimeAnimation = true;
 	animation->Add(ID_ANI_BILL_SWIMMING_START, ani);
+
+	//Load swimming shot animation
+
+	sprite->Add(ID_ANI_BILL_SWIMMING_SHOT_RIGHT, 191, 113, 217, 131, tex->Get(TEXTURE_RIGHT_ID));
+	sprite->Add(ID_ANI_BILL_SWIMMING_SHOT_RIGHT + 1, 191, 113, 217, 132, tex->Get(TEXTURE_RIGHT_ID));
+	ani = new CAnimation(100);
+	ani->Add(ID_ANI_BILL_SWIMMING_SHOT_RIGHT);
+	ani->Add(ID_ANI_BILL_SWIMMING_SHOT_RIGHT + 1);
+	animation->Add(ID_ANI_BILL_SWIMMING_SHOT_RIGHT, ani);
+
+	sprite->Add(ID_ANI_BILL_SWIMMING_SHOT_LEFT, 191, 113, 217, 131, tex->Get(TEXTURE_RIGHT_ID), -1.0f);
+	sprite->Add(ID_ANI_BILL_SWIMMING_SHOT_LEFT + 1, 191, 113, 217, 132, tex->Get(TEXTURE_RIGHT_ID), -1.0f);
+	ani = new CAnimation(100);
+	ani->Add(ID_ANI_BILL_SWIMMING_SHOT_LEFT);
+	ani->Add(ID_ANI_BILL_SWIMMING_SHOT_LEFT + 1);
+	animation->Add(ID_ANI_BILL_SWIMMING_SHOT_LEFT, ani);
+	
+	//Load swimming shot up animation
+	sprite->Add(ID_ANI_BILL_SWIMMING_SHOT_UP_RIGHT, 148, 113, 168, 131, tex->Get(TEXTURE_RIGHT_ID));
+	sprite->Add(ID_ANI_BILL_SWIMMING_SHOT_UP_RIGHT + 1, 148, 113, 168, 132, tex->Get(TEXTURE_RIGHT_ID));
+	ani = new CAnimation(100);
+	ani->Add(ID_ANI_BILL_SWIMMING_SHOT_UP_RIGHT);
+	ani->Add(ID_ANI_BILL_SWIMMING_SHOT_UP_RIGHT + 1);
+	animation->Add(ID_ANI_BILL_SWIMMING_SHOT_UP_RIGHT, ani);
+
+	sprite->Add(ID_ANI_BILL_SWIMMING_SHOT_UP_LEFT, 148, 113, 168, 131, tex->Get(TEXTURE_RIGHT_ID), -1.0f);
+	sprite->Add(ID_ANI_BILL_SWIMMING_SHOT_UP_LEFT + 1, 148, 113, 168, 132, tex->Get(TEXTURE_RIGHT_ID), -1.0f);
+	ani = new CAnimation(100);
+	ani->Add(ID_ANI_BILL_SWIMMING_SHOT_UP_LEFT);
+	ani->Add(ID_ANI_BILL_SWIMMING_SHOT_UP_LEFT + 1);
+	animation->Add(ID_ANI_BILL_SWIMMING_SHOT_UP_LEFT, ani);
+
+	//Load swimming shot up stand animation
+
+	sprite->Add(ID_ANI_BILL_SWIMMING_SHOT_UP_STAND_RIGHT, 169, 103, 187, 131, tex->Get(TEXTURE_RIGHT_ID));
+	sprite->Add(ID_ANI_BILL_SWIMMING_SHOT_UP_STAND_RIGHT + 1, 169, 103, 187, 132, tex->Get(TEXTURE_RIGHT_ID));
+	ani = new CAnimation(100);
+	ani->Add(ID_ANI_BILL_SWIMMING_SHOT_UP_STAND_RIGHT);
+	ani->Add(ID_ANI_BILL_SWIMMING_SHOT_UP_STAND_RIGHT + 1);
+	animation->Add(ID_ANI_BILL_SWIMMING_SHOT_UP_STAND_RIGHT, ani);
+
+	sprite->Add(ID_ANI_BILL_SWIMMING_SHOT_UP_STAND_LEFT, 169, 103, 187, 131, tex->Get(TEXTURE_RIGHT_ID), -1.0f);
+	sprite->Add(ID_ANI_BILL_SWIMMING_SHOT_UP_STAND_LEFT + 1, 169, 103, 187, 132, tex->Get(TEXTURE_RIGHT_ID), -1.0f);
+	ani = new CAnimation(100);
+	ani->Add(ID_ANI_BILL_SWIMMING_SHOT_UP_STAND_LEFT);
+	ani->Add(ID_ANI_BILL_SWIMMING_SHOT_UP_STAND_LEFT + 1);
+	animation->Add(ID_ANI_BILL_SWIMMING_SHOT_UP_STAND_LEFT, ani);
+
+
+	//Load laydown animation
+	sprite->Add(ID_ANI_BILL_LAYDOWN_RIGHT, 83, 48, 116, 65, tex->Get(TEXTURE_RIGHT_ID));
+	ani = new CAnimation(100);
+	ani->Add(ID_ANI_BILL_LAYDOWN_RIGHT);
+	animation->Add(ID_ANI_BILL_LAYDOWN_RIGHT, ani);
+
+	sprite->Add(ID_ANI_BILL_LAYDOWN_LEFT, 83, 48, 116, 65, tex->Get(TEXTURE_RIGHT_ID), -1.0f);
+	ani = new CAnimation(100);
+	ani->Add(ID_ANI_BILL_LAYDOWN_LEFT);
+	animation->Add(ID_ANI_BILL_LAYDOWN_LEFT, ani);
 }

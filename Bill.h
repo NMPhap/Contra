@@ -1,6 +1,7 @@
 #pragma once
 #include "GameObject.h"
 #include "BillInputHandler.h"
+#include "NormalGun.h"
 #define GROUND_Y 160.0f
 #define Bill_GRAVITY 0.002f
 #define BILL_RUN_SPEED  0.1f
@@ -39,11 +40,11 @@
 #define ID_ANI_BILL_RUN_SHOT_DOWN_LEFT 353
 #define ID_ANI_BILL_JUMP_RIGHT 400
 #define ID_ANI_BILL_JUMP_LEFT 450
-#define ID_ANI_BILL_LAYDOWN 500
+#define ID_ANI_BILL_LAYDOWN_RIGHT 500
+#define ID_ANI_BILL_LAYDOWN_LEFT 550
 #define ID_ANI_BILL_DEAD 600
 
 #define TEXTURE_RIGHT_PATH L"./Resources/Images/bill_animation.png"
-#define TEXTURE_LEFT_PATH L"./Resources/Images/bill_animation_left.png"
 #define TEXTURE_RIGHT_ID 0
 #define TEXTURE_LEFT_ID 1
 #pragma once ANIMATION_DURATION
@@ -55,6 +56,8 @@
 
 class CBill : public CGameObject
 {
+private:
+	CGun* gun;
 public:
 	BOOLEAN isSitting;
 	BOOLEAN isShotting;
@@ -67,11 +70,15 @@ public:
 		isShotting = false;
 		shotDirection = 0;
 		faceDirection = 1;
+		state = BILL_STATE_IDLE;
 		this->handler = new CBillInputHandler();
+		gun = new CNormalGun();
 	}
 	void Update(DWORD dt);
 	void Render();
 	void SetState(int state);
+	void SetFaceDirection(int faceD) { faceDirection = faceD; if (vx > 0) vx = faceDirection * vx; else vx = -faceDirection * vx; }
 	void SetHandler(CBillInputHandler* inputHandler) { handler = inputHandler; }
 	static void LoadAnimation();
+	void SetGun(CGun* newGun) { gun = newGun; }
 };

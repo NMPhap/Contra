@@ -11,6 +11,14 @@ CGameObject::CGameObject()
 	state = -1;
 }
 
+void CGameObject::DeleteFromGameObjects()
+{
+	CGame* game = CGame::GetInstance();
+	vector<LPGAMEOBJECT> gameObjects = CGame::GetInstance()->gameObjects;
+	vector<LPGAMEOBJECT>::iterator i = std::find(gameObjects.begin(), gameObjects.end(), this);
+	gameObjects.erase(i);
+}
+
 CGameObject::~CGameObject()
 {
 }

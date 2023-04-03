@@ -72,10 +72,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPreInstance, LPSTR lpCmdLine,
 	sprite = CSprites::GetInstance();
 	animation = CAnimations::GetInstance();
 	tex = CTextures::GetInstance();
-	CBillBullet::LoadAnimation();
+	//CBillBullet::LoadAnimation();
 	bill = new CBill(200.0f, 200.0f);
 	CBill::LoadAnimation();
 	game->gameObjects.push_back(bill);
-	//SetWindowPos(game->GetHWnd(), 0, 0, 0, SCREEN_WIDTH * 2, SCREEN_HEIGHT * 2, SWP_NOMOVE | SWP_NOOWNERZORDER | SWP_NOZORDER);
+	SetWindowPos(game->GetHWnd(), 0, 0, 0, SCREEN_WIDTH * 2, SCREEN_HEIGHT * 2, SWP_NOMOVE | SWP_NOOWNERZORDER | SWP_NOZORDER);
 	Run(); 
 }

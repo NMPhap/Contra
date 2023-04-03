@@ -7,7 +7,7 @@ protected:
 	void onKeyPress(int keyCode);
 	void onKeyRelease(int keyCode);
 public:
-	CBillInputHandler() : CInputHandler() { KeyToListen.push_back(DIK_LEFTARROW); KeyToListen.push_back(DIK_RIGHTARROW); KeyToListen.push_back(DIK_S); }
+	CBillInputHandler() : CInputHandler();
 	void HandleInput(CInput* input);
 };
 

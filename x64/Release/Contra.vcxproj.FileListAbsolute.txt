@@ -1,6 +1,0 @@
-D:\Contra\x64\Release\Contra.vcxproj.CopyComplete
-D:\Contra\x64\Release\Contra.exe
-D:\Contra\x64\Release\D3DCompiler_43.dll
-D:\Contra\x64\Release\d3dx9_43.dll
-D:\Contra\x64\Release\d3dx10_43.dll
-D:\Contra\x64\Release\d3dx11_43.dll

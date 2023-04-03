@@ -66,6 +66,18 @@
     <ClCompile Include="BillBullet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Gun.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NormalGun.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CurcularBullet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CircularGun.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="debug.h">
@@ -117,6 +129,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BillBullet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Gun.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NormalGun.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CurcularBullet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CircularGun.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

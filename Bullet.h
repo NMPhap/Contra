@@ -1,9 +1,5 @@
+#pragma once
 #include "GameObject.h"
-#include "Sprite.h"
-#include "sprites.h"
-#include "Animation.h"
-#include "Animations.h"
-#include "Texture.h"
 #include "Textures.h"
 #include "Game.h"
 #define ID_BULLET_TEXTURE 2
@@ -36,11 +32,7 @@ public:
 			return;
 		CGame* game = CGame::GetInstance();
 		if (x > game->GetBackBufferWidth())
-		{
-			vector<LPGAMEOBJECT> gameObjects = CGame::GetInstance()->gameObjects;
-			vector<LPGAMEOBJECT>::iterator i = std::find(gameObjects.begin(), gameObjects.end(), this);
-			gameObjects.erase(i);
-		}
+			DeleteFromGameObjects();
 	}
 	void Render() { 
 		if (bulletAnimation != NULL)
@@ -48,6 +40,7 @@ public:
 	}
 	static void LoadAnimation()
 	{
-		return;
+		CTextures* tex = CTextures::GetInstance();
+		tex->Add(ID_BULLET_TEXTURE, TEXTURE_BULET_PATH);
 	}
 };

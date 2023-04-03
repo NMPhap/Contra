@@ -139,6 +139,9 @@
     <ClCompile Include="BillBullet.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BillInputHandler.cpp" />
+    <ClCompile Include="CircularGun.cpp" />
+    <ClCompile Include="CurcularBullet.cpp" />
+    <ClCompile Include="NormalGun.cpp" />
     <ClCompile Include="Falcon.cpp" />
     <ClCompile Include="Gun.cpp" />
     <ClCompile Include="Input.cpp" />
@@ -159,6 +162,9 @@
     <ClInclude Include="BillBullet.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BillInputHandler.h" />
+    <ClInclude Include="CircularGun.h" />
+    <ClInclude Include="CurcularBullet.h" />
+    <ClInclude Include="NormalGun.h" />
     <ClInclude Include="Falcon.h" />
     <ClInclude Include="Gun.h" />
     <ClInclude Include="Input.h" />
