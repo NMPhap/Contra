@@ -477,9 +477,8 @@ void CGame::LoadResources()
 	sprites->Add(10001, 1, 30, 25, 65, texBill);
 	sprites->Add(10002, 26, 30, 50, 65, texBill);
 
-	sprites->Add(10003, 480, 30, 504, 65, texBill);
-	sprites->Add(10004, 455, 30, 479, 65, texBill);
-
+	sprites->Add(10003, 1, 30, 25, 65, texBill, 1.0f,-1.0f);
+	sprites->Add(10004, 26, 30, 50, 65, texBill, 1.0f, -1.0f);
 
 	// RUNNING RIGHT 
 	sprites->Add(10011, 2, 66, 23, 102, texBill);
