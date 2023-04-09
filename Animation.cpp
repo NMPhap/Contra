@@ -50,4 +50,3 @@ void CAnimation::Render(float x, float y, float rotationDeg)
 	}
 
 }
-
