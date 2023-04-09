@@ -10,7 +10,7 @@ void CAnimation::Add(int spriteId, DWORD time)
 	frames.push_back(frame);
 }
 
-void CAnimation::Render(float x, float y)
+void CAnimation::Render(float x, float y, float rotationDeg)
 {
 	ULONGLONG now = GetTickCount64();
 	if (this == nullptr)
@@ -45,7 +45,7 @@ void CAnimation::Render(float x, float y)
 					currentFrame = 0;
 			//DebugOut(L"now: %d, lastFrameTime: %d, t: %d\n", now, lastFrameTime, t);
 		}
-		frames[currentFrame]->GetSprite()->Draw(x, y);
+		frames[currentFrame]->GetSprite()->Draw(x, y, rotationDeg);
 
 	}
 

@@ -1,6 +1,6 @@
 #pragma once
 #include "Gun.h"
-#define RECOIL_TIME 1000
+#define RECOIL_TIME 200
 class CCircularGun: public CGun
 {
 private:

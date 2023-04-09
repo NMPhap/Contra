@@ -23,9 +23,9 @@ public:
 			cos = 0;
 		deg = acos(cos);
 		if (x < Ix)
-			vdeg = 0.02f;
+			vdeg = 0.05f;
 		else
-			vdeg = -0.02f;
+			vdeg = -0.05f;
 		LPANIMATION ani = CAnimations::GetInstance()->Get(ID_ANI_BULLET_F);
 		if (ani == NULL)
 		{
@@ -34,7 +34,7 @@ public:
 		}
 		bulletAnimation = ani;
 	}
-	void Update(DWORD dt)
+	void Update(DWORD dt,vector<LPGAMEOBJECT> *gameObject = NULL)
 	{
 		Ix = Ix + vx * dt;
 		Iy = Iy + vy * dt;

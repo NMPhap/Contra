@@ -3,8 +3,12 @@
 #include "Bullet.h"
 #include "NormalGun.h"
 #include "CircularGun.h"
+#include "SpreadGun.h"
+#include "FireGun.h"
+#include "RifleGun.h"
+#include "LAirCraft.h"
 extern CBill* bill;
-CBillInputHandler::CBillInputHandler()
+CBillInputHandler::CBillInputHandler(): CInputHandler()
 {
 	KeyToListen.push_back(DIK_LEFTARROW); 
 	KeyToListen.push_back(DIK_RIGHTARROW); 
@@ -12,6 +16,9 @@ CBillInputHandler::CBillInputHandler()
 	KeyToListen.push_back(DIK_0); 
 	KeyToListen.push_back(DIK_1);
 	KeyToListen.push_back(DIK_2);
+	KeyToListen.push_back(DIK_3);
+	KeyToListen.push_back(DIK_5);
+	KeyToListen.push_back(DIK_A);
 }
 void CBillInputHandler::HandleInput(CInput* input)
 {
@@ -36,7 +43,8 @@ void CBillInputHandler::onKeyClick(int keyCode)
 	if (keyCode == DIK_RIGHTARROW)
 	{
 		bill->SetFaceDirection(1);
-		bill->SetSpeedX(BILL_RUN_SPEED);
+		if(bill->GetState() != BILL_STATE_LAYDOWN)
+			bill->SetSpeedX(BILL_RUN_SPEED);
 		if (bill->GetState() == BILL_STATE_JUMP)
 			return;
 		if(bill->GetState() != BILL_STATE_LAYDOWN)
@@ -49,7 +57,8 @@ void CBillInputHandler::onKeyClick(int keyCode)
 	if (keyCode == DIK_LEFTARROW)
 	{
 		bill->SetFaceDirection(-1);
-		bill->SetSpeedX(-BILL_RUN_SPEED);
+		if(bill->GetState() != BILL_STATE_LAYDOWN)
+			bill->SetSpeedX(-BILL_RUN_SPEED);
 		if (bill->GetState() == BILL_STATE_JUMP)
 			return;
 		if (bill->GetState() != BILL_STATE_LAYDOWN)
@@ -74,6 +83,26 @@ void CBillInputHandler::onKeyClick(int keyCode)
 		bill->SetGun(new CCircularGun());
 		return;
 	}
+	if (keyCode == DIK_2)
+	{
+		bill->SetGun(new CSpreadGun());
+		return;
+	}
+	if (keyCode == DIK_3)
+	{
+		bill->SetGun(new CFireGun());
+		return;
+	}
+	if (keyCode == DIK_5)
+	{
+		bill->SetGun(new CRifleGun());
+		return;
+	}
+	if (keyCode == DIK_A)
+	{
+		bill->isShotting = true;
+		return;
+	}
 }
 
 void CBillInputHandler::onKeyPress(int keyCode)
@@ -92,10 +121,12 @@ void CBillInputHandler::onKeyPress(int keyCode)
 		return;
 
 	}
-	if (keyCode == DIK_A)
-		bill->isShotting = true;
 	if (keyCode == DIK_Z)
 		bill->SetState(BILL_STATE_LAYDOWN);
+	if (keyCode == DIK_4)
+	{
+		CGame::GetInstance()->gameObjects.push_back(new CLAirCraft(bill->GetX(), 0));
+	}
 }
 
 void CBillInputHandler::onKeyRelease(int keyCode)

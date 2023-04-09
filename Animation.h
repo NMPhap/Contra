@@ -23,7 +23,7 @@ public:
 	void Add(int spriteId, DWORD time = 0);
 	void SetStartAnimation(CAnimation* ani) { startAnimation = ani; }
 	void SetEndAnimation(CAnimation* ani) { endAnimation = ani; }
-	void Render(float x, float y);
+	void Render(float x, float y, float rotationDeg = 0.0f);
 };
 
 typedef CAnimation* LPANIMATION;

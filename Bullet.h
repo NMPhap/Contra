@@ -2,15 +2,7 @@
 #include "GameObject.h"
 #include "Textures.h"
 #include "Game.h"
-#define ID_BULLET_TEXTURE 2
-#define TEXTURE_BULET_PATH  L"./Resources/Images/Bullets.png"
-#define ID_ANI_BULLET_NORMAL 1000
-#define ID_ANI_BULLET_L 1001
-#define ID_ANI_BULLET_F 1002
-#define ID_ANI_BULLET_S 1003
-#define ID_ANI_BULLET_M 1004
-
-#define RECOID_TIME 100
+#include "AssetID.h"
 
 class CBullet : public CGameObject
 {
@@ -23,7 +15,7 @@ public:
 			this->vx = vx;
 			bulletAnimation = NULL;
 	}
-	void Update(DWORD dt) {
+	void Update(DWORD dt, vector<LPGAMEOBJECT> *gameObject = NULL) {
 		x += vx * dt;
 		y += vy * dt;
 
@@ -43,4 +35,5 @@ public:
 		CTextures* tex = CTextures::GetInstance();
 		tex->Add(ID_BULLET_TEXTURE, TEXTURE_BULET_PATH);
 	}
+	void GetBoundingBox(float& left, float& top, float& right, float& bottom) {};
 };

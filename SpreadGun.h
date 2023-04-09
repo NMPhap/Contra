@@ -1,9 +1,14 @@
 #pragma once
 #include "Gun.h"
-class CSpreadGun: CGun
+#define SPREAD_RECOIL_TIME 50
+#define SPREA_RELOAD_TIME 300
+class CSpreadGun:public  CGun
 {
 	ULONG lastShotTime;
-	static float Direction[5];
+	ULONG recoil_check;
+	static float DirectionX[5];
+	static float DirectionY[5];
+	int MagCap = 2;
 public:
 	void Shoot();
 };

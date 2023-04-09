@@ -1,7 +1,7 @@
 #include "NormalGun.h"
 #include "Bill.h"
 #include "BillBullet.h"
-#include "CurcularBullet.h"
+#include "FireBullet.h"
 extern CBill* bill;
 void CNormalGun::Shoot()
 {

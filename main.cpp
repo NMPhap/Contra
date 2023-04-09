@@ -9,8 +9,12 @@
 #include "Sprites.h"
 #include "Animations.h"
 #include "Bill.h"
-#include "BillBullet.h"
+#include "Grass.h"
 #include <vector>
+#include "Soldier.h"
+#include "GunRotation.h"
+#include "Sniper.h"
+#include "HiddenSniper.h"
 #define TEXTURE_PATH L"./Resources/Images/bill_animation.png"
 #define BACKGROUND_COLOR D3DXCOLOR(0.0f, 0.0f, 0.0f, 0.0f)
 #define SCREEN_WIDTH 500
@@ -58,7 +62,7 @@ void Run()
 		CGame::GetInstance()->ProcessKeyboard();
 		CGame* game = CGame::GetInstance();
 		for (int i = 0; i < game->gameObjects.size(); i++)
-			game->gameObjects[i]->Update(10);
+			game->gameObjects[i]->Update(10, &(game->gameObjects));
 		Render();
 		Sleep(10);
 	}
@@ -72,10 +76,22 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPreInstance, LPSTR lpCmdLine,
 	sprite = CSprites::GetInstance();
 	animation = CAnimations::GetInstance();
 	tex = CTextures::GetInstance();
-	//CBillBullet::LoadAnimation();
-	bill = new CBill(200.0f, 200.0f);
+	bill = new CBill(200.0f, 0);
+	
 	CBill::LoadAnimation();
-	game->gameObjects.push_back(bill);
 	SetWindowPos(game->GetHWnd(), 0, 0, 0, SCREEN_WIDTH * 2, SCREEN_HEIGHT * 2, SWP_NOMOVE | SWP_NOOWNERZORDER | SWP_NOZORDER);
+	game->gameObjects.push_back(bill);
+	CGrass::LoadAnimation();
+	for (int i = 0; i < game->GetBackBufferWidth(); i += 31)
+	{
+		game->gameObjects.push_back(new CGrass((float) i, 200.0f));
+	}
+	CGunRotation::LoadAnimation();
+	game->gameObjects.push_back(new CGunRotation(300.0f, 200.0f));
+	CSoldier::LoadAnimation();
+	game->gameObjects.push_back(new CSoldier(300.0f, 100.0f));
+	CSniper::LoadAnimation();
+	game->gameObjects.push_back(new CSniper(300.0f, 100.0f));
+	game->gameObjects.push_back(new CHiddenSniper(200.0f, 150.0f));
 	Run(); 
 }

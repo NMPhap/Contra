@@ -7,7 +7,7 @@ protected:
 	void onKeyPress(int keyCode);
 	void onKeyRelease(int keyCode);
 public:
-	CBillInputHandler() : CInputHandler();
+	CBillInputHandler();
 	void HandleInput(CInput* input);
 };
 

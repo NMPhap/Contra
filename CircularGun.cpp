@@ -1,6 +1,7 @@
 #include "CircularGun.h"
 #include "Bill.h"
 #include "CurcularBullet.h"
+#include "FireBullet.h"
 extern CBill* bill;
 void CCircularGun::Shoot()
 {
