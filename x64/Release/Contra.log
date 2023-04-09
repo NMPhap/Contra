@@ -1,34 +1,463 @@
 ﻿  Animation.cpp
-  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-D:\Contra\Game.h(7,1): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h(48,1): message : see previous definition of 'DIRECTINPUT_VERSION'
   Animations.cpp
+  Bill.cpp
   C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-D:\Contra\Game.h(7,1): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
+D:\Contra\BillInputHandler.h(10,39): error C2969: syntax error: ';': expected member function definition to end with '}'
+D:\Contra\Textures.h(7,7): error C2059: syntax error: 'using namespace'
+D:\Contra\Textures.h(7,20): error C2630: ';' found in what should be a comma-separated list
+D:\Contra\Textures.h(12,7): error C2059: syntax error: '<class-head>'
+D:\Contra\Textures.h(13,1): error C2630: ';' found in what should be a comma-separated list
+D:\Contra\Textures.h(14,18): error C2143: syntax error: missing ';' before '*'
+D:\Contra\Textures.h(14,18): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+D:\Contra\Textures.h(14,20): error C2065: '__instance': undeclared identifier
+D:\Contra\Textures.h(18,1): error C2059: syntax error: 'public'
+D:\Contra\Textures.h(23,18): error C2143: syntax error: missing ';' before '*'
+D:\Contra\Textures.h(23,18): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+D:\Contra\Textures.h(23,9): error C2086: 'int CTextures': redefinition
+D:\Contra\Textures.h(14,9): message : see declaration of 'CTextures'
+D:\Contra\Textures.h(23,20): error C3861: 'GetInstance': identifier not found
+D:\Contra\Game.h(6,1): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h(48,1): message : see previous definition of 'DIRECTINPUT_VERSION'
+D:\Contra\Bullet.h(43,3): error C2065: 'CTextures': undeclared identifier
+D:\Contra\Bullet.h(43,14): error C2065: 'tex': undeclared identifier
+D:\Contra\Bullet.h(43,20): error C2653: 'CTextures': is not a class or namespace name
+D:\Contra\Bullet.h(43,31): error C3861: 'GetInstance': identifier not found
+D:\Contra\Bullet.h(44,3): error C2065: 'tex': undeclared identifier
+D:\Contra\Gun.h(8,40): warning C4244: '=': conversion from 'ULONGLONG' to 'int', possible loss of data
+D:\Contra\Bill.h(19,14): warning C4083: expected 'newline'; found identifier 'ANIMATION_ID'
+D:\Contra\Bill.h(50,14): warning C4083: expected 'newline'; found identifier 'ANIMATION_DURATION'
+D:\Contra\BillBullet.h(22,23): error C2653: 'CTextures': is not a class or namespace name
+D:\Contra\BillBullet.h(22,34): error C3861: 'GetInstance': identifier not found
+D:\Contra\BillBullet.h(26,14): error C2653: 'CTextures': is not a class or namespace name
+D:\Contra\BillBullet.h(26,25): error C3861: 'GetInstance': identifier not found
+D:\Contra\Bill.cpp(160,2): error C2065: 'CTextures': undeclared identifier
+D:\Contra\Bill.cpp(160,13): error C2065: 'tex': undeclared identifier
+D:\Contra\Bill.cpp(160,19): error C2653: 'CTextures': is not a class or namespace name
+D:\Contra\Bill.cpp(160,30): error C3861: 'GetInstance': identifier not found
+D:\Contra\Bill.cpp(161,2): error C2065: 'tex': undeclared identifier
+D:\Contra\Bill.cpp(166,54): error C2065: 'tex': undeclared identifier
+D:\Contra\Bill.cpp(166,9): error C2660: 'CSprites::Add': function does not take 5 arguments
+D:\Contra\Sprites.h(22,7): message : see declaration of 'CSprites::Add'
+D:\Contra\Bill.cpp(166,9): message : while trying to match the argument list '(int, int, int, int, int)'
+D:\Contra\Bill.cpp(171,52): error C2065: 'tex': undeclared identifier
+D:\Contra\Bill.cpp(171,8): error C2664: 'void CSprites::Add(int,int,int,int,int,LPTEXTURE,float,float)': cannot convert argument 6 from 'float' to 'LPTEXTURE'
+D:\Contra\Sprites.h(22,7): message : see declaration of 'CSprites::Add'
+D:\Contra\Bill.cpp(171,8): message : while trying to match the argument list '(int, int, int, int, int, float)'
+D:\Contra\Bill.cpp(177,62): error C2065: 'tex': undeclared identifier
+D:\Contra\Bill.cpp(177,8): error C2660: 'CSprites::Add': function does not take 5 arguments
+D:\Contra\Sprites.h(22,7): message : see declaration of 'CSprites::Add'
+D:\Contra\Bill.cpp(177,8): message : while trying to match the argument list '(int, int, int, int, int)'
+D:\Contra\Bill.cpp(178,66): error C2065: 'tex': undeclared identifier
+D:\Contra\Bill.cpp(178,8): error C2660: 'CSprites::Add': function does not take 5 arguments
+D:\Contra\Sprites.h(22,7): message : see declaration of 'CSprites::Add'
+D:\Contra\Bill.cpp(178,8): message : while trying to match the argument list '(int, int, int, int, int)'
+D:\Contra\Bill.cpp(185,61): error C2065: 'tex': undeclared identifier
+D:\Contra\Bill.cpp(185,8): error C2664: 'void CSprites::Add(int,int,int,int,int,LPTEXTURE,float,float)': cannot convert argument 6 from 'float' to 'LPTEXTURE'
+D:\Contra\Sprites.h(22,7): message : see declaration of 'CSprites::Add'
+D:\Contra\Bill.cpp(185,8): message : while trying to match the argument list '(int, int, int, int, int, float)'
+D:\Contra\Bill.cpp(186,65): error C2065: 'tex': undeclared identifier
+D:\Contra\Bill.cpp(186,8): error C2664: 'void CSprites::Add(int,int,int,int,int,LPTEXTURE,float,float)': cannot convert argument 6 from 'float' to 'LPTEXTURE'
+D:\Contra\Sprites.h(22,7): message : see declaration of 'CSprites::Add'
+D:\Contra\Bill.cpp(186,8): message : while trying to match the argument list '(int, int, int, int, int, float)'
+D:\Contra\Bill.cpp(195,53): error C2065: 'tex': undeclared identifier
+D:\Contra\Bill.cpp(195,8): error C2660: 'CSprites::Add': function does not take 5 arguments
+D:\Contra\Sprites.h(22,7): message : see declaration of 'CSprites::Add'
+D:\Contra\Bill.cpp(195,8): message : while trying to match the argument list '(int, int, int, int, int)'
+D:\Contra\Bill.cpp(196,58): error C2065: 'tex': undeclared identifier
+D:\Contra\Bill.cpp(196,8): error C2660: 'CSprites::Add': function does not take 5 arguments
+D:\Contra\Sprites.h(22,7): message : see declaration of 'CSprites::Add'
+D:\Contra\Bill.cpp(196,8): message : while trying to match the argument list '(int, int, int, int, int)'
+D:\Contra\Bill.cpp(197,58): error C2065: 'tex': undeclared identifier
+D:\Contra\Bill.cpp(197,8): error C2660: 'CSprites::Add': function does not take 5 arguments
+D:\Contra\Sprites.h(22,7): message : see declaration of 'CSprites::Add'
+D:\Contra\Bill.cpp(197,8): message : while trying to match the argument list '(int, int, int, int, int)'
+D:\Contra\Bill.cpp(198,58): error C2065: 'tex': undeclared identifier
+D:\Contra\Bill.cpp(198,8): error C2660: 'CSprites::Add': function does not take 5 arguments
+D:\Contra\Sprites.h(22,7): message : see declaration of 'CSprites::Add'
+D:\Contra\Bill.cpp(198,8): message : while trying to match the argument list '(int, int, int, int, int)'
+D:\Contra\Bill.cpp(199,59): error C2065: 'tex': undeclared identifier
+D:\Contra\Bill.cpp(199,8): error C2660: 'CSprites::Add': function does not take 5 arguments
+D:\Contra\Sprites.h(22,7): message : see declaration of 'CSprites::Add'
+D:\Contra\Bill.cpp(199,8): message : while trying to match the argument list '(int, int, int, int, int)'
+D:\Contra\Bill.cpp(200,60): error C2065: 'tex': undeclared identifier
+D:\Contra\Bill.cpp(200,8): error C2660: 'CSprites::Add': function does not take 5 arguments
+D:\Contra\Sprites.h(22,7): message : see declaration of 'CSprites::Add'
+D:\Contra\Bill.cpp(200,8): message : while trying to match the argument list '(int, int, int, int, int)'
+D:\Contra\Bill.cpp(211,52): error C2065: 'tex': undeclared identifier
+D:\Contra\Bill.cpp(211,8): error C2664: 'void CSprites::Add(int,int,int,int,int,LPTEXTURE,float,float)': cannot convert argument 6 from 'float' to 'LPTEXTURE'
+D:\Contra\Sprites.h(22,7): message : see declaration of 'CSprites::Add'
+D:\Contra\Bill.cpp(211,8): message : while trying to match the argument list '(int, int, int, int, int, float)'
+D:\Contra\Bill.cpp(212,57): error C2065: 'tex': undeclared identifier
+D:\Contra\Bill.cpp(212,8): error C2664: 'void CSprites::Add(int,int,int,int,int,LPTEXTURE,float,float)': cannot convert argument 6 from 'float' to 'LPTEXTURE'
+D:\Contra\Sprites.h(22,7): message : see declaration of 'CSprites::Add'
+D:\Contra\Bill.cpp(212,8): message : while trying to match the argument list '(int, int, int, int, int, float)'
+D:\Contra\Bill.cpp(213,57): error C2065: 'tex': undeclared identifier
+D:\Contra\Bill.cpp(213,8): error C2664: 'void CSprites::Add(int,int,int,int,int,LPTEXTURE,float,float)': cannot convert argument 6 from 'float' to 'LPTEXTURE'
+D:\Contra\Sprites.h(22,7): message : see declaration of 'CSprites::Add'
+D:\Contra\Bill.cpp(213,8): message : while trying to match the argument list '(int, int, int, int, int, float)'
+D:\Contra\Bill.cpp(214,57): error C2065: 'tex': undeclared identifier
+D:\Contra\Bill.cpp(214,8): error C2664: 'void CSprites::Add(int,int,int,int,int,LPTEXTURE,float,float)': cannot convert argument 6 from 'float' to 'LPTEXTURE'
+D:\Contra\Sprites.h(22,7): message : see declaration of 'CSprites::Add'
+D:\Contra\Bill.cpp(214,8): message : while trying to match the argument list '(int, int, int, int, int, float)'
+D:\Contra\Bill.cpp(215,58): error C2065: 'tex': undeclared identifier
+D:\Contra\Bill.cpp(215,8): error C2664: 'void CSprites::Add(int,int,int,int,int,LPTEXTURE,float,float)': cannot convert argument 6 from 'float' to 'LPTEXTURE'
+D:\Contra\Sprites.h(22,7): message : see declaration of 'CSprites::Add'
+D:\Contra\Bill.cpp(215,8): message : while trying to match the argument list '(int, int, int, int, int, float)'
+D:\Contra\Bill.cpp(216,59): error C2065: 'tex': undeclared identifier
+D:\Contra\Bill.cpp(216,8): error C2664: 'void CSprites::Add(int,int,int,int,int,LPTEXTURE,float,float)': cannot convert argument 6 from 'float' to 'LPTEXTURE'
+D:\Contra\Sprites.h(22,7): message : see declaration of 'CSprites::Add'
+D:\Contra\Bill.cpp(216,8): message : while trying to match the argument list '(int, int, int, int, int, float)'
+D:\Contra\Bill.cpp(229,62): error C2065: 'tex': undeclared identifier
+D:\Contra\Bill.cpp(229,8): error C2660: 'CSprites::Add': function does not take 5 arguments
+D:\Contra\Sprites.h(22,7): message : see declaration of 'CSprites::Add'
+D:\Contra\Bill.cpp(229,8): message : while trying to match the argument list '(int, int, int, int, int)'
+D:\Contra\Bill.cpp(230,66): error C2065: 'tex': undeclared identifier
+D:\Contra\Bill.cpp(230,8): error C2660: 'CSprites::Add': function does not take 5 arguments
+D:\Contra\Sprites.h(22,7): message : see declaration of 'CSprites::Add'
+D:\Contra\Bill.cpp(230,8): message : while trying to match the argument list '(int, int, int, int, int)'
+D:\Contra\Bill.cpp(231,67): error C2065: 'tex': undeclared identifier
+D:\Contra\Bill.cpp(231,8): error C2660: 'CSprites::Add': function does not take 5 arguments
+D:\Contra\Sprites.h(22,7): message : see declaration of 'CSprites::Add'
+D:\Contra\Bill.cpp(231,8): message : while trying to match the argument list '(int, int, int, int, int)'
+D:\Contra\Bill.cpp(240,61): error C2065: 'tex': undeclared identifier
+D:\Contra\Bill.cpp(240,8): error C2664: 'void CSprites::Add(int,int,int,int,int,LPTEXTURE,float,float)': cannot convert argument 6 from 'float' to 'LPTEXTURE'
+D:\Contra\Sprites.h(22,7): message : see declaration of 'CSprites::Add'
+D:\Contra\Bill.cpp(240,8): message : while trying to match the argument list '(int, int, int, int, int, float)'
+D:\Contra\Bill.cpp(241,65): error C2065: 'tex': undeclared identifier
+D:\Contra\Bill.cpp(241,8): error C2664: 'void CSprites::Add(int,int,int,int,int,LPTEXTURE,float,float)': cannot convert argument 6 from 'float' to 'LPTEXTURE'
+D:\Contra\Sprites.h(22,7): message : see declaration of 'CSprites::Add'
+D:\Contra\Bill.cpp(241,8): message : while trying to match the argument list '(int, int, int, int, int, float)'
+D:\Contra\Bill.cpp(242,65): error C2065: 'tex': undeclared identifier
+D:\Contra\Bill.cpp(242,8): error C2664: 'void CSprites::Add(int,int,int,int,int,LPTEXTURE,float,float)': cannot convert argument 6 from 'float' to 'LPTEXTURE'
+D:\Contra\Sprites.h(22,7): message : see declaration of 'CSprites::Add'
+D:\Contra\Bill.cpp(242,8): message : while trying to match the argument list '(int, int, int, int, int, float)'
+D:\Contra\Bill.cpp(252,64): error C2065: 'tex': undeclared identifier
+D:\Contra\Bill.cpp(252,8): error C2660: 'CSprites::Add': function does not take 5 arguments
+D:\Contra\Sprites.h(22,7): message : see declaration of 'CSprites::Add'
+D:\Contra\Bill.cpp(252,8): message : while trying to match the argument list '(int, int, int, int, int)'
+D:\Contra\Bill.cpp(253,68): error C2065: 'tex': undeclared identifier
+D:\Contra\Bill.cpp(253,8): error C2660: 'CSprites::Add': function does not take 5 arguments
+D:\Contra\Sprites.h(22,7): message : see declaration of 'CSprites::Add'
+D:\Contra\Bill.cpp(253,8): message : while trying to match the argument list '(int, int, int, int, int)'
+D:\Contra\Bill.cpp(254,68): error C2065: 'tex': undeclared identifier
+D:\Contra\Bill.cpp(254,8): error C2660: 'CSprites::Add': function does not take 5 arguments
+D:\Contra\Sprites.h(22,7): message : see declaration of 'CSprites::Add'
+D:\Contra\Bill.cpp(254,8): message : while trying to match the argument list '(int, int, int, int, int)'
+D:\Contra\Bill.cpp(263,63): error C2065: 'tex': undeclared identifier
+D:\Contra\Bill.cpp(263,8): error C2664: 'void CSprites::Add(int,int,int,int,int,LPTEXTURE,float,float)': cannot convert argument 6 from 'float' to 'LPTEXTURE'
+D:\Contra\Sprites.h(22,7): message : see declaration of 'CSprites::Add'
+D:\Contra\Bill.cpp(263,8): message : while trying to match the argument list '(int, int, int, int, int, float)'
+D:\Contra\Bill.cpp(264,67): error C2065: 'tex': undeclared identifier
+D:\Contra\Bill.cpp(264,8): error C2664: 'void CSprites::Add(int,int,int,int,int,LPTEXTURE,float,float)': cannot convert argument 6 from 'float' to 'LPTEXTURE'
+D:\Contra\Sprites.h(22,7): message : see declaration of 'CSprites::Add'
+D:\Contra\Bill.cpp(264,8): message : while trying to match the argument list '(int, int, int, int, int, float)'
+D:\Contra\Bill.cpp(265,67): error C2065: 'tex': undeclared identifier
+D:\Contra\Bill.cpp(265,8): error C2664: 'void CSprites::Add(int,int,int,int,int,LPTEXTURE,float,float)': cannot convert argument 6 from 'float' to 'LPTEXTURE'
+D:\Contra\Sprites.h(22,7): message : see declaration of 'CSprites::Add'
+D:\Contra\Bill.cpp(265,8): message : while trying to match the argument list '(int, int, int, int, int, float)'
+D:\Contra\Bill.cpp(276,66): error C2065: 'tex': undeclared identifier
+D:\Contra\Bill.cpp(276,8): error C2660: 'CSprites::Add': function does not take 5 arguments
+D:\Contra\Sprites.h(22,7): message : see declaration of 'CSprites::Add'
+D:\Contra\Bill.cpp(276,8): message : while trying to match the argument list '(int, int, int, int, int)'
+D:\Contra\Bill.cpp(277,70): error C2065: 'tex': undeclared identifier
+D:\Contra\Bill.cpp(277,8): error C2660: 'CSprites::Add': function does not take 5 arguments
+D:\Contra\Sprites.h(22,7): message : see declaration of 'CSprites::Add'
+D:\Contra\Bill.cpp(277,8): message : while trying to match the argument list '(int, int, int, int, int)'
+D:\Contra\Bill.cpp(278,70): error C2065: 'tex': undeclared identifier
+D:\Contra\Bill.cpp(278,8): error C2660: 'CSprites::Add': function does not take 5 arguments
+D:\Contra\Sprites.h(22,7): message : see declaration of 'CSprites::Add'
+D:\Contra\Bill.cpp(278,8): message : while trying to match the argument list '(int, int, int, int, int)'
+D:\Contra\Bill.cpp(287,65): error C2065: 'tex': undeclared identifier
+D:\Contra\Bill.cpp(287,8): error C2664: 'void CSprites::Add(int,int,int,int,int,LPTEXTURE,float,float)': cannot convert argument 6 from 'float' to 'LPTEXTURE'
+D:\Contra\Sprites.h(22,7): message : see declaration of 'CSprites::Add'
+D:\Contra\Bill.cpp(287,8): message : while trying to match the argument list '(int, int, int, int, int, float)'
+D:\Contra\Bill.cpp(288,69): error C2065: 'tex': undeclared identifier
+D:\Contra\Bill.cpp(288,8): error C2664: 'void CSprites::Add(int,int,int,int,int,LPTEXTURE,float,float)': cannot convert argument 6 from 'float' to 'LPTEXTURE'
+D:\Contra\Sprites.h(22,7): message : see declaration of 'CSprites::Add'
+D:\Contra\Bill.cpp(288,8): message : while trying to match the argument list '(int, int, int, int, int, float)'
+D:\Contra\Bill.cpp(289,69): error C2065: 'tex': undeclared identifier
+D:\Contra\Bill.cpp(289,8): error C2664: 'void CSprites::Add(int,int,int,int,int,LPTEXTURE,float,float)': cannot convert argument 6 from 'float' to 'LPTEXTURE'
+D:\Contra\Sprites.h(22,7): message : see declaration of 'CSprites::Add'
+D:\Contra\Bill.cpp(289,8): message : while trying to match the argument list '(int, int, int, int, int, float)'
+D:\Contra\Bill.cpp(299,62): error C2065: 'tex': undeclared identifier
+D:\Contra\Bill.cpp(299,8): error C2660: 'CSprites::Add': function does not take 5 arguments
+D:\Contra\Sprites.h(22,7): message : see declaration of 'CSprites::Add'
+D:\Contra\Bill.cpp(299,8): message : while trying to match the argument list '(int, int, int, int, int)'
+D:\Contra\Bill.cpp(306,61): error C2065: 'tex': undeclared identifier
+D:\Contra\Bill.cpp(306,8): error C2664: 'void CSprites::Add(int,int,int,int,int,LPTEXTURE,float,float)': cannot convert argument 6 from 'float' to 'LPTEXTURE'
+D:\Contra\Bill.cpp(306,94): fatal  error C1003: error count exceeds 100; stopping compilation
+  BillBullet.cpp
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+D:\Contra\Game.h(6,1): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h(48,1): message : see previous definition of 'DIRECTINPUT_VERSION'
+  Bullet.cpp
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+D:\Contra\Game.h(6,1): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h(48,1): message : see previous definition of 'DIRECTINPUT_VERSION'
+  BillInputHandler.cpp
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+D:\Contra\BillInputHandler.h(10,39): error C2969: syntax error: ';': expected member function definition to end with '}'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(57,37): error C2061: syntax error: identifier 'ID3D10DeviceChild'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(57,54): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(64,43): error C2061: syntax error: identifier 'ID3D10DepthStencilState'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(64,66): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(71,36): error C2061: syntax error: identifier 'ID3D10BlendState'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(71,52): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(78,41): error C2061: syntax error: identifier 'ID3D10RasterizerState'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(78,62): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(85,34): error C2061: syntax error: identifier 'ID3D10Resource'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(85,48): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(92,32): error C2061: syntax error: identifier 'ID3D10Buffer'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(92,44): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(99,35): error C2061: syntax error: identifier 'ID3D10Texture1D'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(99,50): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(106,35): error C2061: syntax error: identifier 'ID3D10Texture2D'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(106,50): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(113,35): error C2061: syntax error: identifier 'ID3D10Texture3D'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(113,50): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(120,30): error C2061: syntax error: identifier 'ID3D10View'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(120,40): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(127,44): error C2061: syntax error: identifier 'ID3D10ShaderResourceView'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(127,68): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(134,42): error C2061: syntax error: identifier 'ID3D10RenderTargetView'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(134,64): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(141,42): error C2061: syntax error: identifier 'ID3D10DepthStencilView'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(141,64): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(148,38): error C2061: syntax error: identifier 'ID3D10VertexShader'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(148,56): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(155,40): error C2061: syntax error: identifier 'ID3D10GeometryShader'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(155,60): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(162,37): error C2061: syntax error: identifier 'ID3D10PixelShader'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(162,54): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(169,37): error C2061: syntax error: identifier 'ID3D10InputLayout'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(169,54): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(176,38): error C2061: syntax error: identifier 'ID3D10SamplerState'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(176,56): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(183,38): error C2061: syntax error: identifier 'ID3D10Asynchronous'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(183,56): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(190,31): error C2061: syntax error: identifier 'ID3D10Query'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(190,42): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(197,35): error C2061: syntax error: identifier 'ID3D10Predicate'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(197,50): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(204,33): error C2061: syntax error: identifier 'ID3D10Counter'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(204,46): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(211,32): error C2061: syntax error: identifier 'ID3D10Device'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(211,44): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(218,37): error C2061: syntax error: identifier 'ID3D10Multithread'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\d3d10.h(218,54): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(52,36): error C2061: syntax error: identifier 'IEnumConnections'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(52,52): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(59,36): error C2061: syntax error: identifier 'IConnectionPoint'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(59,52): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(66,41): error C2061: syntax error: identifier 'IEnumConnectionPoints'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(66,62): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(73,45): error C2061: syntax error: identifier 'IConnectionPointContainer'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(73,70): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(80,34): error C2061: syntax error: identifier 'IClassFactory2'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(80,48): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(87,37): error C2061: syntax error: identifier 'IProvideClassInfo'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(87,54): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(94,38): error C2061: syntax error: identifier 'IProvideClassInfo2'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(94,56): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(101,45): error C2061: syntax error: identifier 'IProvideMultipleClassInfo'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(101,70): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(108,31): error C2061: syntax error: identifier 'IOleControl'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(108,42): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(115,35): error C2061: syntax error: identifier 'IOleControlSite'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(115,50): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(122,33): error C2061: syntax error: identifier 'IPropertyPage'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(122,46): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(129,34): error C2061: syntax error: identifier 'IPropertyPage2'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(129,48): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(136,37): error C2061: syntax error: identifier 'IPropertyPageSite'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(136,54): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(143,39): error C2061: syntax error: identifier 'IPropertyNotifySink'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(143,58): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(150,41): error C2061: syntax error: identifier 'ISpecifyPropertyPages'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(150,62): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(157,34): error C2061: syntax error: identifier 'IPersistMemory'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(157,48): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(164,38): error C2061: syntax error: identifier 'IPersistStreamInit'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(164,56): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(171,39): error C2061: syntax error: identifier 'IPersistPropertyBag'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(171,58): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(178,36): error C2061: syntax error: identifier 'ISimpleFrameSite'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(178,52): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(185,25): error C2061: syntax error: identifier 'IFont'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(185,30): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(192,28): error C2061: syntax error: identifier 'IPicture'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(192,36): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(199,29): error C2061: syntax error: identifier 'IPicture2'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(199,38): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(206,35): error C2061: syntax error: identifier 'IFontEventsDisp'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(206,50): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(213,29): error C2061: syntax error: identifier 'IFontDisp'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(213,38): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(220,32): error C2061: syntax error: identifier 'IPictureDisp'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(220,44): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(227,47): error C2061: syntax error: identifier 'IOleInPlaceObjectWindowless'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(227,74): error C2630: ';' found in what should be a comma-separated list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ocidl.h(227,74): fatal  error C1003: error count exceeds 100; stopping compilation
+  CircularGun.cpp
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+D:\Contra\Game.h(6,1): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h(48,1): message : see previous definition of 'DIRECTINPUT_VERSION'
+D:\Contra\Gun.h(8,40): warning C4244: '=': conversion from 'ULONGLONG' to 'int', possible loss of data
+D:\Contra\CircularGun.h(10,34): warning C4244: '=': conversion from 'ULONGLONG' to 'ULONG', possible loss of data
+D:\Contra\BillInputHandler.h(10,39): error C2969: syntax error: ';': expected member function definition to end with '}'
+D:\Contra\NormalGun.h(4,7): error C2059: syntax error: '<class-head>'
+D:\Contra\NormalGun.h(5,1): error C2630: ';' found in what should be a comma-separated list
+D:\Contra\Bill.h(19,14): warning C4083: expected 'newline'; found identifier 'ANIMATION_ID'
+D:\Contra\Bill.h(50,14): warning C4083: expected 'newline'; found identifier 'ANIMATION_DURATION'
+D:\Contra\Bill.h(75,13): error C2061: syntax error: identifier 'CNormalGun'
+D:\Contra\CircularGun.cpp(11,31): warning C4244: '=': conversion from 'ULONGLONG' to 'int', possible loss of data
+  CurcularBullet.cpp
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+D:\Contra\Game.h(6,1): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h(48,1): message : see previous definition of 'DIRECTINPUT_VERSION'
+  NormalGun.cpp
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+D:\Contra\Game.h(6,1): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h(48,1): message : see previous definition of 'DIRECTINPUT_VERSION'
+D:\Contra\Gun.h(8,40): warning C4244: '=': conversion from 'ULONGLONG' to 'int', possible loss of data
+D:\Contra\BillInputHandler.h(10,39): error C2969: syntax error: ';': expected member function definition to end with '}'
+D:\Contra\Bill.h(19,14): warning C4083: expected 'newline'; found identifier 'ANIMATION_ID'
+D:\Contra\Bill.h(50,14): warning C4083: expected 'newline'; found identifier 'ANIMATION_DURATION'
+D:\Contra\Bill.h(57,7): error C2059: syntax error: '<class-head>'
+D:\Contra\Bill.h(58,1): error C2630: ';' found in what should be a comma-separated list
+D:\Contra\Bill.h(59,1): error C2059: syntax error: 'private'
+D:\Contra\Bill.h(61,1): error C2059: syntax error: 'public'
+D:\Contra\Bill.h(67,8): error C2144: syntax error: 'float' should be preceded by ')'
+D:\Contra\Bill.h(67,2): error C3861: 'CBill': identifier not found
+D:\Contra\Bill.h(67,8): error C2144: syntax error: 'float' should be preceded by ';'
+D:\Contra\Bill.h(67,17): error C2062: type 'float' unexpected
+D:\Contra\Bill.h(67,24): error C2059: syntax error: ')'
+D:\Contra\Bill.h(68,2): error C2143: syntax error: missing ';' before '{'
+D:\Contra\Bill.h(69,3): error C2065: 'isSitting': undeclared identifier
+D:\Contra\Bill.h(73,3): error C2065: 'state': undeclared identifier
+D:\Contra\Bill.h(74,9): error C2039: 'handler': is not a member of 'CBillInputHandler'
+D:\Contra\BillInputHandler.h(3,7): message : see declaration of 'CBillInputHandler'
+D:\Contra\Bill.h(75,3): error C2065: 'gun': undeclared identifier
+D:\Contra\Bill.h(80,7): error C2601: 'SetFaceDirection': local function definitions are illegal
+D:\Contra\Bill.h(58): message : this line contains a '{' which has not yet been matched
+D:\Contra\Bill.h(81,7): error C2601: 'SetHandler': local function definitions are illegal
+D:\Contra\Bill.h(58): message : this line contains a '{' which has not yet been matched
+D:\Contra\Bill.h(82,14): error C2267: 'LoadAnimation': static functions with block scope are illegal
+D:\Contra\Bill.h(83,7): error C2601: 'SetGun': local function definitions are illegal
+D:\Contra\Bill.h(58): message : this line contains a '{' which has not yet been matched
+D:\Contra\Bill.h(80,37): error C2065: 'faceDirection': undeclared identifier
+D:\Contra\Bill.h(80,64): error C2065: 'vx': undeclared identifier
+D:\Contra\Bill.h(80,72): error C2065: 'vx': undeclared identifier
+D:\Contra\Bill.h(80,77): error C2065: 'faceDirection': undeclared identifier
+D:\Contra\Bill.h(80,93): error C2065: 'vx': undeclared identifier
+D:\Contra\Bill.h(80,102): error C2065: 'vx': undeclared identifier
+D:\Contra\Bill.h(80,108): error C2065: 'faceDirection': undeclared identifier
+D:\Contra\Bill.h(80,124): error C2065: 'vx': undeclared identifier
+D:\Contra\Bill.h(81,53): error C2065: 'handler': undeclared identifier
+D:\Contra\Bill.h(83,30): error C2065: 'gun': undeclared identifier
+D:\Contra\NormalGun.cpp(5,13): error C2143: syntax error: missing ';' before '*'
+D:\Contra\NormalGun.cpp(5,13): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+D:\Contra\NormalGun.cpp(5,19): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+D:\Contra\NormalGun.cpp(12,31): warning C4244: '=': conversion from 'ULONGLONG' to 'int', possible loss of data
+  Falcon.cpp
+  Gun.cpp
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+D:\Contra\Game.h(6,1): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h(48,1): message : see previous definition of 'DIRECTINPUT_VERSION'
+D:\Contra\Gun.h(8,40): warning C4244: '=': conversion from 'ULONGLONG' to 'int', possible loss of data
+  Input.cpp
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  InputHandler.cpp
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
   debug.cpp
   Game.cpp
   C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-D:\Contra\Game.h(7,1): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
+D:\Contra\Game.h(6,1): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h(48,1): message : see previous definition of 'DIRECTINPUT_VERSION'
+D:\Contra\BillInputHandler.h(10,39): error C2969: syntax error: ';': expected member function definition to end with '}'
+D:\Contra\Textures.h(7,7): error C2059: syntax error: 'using namespace'
+D:\Contra\Textures.h(7,20): error C2630: ';' found in what should be a comma-separated list
+D:\Contra\Textures.h(12,7): error C2059: syntax error: '<class-head>'
+D:\Contra\Textures.h(13,1): error C2630: ';' found in what should be a comma-separated list
+D:\Contra\Textures.h(14,18): error C2143: syntax error: missing ';' before '*'
+D:\Contra\Textures.h(14,18): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+D:\Contra\Textures.h(14,20): error C2065: '__instance': undeclared identifier
+D:\Contra\Textures.h(18,1): error C2059: syntax error: 'public'
+D:\Contra\Textures.h(23,18): error C2143: syntax error: missing ';' before '*'
+D:\Contra\Textures.h(23,18): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+D:\Contra\Textures.h(23,9): error C2086: 'int CTextures': redefinition
+D:\Contra\Textures.h(14,9): message : see declaration of 'CTextures'
+D:\Contra\Textures.h(23,20): error C3861: 'GetInstance': identifier not found
+D:\Contra\Bullet.h(43,3): error C2065: 'CTextures': undeclared identifier
+D:\Contra\Bullet.h(43,14): error C2065: 'tex': undeclared identifier
+D:\Contra\Bullet.h(43,20): error C2653: 'CTextures': is not a class or namespace name
+D:\Contra\Bullet.h(43,31): error C3861: 'GetInstance': identifier not found
+D:\Contra\Bullet.h(44,3): error C2065: 'tex': undeclared identifier
+D:\Contra\Gun.h(8,40): warning C4244: '=': conversion from 'ULONGLONG' to 'int', possible loss of data
+D:\Contra\Bill.h(19,14): warning C4083: expected 'newline'; found identifier 'ANIMATION_ID'
+D:\Contra\Bill.h(50,14): warning C4083: expected 'newline'; found identifier 'ANIMATION_DURATION'
+  GameObject.cpp
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+D:\Contra\Game.h(6,1): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h(48,1): message : see previous definition of 'DIRECTINPUT_VERSION'
   main.cpp
   C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-D:\Contra\Game.h(7,1): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
+D:\Contra\Game.h(6,1): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h(48,1): message : see previous definition of 'DIRECTINPUT_VERSION'
+D:\Contra\BillInputHandler.h(10,39): error C2969: syntax error: ';': expected member function definition to end with '}'
+D:\Contra\Bullet.h(15,7): error C2059: syntax error: '<class-head>'
+D:\Contra\Bullet.h(16,1): error C2630: ';' found in what should be a comma-separated list
+D:\Contra\Bullet.h(17,1): error C2059: syntax error: 'protected'
+D:\Contra\Bullet.h(19,1): error C2059: syntax error: 'public'
+D:\Contra\Bullet.h(20,79): error C2143: syntax error: missing ';' before '{'
+D:\Contra\Bullet.h(22,10): error C2039: 'vy': is not a member of 'CBillInputHandler'
+D:\Contra\BillInputHandler.h(3,7): message : see declaration of 'CBillInputHandler'
+D:\Contra\Bullet.h(22,15): error C2065: 'vy': undeclared identifier
+D:\Contra\Bullet.h(23,10): error C2039: 'vx': is not a member of 'CBillInputHandler'
+D:\Contra\BillInputHandler.h(3,7): message : see declaration of 'CBillInputHandler'
+D:\Contra\Bullet.h(23,15): error C2065: 'vx': undeclared identifier
+D:\Contra\Bullet.h(24,4): error C2065: 'bulletAnimation': undeclared identifier
+D:\Contra\Bullet.h(26,7): error C2601: 'Update': local function definitions are illegal
+D:\Contra\Bullet.h(16): message : this line contains a '{' which has not yet been matched
+D:\Contra\Bullet.h(37,7): error C2601: 'Render': local function definitions are illegal
+D:\Contra\Bullet.h(16): message : this line contains a '{' which has not yet been matched
+D:\Contra\Bullet.h(41,14): error C2267: 'LoadAnimation': static functions with block scope are illegal
+D:\Contra\Bullet.h(41,14): error C2601: 'LoadAnimation': local function definitions are illegal
+D:\Contra\Bullet.h(16): message : this line contains a '{' which has not yet been matched
+D:\Contra\Bullet.h(27,3): error C2065: 'x': undeclared identifier
+D:\Contra\Bullet.h(27,8): error C2065: 'vx': undeclared identifier
+D:\Contra\Bullet.h(28,3): error C2065: 'y': undeclared identifier
+D:\Contra\Bullet.h(28,8): error C2065: 'vy': undeclared identifier
+D:\Contra\Bullet.h(31,7): error C2065: 'x': undeclared identifier
+D:\Contra\Bullet.h(31,16): error C2065: 'y': undeclared identifier
+D:\Contra\Bullet.h(34,7): error C2065: 'x': undeclared identifier
+D:\Contra\Bullet.h(35,4): error C3861: 'DeleteFromGameObjects': identifier not found
+D:\Contra\Bullet.h(38,7): error C2065: 'bulletAnimation': undeclared identifier
+D:\Contra\Bullet.h(39,4): error C2065: 'bulletAnimation': undeclared identifier
+D:\Contra\Bullet.h(39,28): error C2065: 'x': undeclared identifier
+D:\Contra\Bullet.h(39,31): error C2065: 'y': undeclared identifier
+D:\Contra\Gun.h(8,40): warning C4244: '=': conversion from 'ULONGLONG' to 'int', possible loss of data
+D:\Contra\Bill.h(19,14): warning C4083: expected 'newline'; found identifier 'ANIMATION_ID'
+D:\Contra\Bill.h(50,14): warning C4083: expected 'newline'; found identifier 'ANIMATION_DURATION'
+D:\Contra\BillBullet.h(4,1): error C2504: 'CBullet': base class undefined
+D:\Contra\BillBullet.h(6,67): error C2614: 'CBillBullet': illegal member initialization: 'CBullet' is not a base or member
+D:\Contra\BillBullet.h(7,3): error C2065: 'bulletAnimation': undeclared identifier
+D:\Contra\BillBullet.h(8,7): error C2065: 'bulletAnimation': undeclared identifier
+D:\Contra\BillBullet.h(11,4): error C2065: 'bulletAnimation': undeclared identifier
+D:\Contra\BillBullet.h(17,3): error C2653: 'CBullet': is not a class or namespace name
+D:\Contra\BillBullet.h(25,4): error C2653: 'CBullet': is not a class or namespace name
+D:\Contra\main.cpp(23,8): error C2143: syntax error: missing ';' before '*'
+D:\Contra\main.cpp(23,8): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+D:\Contra\main.cpp(23,16): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
   Sprite.cpp
   C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-D:\Contra\Game.h(7,1): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
+D:\Contra\Game.h(6,1): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h(48,1): message : see previous definition of 'DIRECTINPUT_VERSION'
   Sprites.cpp
   C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-D:\Contra\Game.h(7,1): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
+D:\Contra\Game.h(6,1): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h(48,1): message : see previous definition of 'DIRECTINPUT_VERSION'
   Textures.cpp
   C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-D:\Contra\Game.h(7,1): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
+D:\Contra\Game.h(6,1): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h(48,1): message : see previous definition of 'DIRECTINPUT_VERSION'
-  Generating code
-  Previous IPDB not found, fall back to full compilation.
-  All 26 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
-  Finished generating code
-  Contra.vcxproj -> D:\Contra\x64\Release\Contra.exe

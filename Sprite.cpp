@@ -41,13 +41,15 @@ CSprite::CSprite(int id, int left, int top, int right, int bottom, LPTEXTURE tex
 	D3DXMatrixScaling(&this->matScaling, (FLOAT)spriteWidth, (FLOAT)spriteHeight, -1.0f);
 }
 
-void CSprite::Draw(float x, float y)
+void CSprite::Draw(float x, float y ,float rotationDeg)
 {
 	CGame* g = CGame::GetInstance();
 	int spriteWidth = (this->right - this->left);
 	int spriteHeight = (this->bottom - this->top);
 	D3DXMATRIX matTranslation;
 	D3DXMatrixTranslation(&matTranslation, x, (g->GetBackBufferHeight() - y), 0.1f);
-	this->sprite.matWorld = (this->matScaling * matTranslation);
+	D3DXMATRIX matRotation;
+	D3DXMatrixRotationZ(&matRotation, rotationDeg);
+	this->sprite.matWorld = (this->matScaling * matRotation * matTranslation);
 	g->GetSpriteHandler()->DrawSpritesImmediate(&sprite, 1, 0, 0);
 }

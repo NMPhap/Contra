@@ -3,22 +3,11 @@
 #include "Textures.h"
 #include "Game.h"
 #include "BillBullet.h"
-void CBill::Update(DWORD dt)
+void CBill::Update(DWORD dt, vector<LPGAMEOBJECT> *gameObject)
 {
-	x += vx * dt;
-	y += vy * dt;
-	
-	vy += Bill_GRAVITY * dt;
-	
-	if (y > GROUND_Y)
-	{
-		vy = 0;
-		y = GROUND_Y;
-		if(state == BILL_STATE_JUMP) CGame::GetInstance()->ProcessKeyboard();
-		if(state == BILL_STATE_JUMP) SetState(BILL_STATE_IDLE);
-	}
 	if (isShotting)
 		gun->Shoot();
+	CCollision::GetInstance()->Process(this, dt, gameObject);
 }
 
 void CBill::Render()
@@ -397,4 +386,58 @@ void CBill::LoadAnimation()
 	ani = new CAnimation(100);
 	ani->Add(ID_ANI_BILL_LAYDOWN_LEFT);
 	animation->Add(ID_ANI_BILL_LAYDOWN_LEFT, ani);
+}
+
+void CBill::OnCollisionWith(LPCOLLISIONEVENT e)
+{
+	if (e->ny != 0 && e->obj->IsBlocking())
+	{
+		vy = 0;
+		if (state == BILL_STATE_JUMP)
+			SetState(BILL_STATE_IDLE);
+	}
+	if (e->nx != 0 && e->obj->IsBlocking())
+		vx = 0;
+}
+
+void CBill::OnNoCollision(DWORD dt)
+{
+	x += dt * vx;
+	y += dt * vy;
+	vy += Bill_GRAVITY * dt;
+	if (y > GROUND_Y)
+	{
+		vy = 0;
+		y = GROUND_Y;
+		if (state == BILL_STATE_JUMP) CGame::GetInstance()->ProcessKeyboard();
+		if (state == BILL_STATE_JUMP) SetState(BILL_STATE_IDLE);
+	}
+
+}
+
+void CBill::GetBoundingBox(float& left, float& top, float& right, float& bottom)
+{
+	left = x;
+	top = y;
+	if (state == BILL_STATE_IDLE)
+	{
+		right = x + 24;
+		bottom = y + 25;
+		return;
+	}
+	if (state == BILL_STATE_LAYDOWN)
+	{
+		right = x + 33;
+		bottom = y + 17;
+		return;
+	}
+	if (state == BILL_STATE_SWIM || state == BILL_STATE_SWIM_MOVE)
+	{
+		right = x + 17;
+		bottom = y + 17;
+		return;
+	}
+	right = x + 21;
+	bottom = y + 25;
+
 }
