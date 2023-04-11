@@ -9,6 +9,8 @@ public:
 	void Update(DWORD dt, vector<LPGAMEOBJECT>* gameObject = NULL);
 	void Render();
 	static void LoadAnimation();
-
 	void SetState(int state);
+	int IsCollidable() { return 1; }
+	void GetBoundingBox(float& left, float& top, float& right, float& bottom);
+	int IsBlocking() { return 1; }
 };

@@ -15,6 +15,7 @@
 #include "GunRotation.h"
 #include "Sniper.h"
 #include "HiddenSniper.h"
+#include "RockFall.h"
 #define TEXTURE_PATH L"./Resources/Images/bill_animation.png"
 #define BACKGROUND_COLOR D3DXCOLOR(0.0f, 0.0f, 0.0f, 0.0f)
 #define SCREEN_WIDTH 500
@@ -87,11 +88,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPreInstance, LPSTR lpCmdLine,
 		game->gameObjects.push_back(new CGrass((float) i, 200.0f));
 	}
 	CGunRotation::LoadAnimation();
-	game->gameObjects.push_back(new CGunRotation(300.0f, 200.0f));
+	game->gameObjects.push_back(new CGunRotation(300.0f, 300.0f));
 	CSoldier::LoadAnimation();
 	game->gameObjects.push_back(new CSoldier(300.0f, 100.0f));
 	CSniper::LoadAnimation();
 	game->gameObjects.push_back(new CSniper(300.0f, 100.0f));
 	game->gameObjects.push_back(new CHiddenSniper(200.0f, 150.0f));
+	CRockFall::LoadAnimation();
+	game->gameObjects.push_back(new CRockFall(250.0f, 50.0f));
 	Run(); 
 }

@@ -140,6 +140,7 @@
     <ClCompile Include="BillBullet.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BillInputHandler.cpp" />
+    <ClCompile Include="Bridge.cpp" />
     <ClCompile Include="CircularGun.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="GunRotation.cpp" />
@@ -160,6 +161,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="RifleGun.cpp" />
     <ClCompile Include="HiddenSniper.cpp" />
+    <ClCompile Include="RockFall.cpp" />
     <ClCompile Include="Sniper.cpp" />
     <ClCompile Include="Soldier.cpp" />
     <ClCompile Include="SpreadGun.cpp" />
@@ -177,6 +179,7 @@
     <ClInclude Include="BillBullet.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BillInputHandler.h" />
+    <ClInclude Include="Bridge.h" />
     <ClInclude Include="CircularGun.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="GunRotation.h" />
@@ -196,6 +199,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="RifleGun.h" />
     <ClInclude Include="HiddenSniper.h" />
+    <ClInclude Include="RockFall.h" />
     <ClInclude Include="Sniper.h" />
     <ClInclude Include="Soldier.h" />
     <ClInclude Include="SpreadGun.h" />
