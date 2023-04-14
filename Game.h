@@ -7,6 +7,7 @@
 
 #include "GameObject.h"
 #include "Texture.h"
+#include "Scene.h"
 #define SCREEN_WIDTH 272
 #define SCREEN_HEIGHT 256
 #define MAX_FRAME_RATE 60
@@ -44,8 +45,17 @@ class CGame
 	DIDEVICEOBJECTDATA keyEvents[KEYBOARD_BUFFER_SIZE];		// Buffered keyboard data
 
 	HINSTANCE hInstance;
+	unordered_map<int, LPSCENE> scenes;
+	int current_scene;
+	int next_scene = -1;
 
 public:
+
+	LPSCENE GetCurrentScene() { return scenes[current_scene]; }
+	void Load(LPCWSTR gameFile);
+	void SwitchScene();
+
+
 	float GetCamX() { return cam_x; }
 	float GetCamY() { return cam_y; }
 	vector<LPGAMEOBJECT> gameObjects;
@@ -66,6 +76,8 @@ public:
 		rect.top = t;
 		rect.right = r;
 		rect.bottom = b;
+		D3DXVECTOR2 Pos = WorldToCam(D3DXVECTOR2(x, y));
+		
 		this->Draw(x, y, tex, &rect);
 	}
 
@@ -75,7 +87,6 @@ public:
 	void InitKeyboard();
 	int IsKeyDown(int KeyCode);
 	void ProcessKeyboard();
-
 	ID3D10Device* GetDirect3DDevice() { return this->pD3DDevice; }
 	IDXGISwapChain* GetSwapChain() { return this->pSwapChain; }
 	ID3D10RenderTargetView* GetRenderTargetView() { return this->pRenderTargetView; }

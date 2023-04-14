@@ -8,7 +8,7 @@ public:
 	CGrass(float x, float y) :CGameObject(x, y) {};
 	void Render()
 	{
-		CAnimations::GetInstance()->Get(ID_GRASS)->Render(x, y);
+		CAnimations::GetInstance()->Get(ID_GRASS)->Render(x,y);
 	}
 	int IsBlocking() { return 1; }
 	static void LoadAnimation() 

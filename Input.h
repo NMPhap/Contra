@@ -14,3 +14,4 @@ public:
 	int GetInput() { return key; }
 };
 
+typedef CInput* LPCINPUT;

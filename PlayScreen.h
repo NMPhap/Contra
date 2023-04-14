@@ -27,7 +27,7 @@ protected:
 	void LoadAssets(LPCWSTR assetFile);
 
 public:
-
+	void LoadDemo();
 	void AddObject(LPGAMEOBJECT object);
 	CPlayScene(int id, LPCWSTR filePath);
 	vector<LPGAMEOBJECT> GetListObject() { return objects; }

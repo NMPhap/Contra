@@ -10,6 +10,13 @@
 #include "Map.h"
 #include "BillInputHandler.h"
 #include "Game.h"
+#include "Bill.h"
+#include "Soldier.h"
+#include "Grass.h"
+#include "GunRotation.h"
+#include "Sniper.h"
+#include "HiddenSniper.h"
+
 using namespace std;
 
 CPlayScene::CPlayScene(int id, LPCWSTR filePath) :
@@ -19,6 +26,7 @@ CPlayScene::CPlayScene(int id, LPCWSTR filePath) :
 	key_handler = new CBillInputHandler();
 }
 
+#define FULL_WEIGHT_1_1 2816
 #define ADJUST_CAMERA_X	264
 #define SCENE_SECTION_UNKNOWN -1
 #define SCENE_SECTION_ASSETS	1
@@ -28,9 +36,34 @@ CPlayScene::CPlayScene(int id, LPCWSTR filePath) :
 #define ASSETS_SECTION_UNKNOWN -1
 #define ASSETS_SECTION_SPRITES 1
 #define ASSETS_SECTION_ANIMATIONS 2
-
+#define ADJUST_CAM_MIN_Y 224
+#define ADJUST_CAM_MAX_Y 256
 
 #define MAX_SCENE_LINE 1024
+
+void CPlayScene::LoadDemo()
+{
+	CBill* bill = new CBill(200.0f, 0);
+
+	player = bill;
+
+	CBill::LoadAnimation();
+	objects.push_back(bill);
+	CGrass::LoadAnimation();
+	for (int i = 0; i < 900; i += 31)
+	{
+		objects.push_back(new CGrass((float)i, 200.0f));
+	}
+
+	CGunRotation::LoadAnimation();
+	objects.push_back(new CGunRotation(300.0f, 200.0f));
+	CSoldier::LoadAnimation();
+	objects.push_back(new CSoldier(300.0f, 100.0f));
+	CSniper::LoadAnimation();
+	objects.push_back(new CSniper(300.0f, 100.0f));
+	objects.push_back(new CHiddenSniper(200.0f, 150.0f));
+
+}
 void CPlayScene::AddObject(LPGAMEOBJECT object)
 {
 	objects.insert(objects.begin() + 1, object);
@@ -317,9 +350,6 @@ void CPlayScene::Load()
 
 void CPlayScene::Update(DWORD dt)
 {
-	// We know that Mario is the first object in the list hence we won't add him into the colliable object list
-	// TO-DO: This is a "dirty" way, need a more organized way 
-
 	vector<LPGAMEOBJECT> coObjects;
 	for (size_t i = 1; i < objects.size(); i++)
 	{
@@ -341,10 +371,18 @@ void CPlayScene::Update(DWORD dt)
 	CGame* game = CGame::GetInstance();
 	cx -= game->GetBackBufferWidth() / 2;
 	cy -= game->GetBackBufferHeight() / 2;
-
 	if (cx < 0) cx = 0;
+		if (cx > FULL_WEIGHT_1_1 - ADJUST_CAMERA_X) cx = FULL_WEIGHT_1_1 - ADJUST_CAMERA_X;
 
-	CGame::GetInstance()->SetCamPos(cx, 0.0f /*cy*/);
+
+		if (cy > ADJUST_CAM_MAX_Y) cy = ADJUST_CAM_MAX_Y;
+		else if ((ADJUST_CAM_MIN_Y < cy) && (cy < ADJUST_CAM_MAX_Y)) cy = ADJUST_CAM_MAX_Y;
+		else  cy = ADJUST_CAM_MAX_Y + cy - ADJUST_CAM_MIN_Y;
+		//else if (cy < ADJUST_CAM_MAX_Y) cy =  cy+ ADJUST_CAM_MAX_Y ;
+		if (cy < 0) cy = 0;
+
+	CGame::GetInstance()->SetCamPos(cx, cy);
+
 
 	PurgeDeletedObjects();
 }

@@ -8,6 +8,16 @@ CAnimations* CAnimations::GetInstance()
 	return __instance;
 }
 
+void CAnimations::Clear()
+{
+	for (auto x : animations)
+	{
+		LPANIMATION ani = x.second;
+		delete ani;
+	}
+
+	animations.clear();
+}
 void CAnimations::Add(int id, LPANIMATION ani)
 {
 	animations[id] = ani;

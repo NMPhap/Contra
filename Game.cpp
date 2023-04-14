@@ -28,6 +28,24 @@ CGame* CGame::__instance = NULL;
 	- hWnd: Application window handle
 */
 
+void CGame::SwitchScene()
+{
+	if (next_scene < 0 || next_scene == current_scene) return;
+
+	DebugOut(L"[INFO] Switching to scene %d %d\n", current_scene, next_scene);
+	scenes[current_scene]->Unload();
+
+	CSprites::GetInstance()->Clear();
+	CAnimations::GetInstance()->Clear();
+
+	current_scene = next_scene;
+	LPSCENE s = scenes[next_scene];
+	s->Load();
+	this->ProcessKeyboard();
+
+}
+
+
 void CGame::Init(HINSTANCE hInstance)
 {
 	if (hWnd == NULL)

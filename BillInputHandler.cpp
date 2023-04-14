@@ -103,6 +103,9 @@ void CBillInputHandler::onKeyClick(int keyCode)
 		bill->isShotting = true;
 		return;
 	}
+	if (keyCode == DIK_J) {
+		//CGame::GetInstance()->GetDirect3DDevice()->RSGetViewports()->
+	}
 }
 
 void CBillInputHandler::onKeyPress(int keyCode)
