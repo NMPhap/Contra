@@ -7,6 +7,8 @@
 
 #include "GameObject.h"
 #include "Texture.h"
+#define SCREEN_WIDTH 272
+#define SCREEN_HEIGHT 256
 #define MAX_FRAME_RATE 60
 #define KEYBOARD_BUFFER_SIZE 1024
 #define KEYBOARD_STATE_SIZE 256
@@ -16,11 +18,17 @@
 */
 class CGame
 {
+	int screen_height;
+	int screen_width;
+
 	static CGame* __instance;
 	HWND hWnd;									// Window handle
 
 	int backBufferWidth = 0;					// Backbuffer width & height, will be set during Direct3D initialization
 	int backBufferHeight = 0;
+
+	float cam_x = 0.0f;
+	float cam_y = 0.0f;
 
 	ID3D10Device* pD3DDevice = NULL;
 	IDXGISwapChain* pSwapChain = NULL;
@@ -38,6 +46,8 @@ class CGame
 	HINSTANCE hInstance;
 
 public:
+	float GetCamX() { return cam_x; }
+	float GetCamY() { return cam_y; }
 	vector<LPGAMEOBJECT> gameObjects;
 	// Init DirectX, Sprite Handler
 	void Init(HINSTANCE hInstance);
@@ -79,5 +89,17 @@ public:
 	void Run();
 	static CGame* GetInstance();
 	HWND GetHWnd() { return hWnd; }
+
+	void SetCamPos(float x, float y) { cam_x = x; cam_y = y; }
+	void GetCamPos(float& x, float& y) { x = cam_x; y = cam_y; }
+
+	void World2Cam(float& x, float& y);
+	void Cam2World(float& x, float& y);
+
+	D3DXVECTOR2 WorldToCam(D3DXVECTOR2);
+
+	int GetScreenWidth() { return screen_width; }
+	int GetScreenHeight() { return screen_height; }
+
 	~CGame();
 };

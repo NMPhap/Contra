@@ -30,8 +30,8 @@ void CAnimation::Render(float x, float y, float rotationDeg)
 		 t = frames[currentFrame]->GetTime();
 		if (currentFrame < 0)
 		{
-			t = frames[currentFrame]->GetTime();
 			this->currentFrame += 1;
+			t = frames[currentFrame]->GetTime();
 			lastFrameTime = now;
 		}
 		else if (now - lastFrameTime > t)

@@ -8,6 +8,8 @@
 #include "Textures.h"
 using namespace std;
 
+#define ID_TEX_BBOX -100		// special texture to draw object bounding box
+
 class CGame;
 class CGameObject
 {
@@ -50,6 +52,8 @@ public:
 	// When collision with an object has been detected (triggered by CCollision::Process)
 	virtual void OnCollisionWith(LPCOLLISIONEVENT e) {};
 	virtual int IsBlocking() { return 0; };
+
+	void RenderBoundingBox();
 	int IsDeleted() { return 0; }
 	~CGameObject();
 };

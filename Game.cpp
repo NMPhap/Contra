@@ -454,3 +454,34 @@ CGame* CGame::GetInstance()
 	if (__instance == NULL) __instance = new CGame();
 	return __instance;
 }
+
+void CGame::World2Cam(float& x, float& y)
+{
+	float campos_x = GetCamX();
+	float campos_y = GetCamY();
+
+	x = x - campos_x;
+	y = campos_y - y;
+}
+
+void CGame::Cam2World(float& x, float& y)
+{
+	float campos_x = GetCamX();
+	float campos_y = GetCamY();
+
+	x = x + campos_x;
+	y = campos_y - y;
+}
+
+D3DXVECTOR2 CGame::WorldToCam(D3DXVECTOR2 RealPos)
+{
+	// point output
+	D3DXVECTOR2 out;
+	// point on viewport
+	D3DXVECTOR2 camPos;
+	GetCamPos(camPos.x, camPos.y);
+
+	out.x = RealPos.x - camPos.x;
+	out.y = camPos.y - RealPos.y;
+	return out;
+}

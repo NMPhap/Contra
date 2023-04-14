@@ -19,7 +19,7 @@ class CAnimation
 	vector<LPANIMATION_FRAME> frames;
 public:
 	BOOL oneTimeAnimation;
-	CAnimation(int defaultTime) { this->defaultTime = defaultTime; lastFrameTime = -1; currentFrame = -1; startAnimation = NULL; endAnimation = NULL; oneTimeAnimation = false; }
+	CAnimation(int defaultTime = 100) { this->defaultTime = defaultTime; lastFrameTime = -1; currentFrame = -1; startAnimation = NULL; endAnimation = NULL; oneTimeAnimation = false; }
 	void Add(int spriteId, DWORD time = 0);
 	void SetStartAnimation(CAnimation* ani) { startAnimation = ani; }
 	void SetEndAnimation(CAnimation* ani) { endAnimation = ani; }
