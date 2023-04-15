@@ -28,6 +28,24 @@ CGame* CGame::__instance = NULL;
 	- hWnd: Application window handle
 */
 
+void CGame::SwitchScene()
+{
+	if (next_scene < 0 || next_scene == current_scene) return;
+
+	DebugOut(L"[INFO] Switching to scene %d %d\n", current_scene, next_scene);
+	scenes[current_scene]->Unload();
+
+	CSprites::GetInstance()->Clear();
+	CAnimations::GetInstance()->Clear();
+
+	current_scene = next_scene;
+	LPSCENE s = scenes[next_scene];
+	s->Load();
+	this->ProcessKeyboard();
+
+}
+
+
 void CGame::Init(HINSTANCE hInstance)
 {
 	if (hWnd == NULL)
@@ -454,3 +472,53 @@ CGame* CGame::GetInstance()
 	if (__instance == NULL) __instance = new CGame();
 	return __instance;
 }
+
+void CGame::World2Cam(float& x, float& y)
+{
+	float campos_x = GetCamX();
+	float campos_y = GetCamY();
+
+	x = x - campos_x;
+	y = campos_y - y;
+}
+
+void CGame::Cam2World(float& x, float& y)
+{
+	float campos_x = GetCamX();
+	float campos_y = GetCamY();
+
+	x = x + campos_x;
+	y = campos_y - y;
+}
+
+D3DXVECTOR2 CGame::setWorldToSceen(D3DXVECTOR2 R_position)
+{
+	D3DXVECTOR3 position(R_position.x, R_position.y, 1);
+
+	D3DXMATRIX mt;
+	D3DXMatrixIdentity(&mt);
+	mt._22 = -1.0f;
+	mt._41 = - GetCamX();  // vpx = x0
+	mt._42 = GetCamY();  // vpy = y0
+
+	D3DXVECTOR4 vp_pos;
+	D3DXVec3Transform(&vp_pos, &position, &mt);
+	//  vp_pos = position * mt  (  position : world position of object)
+
+
+	//these code bellow to draw the sprite, will use in the future
+	/*D3DXVECTOR3 p(vp_pos.x, vp_pos.y, 0);
+	D3DXVECTOR3 center((float)_Width / 2, (float)_Height / 2, 0);
+
+	_SpriteHandler->Draw(
+		_Image,
+		&srect,
+		&center,
+		&p,
+		D3DCOLOR_XRGB(255, 255, 255)
+	);*/
+
+	return D3DXVECTOR2(vp_pos.x,vp_pos.y);
+}
+
+

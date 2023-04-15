@@ -14,4 +14,6 @@ public:
 	LPANIMATION Get(int id);
 
 	static CAnimations* GetInstance();
+
+	void Clear();
 };

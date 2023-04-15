@@ -23,5 +23,6 @@ public:
 	LPSPRITE Get(int id);
 
 	static CSprites* GetInstance();
+	void Clear();
 };
 

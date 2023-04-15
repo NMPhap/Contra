@@ -64,6 +64,17 @@ void Run()
 		CGame* game = CGame::GetInstance();
 		for (int i = 0; i < game->gameObjects.size(); i++)
 			game->gameObjects[i]->Update(10, &(game->gameObjects));
+		float cx, cy;
+		bill->GetPosition(cx, cy);
+
+		cx -= SCREEN_WIDTH / 2 - 50;
+		cy = 0;
+		//cy -= SCREEN_HEIGHT / 2;
+
+		if (cx < 0) cx = 0;
+
+		CGame::GetInstance()->SetCamPos(cx, cy);
+
 		Render();
 		Sleep(10);
 	}
@@ -83,16 +94,18 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPreInstance, LPSTR lpCmdLine,
 	SetWindowPos(game->GetHWnd(), 0, 0, 0, SCREEN_WIDTH * 2, SCREEN_HEIGHT * 2, SWP_NOMOVE | SWP_NOOWNERZORDER | SWP_NOZORDER);
 	game->gameObjects.push_back(bill);
 	CGrass::LoadAnimation();
-	for (int i = 0; i < game->GetBackBufferWidth(); i += 31)
+	for (int i = 0; i < game->GetBackBufferWidth() * 2; i += 31)
 	{
 		game->gameObjects.push_back(new CGrass((float) i, 200.0f));
 	}
+
 	CGunRotation::LoadAnimation();
 	game->gameObjects.push_back(new CGunRotation(300.0f, 300.0f));
 	CSoldier::LoadAnimation();
 	game->gameObjects.push_back(new CSoldier(300.0f, 100.0f));
 	CSniper::LoadAnimation();
 	game->gameObjects.push_back(new CSniper(300.0f, 100.0f));
+	CHiddenSniper::LoadAnimation();
 	game->gameObjects.push_back(new CHiddenSniper(200.0f, 150.0f));
 	CRockFall::LoadAnimation();
 	game->gameObjects.push_back(new CRockFall(250.0f, 50.0f));
