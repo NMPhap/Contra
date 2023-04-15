@@ -66,7 +66,7 @@ void Run()
 		float cx, cy;
 		bill->GetPosition(cx, cy);
 
-		cx -= SCREEN_WIDTH / 2;
+		cx -= SCREEN_WIDTH / 2 - 50;
 		cy = 0;
 		//cy -= SCREEN_HEIGHT / 2;
 

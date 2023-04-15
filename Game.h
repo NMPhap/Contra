@@ -76,7 +76,7 @@ public:
 		rect.top = t;
 		rect.right = r;
 		rect.bottom = b;
-		D3DXVECTOR2 Pos = WorldToCam(D3DXVECTOR2(x, y));
+		D3DXVECTOR2 Pos = setWorldToSceen(D3DXVECTOR2(x, y));
 		
 		this->Draw(x, y, tex, &rect);
 	}
@@ -107,7 +107,7 @@ public:
 	void World2Cam(float& x, float& y);
 	void Cam2World(float& x, float& y);
 
-	D3DXVECTOR2 WorldToCam(D3DXVECTOR2);
+	D3DXVECTOR2 setWorldToSceen(D3DXVECTOR2);
 
 	int GetScreenWidth() { return screen_width; }
 	int GetScreenHeight() { return screen_height; }

@@ -53,6 +53,7 @@ public:
 	virtual void OnCollisionWith(LPCOLLISIONEVENT e) {};
 	virtual int IsBlocking() { return 0; };
 
+
 	void RenderBoundingBox();
 	int IsDeleted() { return 0; }
 	~CGameObject();

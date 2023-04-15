@@ -491,15 +491,34 @@ void CGame::Cam2World(float& x, float& y)
 	y = campos_y - y;
 }
 
-D3DXVECTOR2 CGame::WorldToCam(D3DXVECTOR2 RealPos)
+D3DXVECTOR2 CGame::setWorldToSceen(D3DXVECTOR2 R_position)
 {
-	// point output
-	D3DXVECTOR2 out;
-	// point on viewport
-	D3DXVECTOR2 camPos;
-	GetCamPos(camPos.x, camPos.y);
+	D3DXVECTOR3 position(R_position.x, R_position.y, 1);
 
-	out.x = RealPos.x - camPos.x;
-	out.y = camPos.y - RealPos.y;
-	return out;
+	D3DXMATRIX mt;
+	D3DXMatrixIdentity(&mt);
+	mt._22 = -1.0f;
+	mt._41 = - GetCamX();  // vpx = x0
+	mt._42 = GetCamY();  // vpy = y0
+
+	D3DXVECTOR4 vp_pos;
+	D3DXVec3Transform(&vp_pos, &position, &mt);
+	//  vp_pos = position * mt  (  position : world position of object)
+
+
+	//these code bellow to draw the sprite, will use in the future
+	/*D3DXVECTOR3 p(vp_pos.x, vp_pos.y, 0);
+	D3DXVECTOR3 center((float)_Width / 2, (float)_Height / 2, 0);
+
+	_SpriteHandler->Draw(
+		_Image,
+		&srect,
+		&center,
+		&p,
+		D3DCOLOR_XRGB(255, 255, 255)
+	);*/
+
+	return D3DXVECTOR2(vp_pos.x,vp_pos.y);
 }
+
+

@@ -93,6 +93,7 @@ void CBill::Render()
 			aniID = ID_ANI_BILL_LAYDOWN_RIGHT;
 		else
 			aniID = ID_ANI_BILL_LAYDOWN_LEFT;
+
 	animations->Get(aniID)->Render(x, y);
 }
 
