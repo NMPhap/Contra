@@ -34,6 +34,11 @@ wstring ToWSTR(string st)
 	return wstr;
 }
 
+float Radius(float ax, float ay, float bx, float by)
+{
+	return atan((bx - ax) / (by - ay));
+}
+
 /*
 	Convert char* string to wchar_t* string.
 */
@@ -50,4 +55,16 @@ LPCWSTR ToLPCWSTR(string st)
 
 	// delete wcstring   // << can I ? 
 	return w->c_str();
+}
+
+BOOL IsIntersac(LPGAMEOBJECT object, LPTREENODE node)
+{
+	float oleft, otop, oright, obottom;
+	object->GetBoundingBox(oleft, otop, oright, obottom);
+	float nleft, ntop, nright, nbottom;
+	node->GetBoundingBox(nleft, ntop, nright, nbottom);
+	if ((oleft < nright && oright > nleft) || (oright > nleft))
+		if ((otop < nbottom && obottom > ntop) || obottom > nleft)
+			return true;
+	return false;
 }
