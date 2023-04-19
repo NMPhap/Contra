@@ -1,15 +1,27 @@
 #include "GunRotation.h"
 #include "Bill.h"
+#include "Utils.h"
 extern CBill* bill;
-float Radius(float ax, float ay, float bx, float by)
-{
-	return atan((bx - ax)/(by - ay));
-}
 void CGunRotation::Update(DWORD dt, vector<LPGAMEOBJECT> *gameObject)
 {
-	if (abs(bill->GetX() - x) <= 100 && state == GUNROTATION_STATE_HIDDEN)
+	if (state == GUNROTATION_STATE_NORMAL)
+	{
+		if (GetTickCount64() - lastTurn >= GUN_ROTATION_DELAY && lastTurn != -1)
+		{
+			lastTurn = GetTickCount64();
+			float left, top, down, right;
+			bill->GetBoundingBox(left, top, down, right);
+			float billWidth = right - left;
+			float billHeight = down - top;
+			radius = Radius(left + billWidth, top + billHeight, x + 16, y + 16);
+		}
+	}
+	if (abs(bill->GetX() - x) <= 300 && state == GUNROTATION_STATE_HIDDEN)
+	{
 		this->SetState(GUNROTATION_STATE_NORMAL);
-	if (abs(bill->GetX() - x) > 100 && state == GUNROTATION_STATE_NORMAL)
+		lastTurn = GetTickCount64() + 200;
+	}
+	if (abs(bill->GetX() - x) > 300 && state == GUNROTATION_STATE_NORMAL)
 		this->SetState(GUNROTATION_STATE_HIDDEN);
 }
 
@@ -20,11 +32,6 @@ void CGunRotation::Render()
 		aniID = ID_ANI_GUNROTATION_HIDDEN;
 	else
 	{
-		float left, top, down, right;
-		bill->GetBoundingBox(left, top, down, right);
-		float billWidth = right - left;
-		float billHeight = down - top;
-		float radius = Radius(left + billWidth, top + billHeight, x + 16, y + 16);
 		if (bill->GetX() < x)
 		{
 			if (radius >= (PI / 6) && radius < (PI / 4))
@@ -38,7 +45,7 @@ void CGunRotation::Render()
 			else if (radius >= -(5 * PI / 6) && radius < -(PI / 4))
 				aniID = ID_ANI_GUNROTATION_SHOT_4;
 		}
-		else if (bill->GetX() > x)
+		else
 		{
 			if (radius >= (PI / 6) && radius < (PI / 4))
 				aniID = ID_ANI_GUNROTATION_SHOT_6;

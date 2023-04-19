@@ -112,7 +112,7 @@ void CBillInputHandler::onKeyPress(int keyCode)
 {
 	if (keyCode == DIK_UPARROW)
 		bill->shotDirection = 1;
-	if (keyCode == DIK_DOWNARROW && bill->GetState() != BILL_STATE_IDLE)
+	if (keyCode == DIK_DOWNARROW)
 		bill->shotDirection = -1;
 	if (keyCode == DIK_X)
 	{
@@ -150,5 +150,8 @@ void CBillInputHandler::onKeyRelease(int keyCode)
 	if (keyCode == DIK_DOWNARROW)
 		bill->shotDirection = 0;
 	if (keyCode == DIK_Z)
+	{
+		bill->SetPosition(bill->GetX(), bill->GetY() - 10);
 		bill->SetState(BILL_STATE_IDLE);
+	}
 }

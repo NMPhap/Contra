@@ -5,7 +5,7 @@
 class CSoldier: public CGameObject
 {
 private:
-
+	int faceDirection = -1;
 public:
 	CSoldier(float x, float y) : CGameObject(x, y) { state = SODIER_STATE_RUNNING;}
 	void Update(DWORD dt, vector<LPGAMEOBJECT>* gameObject);

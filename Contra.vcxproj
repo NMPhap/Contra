@@ -138,12 +138,17 @@
     <ClCompile Include="Animations.cpp" />
     <ClCompile Include="Bill.cpp" />
     <ClCompile Include="BillBullet.cpp" />
+    <ClCompile Include="BossStage1.cpp" />
+    <ClCompile Include="Bridge.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BillInputHandler.cpp" />
-    <ClCompile Include="Bridge.cpp" />
+    <ClCompile Include="Canon.cpp" />
     <ClCompile Include="CircularGun.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="GunRotation.cpp" />
+    <ClCompile Include="Map.cpp" />
+    <ClCompile Include="PlayScreen.cpp" />
+    <ClCompile Include="QuadTree.cpp" />
     <ClCompile Include="RifleBullet.cpp" />
     <ClCompile Include="CurcularBullet.cpp" />
     <ClCompile Include="FireBullet.cpp" />
@@ -162,12 +167,14 @@
     <ClCompile Include="RifleGun.cpp" />
     <ClCompile Include="HiddenSniper.cpp" />
     <ClCompile Include="RockFall.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Sniper.cpp" />
     <ClCompile Include="Soldier.cpp" />
     <ClCompile Include="SpreadGun.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Sprites.cpp" />
     <ClCompile Include="Textures.cpp" />
+    <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AirCraft.h" />
@@ -177,12 +184,17 @@
     <ClInclude Include="AssetID.h" />
     <ClInclude Include="Bill.h" />
     <ClInclude Include="BillBullet.h" />
+    <ClInclude Include="BossStage1.h" />
+    <ClInclude Include="Bridge.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BillInputHandler.h" />
-    <ClInclude Include="Bridge.h" />
+    <ClInclude Include="Canon.h" />
     <ClInclude Include="CircularGun.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="GunRotation.h" />
+    <ClInclude Include="Map.h" />
+    <ClInclude Include="PlayScreen.h" />
+    <ClInclude Include="QuadTree.h" />
     <ClInclude Include="RifleBullet.h" />
     <ClInclude Include="CurcularBullet.h" />
     <ClInclude Include="FireBullet.h" />
@@ -200,6 +212,7 @@
     <ClInclude Include="RifleGun.h" />
     <ClInclude Include="HiddenSniper.h" />
     <ClInclude Include="RockFall.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="Sniper.h" />
     <ClInclude Include="Soldier.h" />
     <ClInclude Include="SpreadGun.h" />
@@ -207,6 +220,7 @@
     <ClInclude Include="Sprites.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Textures.h" />
+    <ClInclude Include="Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

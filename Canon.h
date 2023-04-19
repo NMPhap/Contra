@@ -2,13 +2,15 @@
 #include "GameObject.h"
 #include "AssetID.h"
 
-#define GUN_ROTATION_DELAY 1000
-class CGunRotation : public CGameObject
+#define CANON_ROTATION_DELAY 1000
+class CCanon : public CGameObject
 {
+private:
 	ULONG lastTurn;
 	float radius;
 public:
-	CGunRotation(float x, float y) : CGameObject(x, y) { state = GUNROTATION_STATE_HIDDEN; lastTurn = -1; radius = PI; }
+
+	CCanon(float x, float y) : CGameObject(x, y) { state = CANON_STATE_HIDDEN; lastTurn = -1; radius = PI; }
 	void Update(DWORD dt, vector<LPGAMEOBJECT>* gameObject = NULL);
 	void Render();
 	static void LoadAnimation();
@@ -17,3 +19,4 @@ public:
 	void GetBoundingBox(float& left, float& top, float& right, float& bottom);
 	int IsBlocking() { return 1; }
 };
+

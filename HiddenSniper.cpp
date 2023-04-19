@@ -4,6 +4,10 @@
 extern CBill* bill;
 void CHiddenSniper::Update(DWORD dt, vector<LPGAMEOBJECT>* gameObject)
 {
+	if (bill->GetX() < x)
+		faceDirection = -1;
+	else
+		faceDirection = 1;
 	if (abs(bill->GetX() - x) <= 100 && state == SNIPER_STATE_HIDDEN)
 		SetState(SNIPER_STATE_SHOT);
 	if (abs(bill->GetX() - x) > 100 && state == SNIPER_STATE_SHOT)
@@ -13,10 +17,20 @@ void CHiddenSniper::Update(DWORD dt, vector<LPGAMEOBJECT>* gameObject)
 void CHiddenSniper::Render()
 {
 	int aniID = -1;
-	if (state == SNIPER_STATE_HIDDEN)
-		aniID = ID_ANI_SNIPER_HIDDEN;
+	if (faceDirection == -1)
+	{
+		if (state == SNIPER_STATE_HIDDEN)
+			aniID = ID_ANI_SNIPER_HIDDEN;
+		else
+			aniID = ID_ANI_SNIPER_HIDDEN_SHOT;
+	}
 	else
-		aniID = ID_ANI_SNIPER_HIDDEN_SHOT;
+	{
+		if (state == SNIPER_STATE_HIDDEN)
+			aniID = ID_ANI_SNIPER_HIDDEN_RIGHT;
+		else
+			aniID = ID_ANI_SNIPER_HIDDEN_SHOT_RIGHT;
+	}
 	CAnimations::GetInstance()->Get(aniID)->Render(x, y);
 }
 

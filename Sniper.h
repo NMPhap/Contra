@@ -3,6 +3,8 @@
 #include "AssetID.h";
 class CSniper: public CGameObject
 {
+protected:
+	int faceDirection = -1;
 public:
 	CSniper(float x, float y) : CGameObject(x, y) { state = SNIPER_STATE_NORMAl; }
 	void Update(DWORD dt, vector<LPGAMEOBJECT>* gameObject);

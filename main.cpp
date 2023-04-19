@@ -16,6 +16,7 @@
 #include "Sniper.h"
 #include "HiddenSniper.h"
 #include "RockFall.h"
+#include "Canon.h"
 #define TEXTURE_PATH L"./Resources/Images/bill_animation.png"
 #define BACKGROUND_COLOR D3DXCOLOR(0.0f, 0.0f, 0.0f, 0.0f)
 #define SCREEN_WIDTH 500
@@ -129,20 +130,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPreInstance, LPSTR lpCmdLine,
 	game->CreateGameWindow(SCREEN_WIDTH,SCREEN_HEIGHT);
 	game->Init(hInstance);
 	game->InitKeyboard();
-	game->Load(L"Resources/Map/demo.txt");
+	game->Load(L"./Resources/Map/demo.txt");
 	bill = new CBill(200, 200);
+	CGrass::LoadAnimation();
+	CSoldier::LoadAnimation();
 	//game->InitKeyboard();
 	SetWindowPos(game->GetHWnd(), 0, 0, 0, SCREEN_WIDTH * 2, SCREEN_HEIGHT * 2, SWP_NOMOVE | SWP_NOOWNERZORDER | SWP_NOZORDER);
-	CGunRotation::LoadAnimation();
-	game->gameObjects.push_back(new CGunRotation(300.0f, 300.0f));
-	CSoldier::LoadAnimation();
-	game->gameObjects.push_back(new CSoldier(300.0f, 100.0f));
-	CSniper::LoadAnimation();
-	game->gameObjects.push_back(new CSniper(300.0f, 100.0f));
-	CHiddenSniper::LoadAnimation();
-	game->gameObjects.push_back(new CHiddenSniper(200.0f, 150.0f));
-	CRockFall::LoadAnimation();
-	game->gameObjects.push_back(new CRockFall(250.0f, 50.0f));
 	Run(); 
 	return 0;
 }
