@@ -31,3 +31,4 @@
 *.app
 /.vs
 /ObjectState
+/x64/Release
