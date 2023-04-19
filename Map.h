@@ -28,4 +28,6 @@ public:
 	int GetMapWidth();
 	int GetMapHeight();
 	bool checkObjectInCamera(float x, float y);
+	D3DXVECTOR2 setWorldToSceen(D3DXVECTOR2);
+
 };

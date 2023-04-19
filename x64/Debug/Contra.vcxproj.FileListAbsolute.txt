@@ -4,3 +4,9 @@ D:\Contra\x64\Debug\D3DCompiler_43.dll
 D:\Contra\x64\Debug\d3dx9d_43.dll
 D:\Contra\x64\Debug\d3dx10d_43.dll
 D:\Contra\x64\Debug\d3dx11d_43.dll
+C:\300baicodethieunhi\NMPTG\contra\x64\Debug\Contra.exe
+C:\300baicodethieunhi\NMPTG\contra\x64\Debug\D3DCompiler_43.dll
+C:\300baicodethieunhi\NMPTG\contra\x64\Debug\d3dx9d_43.dll
+C:\300baicodethieunhi\NMPTG\contra\x64\Debug\d3dx10d_43.dll
+C:\300baicodethieunhi\NMPTG\contra\x64\Debug\Contra.vcxproj.CopyComplete
+C:\300baicodethieunhi\NMPTG\contra\x64\Debug\d3dx11d_43.dll
