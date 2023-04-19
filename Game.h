@@ -8,6 +8,7 @@
 #include "GameObject.h"
 #include "Texture.h"
 #include "Scene.h"
+#include "PlayScreen.h"
 #define SCREEN_WIDTH 272
 #define SCREEN_HEIGHT 256
 #define MAX_FRAME_RATE 60
@@ -21,6 +22,8 @@ class CGame
 {
 	int screen_height;
 	int screen_width;
+
+	LPCINPUT keyHandler;
 
 	static CGame* __instance;
 	HWND hWnd;									// Window handle
@@ -53,7 +56,12 @@ public:
 
 	LPSCENE GetCurrentScene() { return scenes[current_scene]; }
 	void Load(LPCWSTR gameFile);
+	void LoadDemo();
 	void SwitchScene();
+
+	void _ParseSection_SETTINGS(string line);
+	void _ParseSection_SCENES(string line);
+	void _ParseSection_TEXTURES(string line);
 
 
 	float GetCamX() { return cam_x; }
@@ -97,7 +105,6 @@ public:
 
 	int GetBackBufferWidth() { return backBufferWidth; }
 	int GetBackBufferHeight() { return backBufferHeight; }
-	void Run();
 	static CGame* GetInstance();
 	HWND GetHWnd() { return hWnd; }
 

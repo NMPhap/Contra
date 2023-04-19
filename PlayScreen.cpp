@@ -43,26 +43,26 @@ CPlayScene::CPlayScene(int id, LPCWSTR filePath) :
 
 void CPlayScene::LoadDemo()
 {
+	CBill::LoadAnimation();
+	CGrass::LoadAnimation();
+	CGunRotation::LoadAnimation();
+	CSoldier::LoadAnimation();
+	CSniper::LoadAnimation();
+
+	LoadAssets(L"Resources/Map/demo.txt");
 	CBill* bill = new CBill(200.0f, 0);
 
 	player = bill;
 
-	CBill::LoadAnimation();
 	objects.push_back(bill);
-	CGrass::LoadAnimation();
 	for (int i = 0; i < 900; i += 31)
 	{
 		objects.push_back(new CGrass((float)i, 200.0f));
 	}
-
-	CGunRotation::LoadAnimation();
 	objects.push_back(new CGunRotation(300.0f, 200.0f));
-	CSoldier::LoadAnimation();
 	objects.push_back(new CSoldier(300.0f, 100.0f));
-	CSniper::LoadAnimation();
 	objects.push_back(new CSniper(300.0f, 100.0f));
 	objects.push_back(new CHiddenSniper(200.0f, 150.0f));
-
 }
 void CPlayScene::AddObject(LPGAMEOBJECT object)
 {
@@ -194,77 +194,26 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 
 	CGameObject* obj = NULL;
 
-	//switch (object_type)
-	//{
-	//case OBJECT_TYPE_MARIO:
-	//	if (player != NULL)
+	switch (object_type)
+	{
+	//case object_type_mario:
+	//	if (player != null)
 	//	{
-	//		DebugOut(L"[ERROR] MARIO object was created before!\n");
+	//		debugout(l"[error] mario object was created before!\n");
 	//		return;
 	//	}
-	//	obj = new CMario(x, y);
-	//	player = (CMario*)obj;
+	//	obj = new cmario(x, y);
+	//	player = (cmario*)obj;
 
-	//	DebugOut(L"[INFO] Player object has been created!\n");
+	//	debugout(l"[info] player object has been created!\n");
 	//	break;
-	//case OBJECT_TYPE_GOOMBA: obj = new CGoomba(x, y, GOOMBA_BASE); break;
-	//case OBJECT_TYPE_BRICK: obj = new CBrick(x, y); break;
-	//case OBJECT_TYPE_COIN: obj = new CCoin(x, y); break;
-	//case OBJECT_TYPE_GOOMBA_FLY: obj = new CGoomba(x, y, GOOMBA_WING); break;
-	//case OBJECT_TYPE_MUSHROOM: obj = new CMushRoom(x, y); break;
-	//case OBJECT_TYPE_LEAF: obj = new CLeaf(x, y); break;
-	//case OBJECT_TYPE_FLOWERFIRE: obj = new CFlowerFire(x, y); break;
-	//case OBJECT_TYPE_BRICKQUESTION_COIN: obj = new CBrickQuestion(x, y, QUESTION_BRICK_COIN); break;
-	//case OBJECT_TYPE_BRICKQUESTION_ITEM: obj = new CBrickQuestion(x, y, QUESTION_BRICK_ITEM); break;
-	//case OBJECT_TYPE_PIPE_SHORT: obj = new CPipe(x, y, PIPE_SHORT_MODEL, PLANT_NOT_SHOOT); break;
-	//case OBJECT_TYPE_PIPE_LONG: obj = new CPipe(x, y, PIPE_LONG_MODEL, PLANT_SHOOT_RED); break;
-	//case OBJECT_TYPE_PIPE_LONG_GREEN: obj = new CPipe(x, y, PIPE_LONG_MODEL, PLANT_SHOOT_GREEN); break;
-	//case OBJECT_TYPE_KOOPA_GREEN: obj = new CKoopa(x, y, KOOPA_GREEN); break;
-	//case OBJECT_TYPE_KOOPA_GREEN_FLY: obj = new CKoopa(x, y, KOOPA_GREEN_WING); break;
-	//case OBJECT_TYPE_KOOPA_RED: obj = new CKoopa(x, y, KOOPA_RED); break;
-	//case OBJECT_TYPE_PLANT_SHOOT: obj = new CPlantEnemy(x, y, PLANT_SHOOT_RED); break;
-	//case OBJECT_TYPE_CARD: obj = new CCard(x, y); break;
-	//case OBJECT_TYPE_PLANT_NOT_SHOOT: obj = new CPlantEnemy(x, y, PLANT_NOT_SHOOT); break;
-	//case OBJECT_TYPE_BRICKQUESTION_MUSHROOM_GREEN: obj = new CBrickQuestion(x, y, QUESTION_BRICK_MUSHROOM_GREEN); break;
-	//case OBJECT_TYPE_QUESTION_BRICK_BUTTON: obj = new CBrickQuestion(x, y, QUESTION_BRICK_BUTTON); break;
-	//case OBJECT_TYPE_BRICK_COLOR_IS_COIN: obj = new CBrickColor(x, y, BRICK_IS_COIN); break;
-	//case OBJECT_TYPE_TEST: obj = new CEffect(x, y, EFFECT_CHANGE); break;
+	case TEXTURE_GRASS_ID: obj = new CGrass(x, y); break;
+	case TEXTURE_SODIER_ID: obj = new CSoldier(x, y); break;
 
-	//case OBJECT_TYPE_PLATFORM:
-	//{
-
-	//	float cell_width = (float)atof(tokens[3].c_str());
-	//	float cell_height = (float)atof(tokens[4].c_str());
-	//	int length = atoi(tokens[5].c_str());
-	//	int sprite_begin = atoi(tokens[6].c_str());
-	//	int sprite_middle = atoi(tokens[7].c_str());
-	//	int sprite_end = atoi(tokens[8].c_str());
-
-	//	obj = new CPlatform(
-	//		x, y,
-	//		cell_width, cell_height, length,
-	//		sprite_begin, sprite_middle, sprite_end
-	//	);
-
-	//	break;
-	//}
-
-	//case OBJECT_TYPE_PORTAL:
-	//{
-	//	float r = (float)atof(tokens[3].c_str());
-	//	float b = (float)atof(tokens[4].c_str());
-	//	int scene_id = atoi(tokens[5].c_str());
-	//	obj = new CPortal(x, y, r, b, scene_id);
-	//	break;
-	//}
-
-
-
-
-	//default:
-	//	DebugOut(L"[ERROR] Invalid object type: %d\n", object_type);
-	//	return;
-	//}
+	default:
+		//debugout(l"[error] invalid object type: %d\n", object_type);
+		return;
+	}
 
 	// General object setup
 	obj->SetPosition(x, y);
@@ -310,6 +259,7 @@ void CPlayScene::LoadAssets(LPCWSTR assetFile)
 
 void CPlayScene::Load()
 {
+
 	//DebugOut(L"[INFO] Start loading scene from : %s \n", sceneFilePath);
 
 	ifstream f;
@@ -391,8 +341,9 @@ void CPlayScene::Render()
 {
 	CGame* game = CGame::GetInstance();
 
-	current_map->Render();
-	hidden_map->Render();
+	//current_map->Render();
+	//hidden_map->Render();
+
 	for (unsigned int i = 0; i < objects.size(); i++)
 		objects[i]->Render();
 }
@@ -421,8 +372,8 @@ void CPlayScene::Unload()
 		delete objects[i];
 
 	objects.clear();
-	delete current_map;
-	delete hidden_map;
+	//delete current_map;
+	//delete hidden_map;
 	current_map = nullptr;
 	hidden_map = nullptr;
 	player = NULL;
