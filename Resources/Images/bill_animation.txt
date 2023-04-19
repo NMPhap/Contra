@@ -38,3 +38,9 @@ dead_01		2	107	18	131
 dead_02		19	112	42	131
 dead_03		43	107	59	131
 dead_04		60	120	93	131
+
+#	id	left	top	right	bottom	texture_id
+[SPRITE]
+#NORMAL
+# ani_id	sprite1_id	time1	sprite2_id	time2	...
+[ANIMATIONS]

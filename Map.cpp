@@ -28,6 +28,36 @@ bool CMap::checkObjectInCamera(float x, float y) {
 		return false;
 	return true;
 }
+D3DXVECTOR2 CMap::setWorldToSceen(D3DXVECTOR2 R_position)
+{
+	CGame* game = CGame::GetInstance();
+	D3DXVECTOR3 position(R_position.x, R_position.y, 1);
+
+	D3DXMATRIX mt;
+	D3DXMatrixIdentity(&mt);
+	mt._22 = -1.0f;
+	mt._41 = -game->GetCamX();  // vpx = x0
+	mt._42 = game->GetCamY();  // vpy = y0
+
+	D3DXVECTOR4 vp_pos;
+	D3DXVec3Transform(&vp_pos, &position, &mt);
+	//  vp_pos = position * mt  (  position : world position of object)
+
+
+	//these code bellow to draw the sprite, will use in the future
+	/*D3DXVECTOR3 p(vp_pos.x, vp_pos.y, 0);
+	D3DXVECTOR3 center((float)_Width / 2, (float)_Height / 2, 0);
+
+	_SpriteHandler->Draw(
+		_Image,
+		&srect,
+		&center,
+		&p,
+		D3DCOLOR_XRGB(255, 255, 255)
+	);*/
+
+	return D3DXVECTOR2(vp_pos.x, vp_pos.y);
+}
 void CMap::Render()
 {
 	int FirstColumn = int(floor(CamX / TILE_WIDTH));
