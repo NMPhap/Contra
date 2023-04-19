@@ -6,7 +6,7 @@ start	1
 #id	type	file
 # type: 0: intro, 1: play scene 
 [SCENES]
-1	Resource\Map\stage1.txt	1
+1	.\Resources\Map\stage1.txt	1
 
 # id	file 
 [TEXTURES]

@@ -1,5 +1,8 @@
 #include "QuadTree.h"
 #include "Utils.h"
+
+int TreeNode::NodeCount = 0;
+
 void TreeNode::AddObjectToNode(LPGAMEOBJECT object)
 {
 	if (IsIntersac(object, this))

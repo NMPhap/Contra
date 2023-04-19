@@ -207,7 +207,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 
 	//	debugout(l"[info] player object has been created!\n");
 	//	break;
-	case TEXTURE_GRASS_ID: obj = new CGrass(x, y); break;
+	case ID_GRASS: obj = new CGrass(x, y); break;
 	case TEXTURE_SODIER_ID: obj = new CSoldier(x, y); break;
 
 	default:
@@ -314,7 +314,7 @@ void CPlayScene::Update(DWORD dt)
 	// skip the rest if scene was already unloaded (Mario::Update might trigger PlayScene::Unload)
 	if (player == NULL) return;
 
-	// Update camera to follow mario
+	// Update camera to follow marioD
 	float cx, cy;
 	player->GetPosition(cx, cy);
 
