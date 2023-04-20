@@ -63,7 +63,7 @@ vector<LPTREENODE>* TreeNode::IsObjectInside(LPGAMEOBJECT object)
 		for (int i = 0; i < gameObjects->size(); i++)
 			if (gameObjects->at(i) == object)
 			{
-				vector<LPTREENODE>* a;
+				vector<LPTREENODE>* a = new vector<LPTREENODE>();
 				a->push_back(this);
 				return a;
 			}
@@ -71,7 +71,7 @@ vector<LPTREENODE>* TreeNode::IsObjectInside(LPGAMEOBJECT object)
 	}
 	if (child == NULL)
 		return NULL;
-	vector<LPTREENODE>* a;
+	vector<LPTREENODE>* a = new vector<LPTREENODE>();
 	for (int i = 0; i < child->size(); i++)
 	{
 		vector<LPTREENODE>* node = child->at(i)->IsObjectInside(object);

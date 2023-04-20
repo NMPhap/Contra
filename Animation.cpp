@@ -1,4 +1,5 @@
 #include "Animation.h"
+#include "Game.h"
 
 void CAnimation::Add(int spriteId, DWORD time)
 {
@@ -48,8 +49,14 @@ void CAnimation::Render(float x, float y, float rotationDeg)
 					currentFrame = 0;
 			//DebugOut(L"now: %d, lastFrameTime: %d, t: %d\n", now, lastFrameTime, t);
 		}
-		frames[currentFrame]->GetSprite()->Draw(x, y, rotationDeg);
+		D3DXVECTOR2 cam_pos;
+		cam_pos.x = x;
+		cam_pos.y = y;
+		CGame* g = CGame::GetInstance();
+		g->World2Cam(cam_pos.x, cam_pos.y);
 
+		frames[currentFrame]->GetSprite()->Draw(cam_pos.x, cam_pos.y, rotationDeg);
+		//frames[currentFrame]->GetSprite()->Draw(x, y, rotationDeg);
 	}
 
 }
