@@ -47,13 +47,14 @@ void CSprite::Draw(float x, float y ,float rotationDeg)
 	float cx, cy;
 	g->GetCamPos(cx, cy);
 
-	//D3DXVECTOR2 pos = g->WorldToCam(D3DXVECTOR2(cx, cy));
-
 	cx = (FLOAT)floor(cx);
 	cy = (FLOAT)floor(cy);
 
 	x = (FLOAT)floor(x);
 	y = (FLOAT)floor(y);
+
+	//D3DXVECTOR2 pos = g->setWorldToSceen(D3DXVECTOR2(x, y));
+
 
 	int spriteWidth = (this->right - this->left);
 	int spriteHeight = (this->bottom - this->top);

@@ -581,11 +581,8 @@ CGame* CGame::GetInstance()
 
 void CGame::World2Cam(float& x, float& y)
 {
-	float campos_x = GetCamX();
-	float campos_y = GetCamY();
-
-	x = x - campos_x;
-	y = campos_y - y;
+	x = x;
+	y = GetBackBufferHeight() - y;
 }
 
 void CGame::Cam2World(float& x, float& y)

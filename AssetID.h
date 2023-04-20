@@ -6,6 +6,8 @@
 #define BILL_RUN_SPEED  0.1f
 #define BILL_JUMP_SPEED_Y 0.5f
 
+#define object_type_bill 1
+
 #define BILL_STATE_IDLE 100
 #define BILL_STATE_SWIM 200
 #define BILL_STATE_RUN 300

@@ -41,29 +41,6 @@ CPlayScene::CPlayScene(int id, LPCWSTR filePath) :
 
 #define MAX_SCENE_LINE 1024
 
-void CPlayScene::LoadDemo()
-{
-	CBill::LoadAnimation();
-	CGrass::LoadAnimation();
-	CGunRotation::LoadAnimation();
-	CSoldier::LoadAnimation();
-	CSniper::LoadAnimation();
-
-	LoadAssets(L"Resources/Map/demo.txt");
-	CBill* bill = new CBill(200.0f, 0);
-
-	player = bill;
-
-	objects.push_back(bill);
-	for (int i = 0; i < 900; i += 31)
-	{
-		objects.push_back(new CGrass((float)i, 200.0f));
-	}
-	objects.push_back(new CGunRotation(300.0f, 200.0f));
-	objects.push_back(new CSoldier(300.0f, 100.0f));
-	objects.push_back(new CSniper(300.0f, 100.0f));
-	objects.push_back(new CHiddenSniper(200.0f, 150.0f));
-}
 void CPlayScene::AddObject(LPGAMEOBJECT object)
 {
 	objects.insert(objects.begin() + 1, object);
@@ -196,17 +173,17 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 
 	switch (object_type)
 	{
-	//case object_type_mario:
-	//	if (player != null)
-	//	{
-	//		debugout(l"[error] mario object was created before!\n");
-	//		return;
-	//	}
-	//	obj = new cmario(x, y);
-	//	player = (cmario*)obj;
+	case object_type_bill:
+		if (player != NULL)
+		{
+			//debugout(l"[error] mario object was created before!\n");
+			return;
+		}
+		obj = new CBill(x, y);
+		player = (CBill*)obj;
 
-	//	debugout(l"[info] player object has been created!\n");
-	//	break;
+		//debugout(l"[info] player object has been created!\n");
+		break;
 	case ID_GRASS: obj = new CGrass(x, y); break;
 	case TEXTURE_SODIER_ID: obj = new CSoldier(x, y); break;
 
@@ -320,7 +297,7 @@ void CPlayScene::Update(DWORD dt)
 
 	CGame* game = CGame::GetInstance();
 	cx -= game->GetBackBufferWidth() / 2;
-	cy -= game->GetBackBufferHeight() / 2;
+	cy = 0;
 	if (cx < 0) cx = 0;
 		if (cx > FULL_WEIGHT_1_1 - ADJUST_CAMERA_X) cx = FULL_WEIGHT_1_1 - ADJUST_CAMERA_X;
 

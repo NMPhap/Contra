@@ -93,6 +93,7 @@ void Run()
 	ULONGLONG frameStart = GetTickCount64();
 	DWORD tickPerFrame = 3500 / MAX_FRAME_RATE;
 
+	
 	while (!done)
 	{
 		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
@@ -132,8 +133,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPreInstance, LPSTR lpCmdLine,
 	game->InitKeyboard();
 	game->Load(L"./Resources/Map/demo.txt");
 	bill = new CBill(200, 200);
+	CBill::LoadAnimation();
 	CGrass::LoadAnimation();
+	CGunRotation::LoadAnimation();
 	CSoldier::LoadAnimation();
+	CSniper::LoadAnimation();
+
 	//game->InitKeyboard();
 	SetWindowPos(game->GetHWnd(), 0, 0, 0, SCREEN_WIDTH * 2, SCREEN_HEIGHT * 2, SWP_NOMOVE | SWP_NOOWNERZORDER | SWP_NOZORDER);
 	Run(); 
