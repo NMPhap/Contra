@@ -52,7 +52,7 @@ void Render()
 		//g->Draw(10, 10, texMisc, 300, 117, 316, 133);
 		//for (int i = 0; i < g->gameObjects.size(); i++)
 		//	g->gameObjects[i]->Render();
-		CGame::GetInstance()->GetCurrentScene()->Render();
+		((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->Render();
 
 		spriteHandler->End();
 		pSwapChain->Present(0, 0);
@@ -91,7 +91,7 @@ void Run()
 	MSG msg;
 	int done = 0;
 	ULONGLONG frameStart = GetTickCount64();
-	DWORD tickPerFrame = 3500 / MAX_FRAME_RATE;
+	DWORD tickPerFrame = 3600 / MAX_FRAME_RATE;
 
 	
 	while (!done)
@@ -109,7 +109,6 @@ void Run()
 		// dt: the time between (beginning of last frame) and now
 		// this frame: the frame we are about to render
 		DWORD dt = (DWORD)(now - frameStart);
-
 		if (dt >= tickPerFrame)
 		{
 			frameStart = now;
@@ -117,8 +116,6 @@ void Run()
 			CGame::GetInstance()->ProcessKeyboard();
 			Update(dt);
 			Render();
-
-			CGame::GetInstance()->SwitchScene();
 		}
 		else
 			Sleep(tickPerFrame - dt);
@@ -132,13 +129,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPreInstance, LPSTR lpCmdLine,
 	game->Init(hInstance);
 	game->InitKeyboard();
 	game->Load(L"./Resources/Map/demo.txt");
-	bill = new CBill(200, 200);
+	bill = (CBill*)game->GetCurrentScene()->GetPlayer();
 	CBill::LoadAnimation();
+	
 	CGrass::LoadAnimation();
 	CGunRotation::LoadAnimation();
 	CSoldier::LoadAnimation();
 	CSniper::LoadAnimation();
-
 	//game->InitKeyboard();
 	SetWindowPos(game->GetHWnd(), 0, 0, 0, SCREEN_WIDTH * 2, SCREEN_HEIGHT * 2, SWP_NOMOVE | SWP_NOOWNERZORDER | SWP_NOZORDER);
 	Run(); 

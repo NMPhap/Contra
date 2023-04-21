@@ -10,11 +10,12 @@
 #include "Map.h"
 #include "BillInputHandler.h"
 #include "Game.h"
-#include "Bill.h"
 #include "Soldier.h"
+#include "Bill.h"
 #include "Grass.h"
 #include "GunRotation.h"
 #include "Sniper.h"
+#include <unordered_set>
 #include "HiddenSniper.h"
 
 using namespace std;
@@ -24,6 +25,7 @@ CPlayScene::CPlayScene(int id, LPCWSTR filePath) :
 {
 	player = NULL;
 	key_handler = new CBillInputHandler();
+	QuadTree = NULL;
 }
 
 #define FULL_WEIGHT_1_1 2816
@@ -194,8 +196,8 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 
 	// General object setup
 	obj->SetPosition(x, y);
-
-
+	if(!dynamic_cast<CBill*>(obj))
+		QuadTree->AddObjectToNode(obj);
 	objects.push_back(obj);
 }
 
@@ -238,7 +240,7 @@ void CPlayScene::Load()
 {
 
 	//DebugOut(L"[INFO] Start loading scene from : %s \n", sceneFilePath);
-
+	QuadTree = new TreeNode(0, 1000, 1000, 1000);
 	ifstream f;
 	f.open(sceneFilePath);
 
@@ -271,23 +273,32 @@ void CPlayScene::Load()
 	}
 
 	f.close();
-
 	//DebugOut(L"[INFO] Done loading scene  %s\n", sceneFilePath);
+	QuadTree->Split();
+	QuadTree->Split();
 }
 
 void CPlayScene::Update(DWORD dt)
 {
-	vector<LPGAMEOBJECT> coObjects;
-	for (size_t i = 1; i < objects.size(); i++)
+	unordered_set<LPGAMEOBJECT> coObjects;
+	vector<LPTREENODE>* treeNodeList = QuadTree->NodeInCam();
+	for (int i = 0; i < treeNodeList->size(); i++)
 	{
-		coObjects.push_back(objects[i]);
+		vector<LPGAMEOBJECT>* gameObjectsList = treeNodeList->at(i)->GetObject();
+		if (gameObjectsList != NULL)
+		{
+			for (int i = 0; i < gameObjectsList->size(); i++)
+				coObjects.insert(gameObjectsList->at(i));
+		}
 	}
-
-	for (size_t i = 0; i < objects.size(); i++)
+	vector<LPGAMEOBJECT> object;
+	object.insert(object.end(), coObjects.begin(), coObjects.end());
+	for (size_t i = 0; i < object.size(); i++)
 	{
-		objects[i]->Update(dt, &coObjects);
+		object.at(i)->Update(dt, &object);
+		QuadTree->Update(object.at(i));
 	}
-
+	player->Update(dt, &object);
 	// skip the rest if scene was already unloaded (Mario::Update might trigger PlayScene::Unload)
 	if (player == NULL) return;
 
@@ -321,8 +332,22 @@ void CPlayScene::Render()
 	//current_map->Render();
 	//hidden_map->Render();
 
-	for (unsigned int i = 0; i < objects.size(); i++)
-		objects[i]->Render();
+	unordered_set<LPGAMEOBJECT> coObjects;
+	vector<LPTREENODE>* treeNodeList = QuadTree->NodeInCam();
+	for (int i = 0; i < treeNodeList->size(); i++)
+	{
+		vector<LPGAMEOBJECT>* gameObjectsList = treeNodeList->at(i)->GetObject();
+		if (gameObjectsList != NULL)
+		{
+			for (int i = 0; i < gameObjectsList->size(); i++)
+				coObjects.insert(gameObjectsList->at(i));
+		}
+	}
+	vector<LPGAMEOBJECT> object;
+	object.insert(object.end(), coObjects.begin(), coObjects.end());
+	for (unsigned int i = 1; i < object.size(); i++)
+		object.at(i)->Render();
+	player->Render();
 }
 
 /*

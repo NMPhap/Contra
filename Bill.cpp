@@ -106,7 +106,7 @@ void CBill::SetState(int state)
 			isSitting = false;
 			break;
 		case BILL_STATE_JUMP:
-			vy = -BILL_JUMP_SPEED_Y;
+			vy = BILL_JUMP_SPEED_Y;
 			isSitting = false;
 			break;
 		case BILL_STATE_LAYDOWN:

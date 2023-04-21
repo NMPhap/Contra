@@ -1,7 +1,7 @@
 #pragma once
 
 #include "InputHandler.h"
-
+#include "GameObject.h"
 /*
 *  Abstract class for a game scene
 */
@@ -26,6 +26,7 @@ public:
 	virtual void Unload() = 0;
 	virtual void Update(DWORD dt) = 0;
 	virtual void Render() = 0;
+	virtual LPGAMEOBJECT GetPlayer() { return NULL;  }
 };
 typedef CScene* LPSCENE;
 

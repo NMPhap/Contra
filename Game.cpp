@@ -294,7 +294,8 @@ HWND CGame::CreateGameWindow( int ScreenWidth, int ScreenHeight)
 	wc.lpszMenuName = NULL;
 	wc.lpszClassName = CLASS_NAME;
 	wc.hIconSm = NULL;
-
+	screen_width = ScreenWidth;
+	screen_height = ScreenHeight;
 	ATOM result = RegisterClassEx(&wc);
 	HWND hWnd = CreateWindow(
 		CLASS_NAME,
@@ -546,10 +547,12 @@ void CGame::ProcessKeyboard()
 		DebugOut(L"[ERROR] DINPUT::GetDeviceData failed. Error: %d\n", hr);
 		return;
 	}
+	CBill* player = ((CBill*)scenes[current_scene]->GetPlayer());
+	CBillInputHandler* handler = player->handler;
 	std::vector<int> keys = CInputHandler::KeyToListen;
 	for(int i =0; i < keys.size(); i++)
 		if(IsKeyDown(keys[i]))
-			bill->handler->HandleInput(new CInput(keys[i], KEY_CLICK));
+			handler->HandleInput(new CInput(keys[i], KEY_CLICK));
 	// Scan through all buffered events, check if the key is pressed or released
 	for (DWORD i = 0; i < dwElements; i++)
 	{
@@ -557,10 +560,10 @@ void CGame::ProcessKeyboard()
 		int KeyState = keyEvents[i].dwData;
 		if ((KeyState & 0x80) > 0)
 		{
-			bill->handler->HandleInput(new CInput(KeyCode, KEY_DOWN));
+			((CBill*)scenes[current_scene]->GetPlayer())->handler->HandleInput(new CInput(KeyCode, KEY_DOWN));
 		}
 		else 
-			bill->handler->HandleInput(new CInput(KeyCode, KEY_UP));
+			((CBill*)scenes[current_scene]->GetPlayer())->handler->HandleInput(new CInput(KeyCode, KEY_UP));
 	}
 }
 CGame::~CGame()

@@ -31,13 +31,31 @@ public:
 	void Split();
 
 	void AddObjectToNode(LPGAMEOBJECT object);
-	
+	void Update(LPGAMEOBJECT object);
 	vector<LPTREENODE>* IsObjectInside(LPGAMEOBJECT object);
 	void GetBoundingBox(float& left, float& top, float& right, float& down)
 	{
 		left = x;
 		top = y;
 		right = x + width;
-		down = y + height;
+		down = y - height;
+	}
+	vector<LPTREENODE>* NodeInCam();
+	vector<LPGAMEOBJECT>* GetObject() {
+		if (child != NULL)
+		{
+			vector<LPGAMEOBJECT>* result = new vector<LPGAMEOBJECT>();
+			for (int i = 0; i < child->size(); i++)
+			{
+				LPTREENODE temp = child->at(i);
+				vector<LPGAMEOBJECT>* gameObjectList = temp->GetObject();
+				if (gameObjectList != NULL)
+					result->insert(result->end(), gameObjectList->begin(), gameObjectList->end());
+
+			}
+			return result;
+		}
+		else
+			return gameObjects;
 	}
 };
