@@ -2,9 +2,9 @@
 //////////////////////////////////////////////////////////////////////////////
 // BILL PART
 #define GROUND_Y 300.0f
-#define Bill_GRAVITY 0.002f
-#define BILL_RUN_SPEED  0.1f
-#define BILL_JUMP_SPEED_Y 0.5f
+#define Bill_GRAVITY -0.001f
+#define BILL_RUN_SPEED  0.065f
+#define BILL_JUMP_SPEED_Y 0.3f
 
 #define object_type_bill 1
 

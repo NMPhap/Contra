@@ -18,3 +18,4 @@ float Radius(float ax, float ay, float bx, float by);
 LPCWSTR ToLPCWSTR(string st);
 
 BOOL IsIntersac(LPGAMEOBJECT object, LPTREENODE node);
+BOOL IsIntersac(float left, float top, float right, float bottom, LPTREENODE node);

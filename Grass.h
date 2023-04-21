@@ -26,7 +26,7 @@ public:
 		left = x;
 		top = y;
 		right = x + 31;
-		bottom = y + 15;
+		bottom = y + 20;
 	}
 };
 

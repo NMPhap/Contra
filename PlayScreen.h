@@ -2,10 +2,8 @@
 #include "Game.h"
 #include "Textures.h"
 #include "Scene.h"
-#include "GameObject.h"
-
 #include "Map.h"
-
+#include "QuadTree.h"
 
 #define CAM_CHANGE_TIME		30
 class CPlayScene : public CScene
@@ -16,7 +14,7 @@ protected:
 	CMap* current_map = NULL;
 	CMap* hidden_map = NULL;
 	vector<LPGAMEOBJECT> objects;
-
+	LPTREENODE QuadTree;
 	void _ParseSection_SPRITES(string line);
 	void _ParseSection_ANIMATIONS(string line);
 	void _ParseSection_TILEMAP_DATA(string line);
@@ -36,11 +34,10 @@ public:
 	virtual void Unload();
 	CMap* GetMap() { return current_map; }
 	CMap* GetHiddenMap() { return hidden_map; }
-	LPGAMEOBJECT GetPlayer() { return player; }
 	void Clear();
 	void PurgeDeletedObjects();
-
 	static bool IsGameObjectDeleted(const LPGAMEOBJECT& o);
+	LPGAMEOBJECT GetPlayer() { return player;  }
 };
 
 typedef CPlayScene* LPPLAYSCENE;
