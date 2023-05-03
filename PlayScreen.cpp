@@ -343,10 +343,8 @@ void CPlayScene::Render()
 				coObjects.insert(gameObjectsList->at(i));
 		}
 	}
-	vector<LPGAMEOBJECT> object;
-	object.insert(object.end(), coObjects.begin(), coObjects.end());
-	for (unsigned int i = 1; i < object.size(); i++)
-		object.at(i)->Render();
+	for (auto i = coObjects.begin(); i != coObjects.end(); ++i)
+		(*i)->Render();
 	player->Render();
 }
 
