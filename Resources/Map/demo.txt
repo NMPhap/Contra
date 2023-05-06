@@ -10,3 +10,4 @@ start	1
 
 # id	file 
 [TEXTURES]
+10000	Resources\Map\stage1_tilemap_bank.png
