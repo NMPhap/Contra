@@ -4,8 +4,8 @@
 #include "Sprites.h"
 #include "Utils.h"
 #include "AssetID.h"
-#define TILE_WIDTH 16
-#define TILE_HEIGHT 16
+#define TILE_WIDTH 32
+#define TILE_HEIGHT 32
 class CMap
 {
 	int TotalRowsOfMap, TotalColumnsOfMap;
@@ -29,5 +29,4 @@ public:
 	int GetMapHeight();
 	bool checkObjectInCamera(float x, float y);
 	D3DXVECTOR2 setWorldToSceen(D3DXVECTOR2);
-
 };

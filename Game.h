@@ -11,7 +11,7 @@
 #include "PlayScreen.h"
 #define SCREEN_WIDTH 272
 #define SCREEN_HEIGHT 256
-#define MAX_FRAME_RATE 60
+#define MAX_FRAME_RATE 120
 #define KEYBOARD_BUFFER_SIZE 1024
 #define KEYBOARD_STATE_SIZE 256
 

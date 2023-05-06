@@ -12,7 +12,6 @@ protected:
 	// A play scene has to have player, right? 
 	LPGAMEOBJECT player;
 	CMap* current_map = NULL;
-	CMap* hidden_map = NULL;
 	vector<LPGAMEOBJECT> objects;
 	LPTREENODE QuadTree;
 	void _ParseSection_SPRITES(string line);
@@ -33,7 +32,6 @@ public:
 	virtual void Render();
 	virtual void Unload();
 	CMap* GetMap() { return current_map; }
-	CMap* GetHiddenMap() { return hidden_map; }
 	void Clear();
 	void PurgeDeletedObjects();
 	static bool IsGameObjectDeleted(const LPGAMEOBJECT& o);

@@ -130,9 +130,6 @@ void CPlayScene::_ParseSection_TILEMAP_HIDDEN_DATA(string line)
 	}
 	f.close();
 
-	hidden_map = new CMap(ID, rowMap, columnMap, rowTile, columnTile, totalTiles, startX, startY);
-	hidden_map->ExtractTileFromTileSet();
-	hidden_map->SetTileMapData(TileMapData);
 }
 
 
@@ -329,7 +326,7 @@ void CPlayScene::Render()
 {
 	CGame* game = CGame::GetInstance();
 
-	//current_map->Render();
+	current_map->Render();
 	//hidden_map->Render();
 
 	unordered_set<LPGAMEOBJECT> coObjects;
@@ -343,10 +340,8 @@ void CPlayScene::Render()
 				coObjects.insert(gameObjectsList->at(i));
 		}
 	}
-	vector<LPGAMEOBJECT> object;
-	object.insert(object.end(), coObjects.begin(), coObjects.end());
-	for (unsigned int i = 1; i < object.size(); i++)
-		object.at(i)->Render();
+	for (auto i = coObjects.begin(); i != coObjects.end(); ++i)
+		(*i)->Render();
 	player->Render();
 }
 
@@ -374,10 +369,9 @@ void CPlayScene::Unload()
 		delete objects[i];
 
 	objects.clear();
-	//delete current_map;
+	delete current_map;
 	//delete hidden_map;
 	current_map = nullptr;
-	hidden_map = nullptr;
 	player = NULL;
 
 	//DebugOut(L"[INFO] Scene %d unloaded! \n", id);

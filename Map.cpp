@@ -61,7 +61,8 @@ D3DXVECTOR2 CMap::setWorldToSceen(D3DXVECTOR2 R_position)
 void CMap::Render()
 {
 	int FirstColumn = int(floor(CamX / TILE_WIDTH));
-	int LastColumn = int(ceil((CamX * TILE_WIDTH + CGame::GetInstance()->GetScreenWidth()) / TILE_WIDTH));
+	//int LastColumn = int(ceil((CamX * TILE_WIDTH + CGame::GetInstance()->GetScreenWidth()) / TILE_WIDTH));
+	int LastColumn = TotalColumnsOfMap;
 	if (LastColumn >= TotalColumnsOfMap)
 		LastColumn = TotalColumnsOfMap - 1;
 	int d = 0;
@@ -73,9 +74,9 @@ void CMap::Render()
 			{
 				float xDraw = float(CurrentColumn * TILE_WIDTH) + float(startX * TILE_WIDTH);
 				float yDraw = float(CurrentRow * TILE_HEIGHT) - float(startY * TILE_HEIGHT);
-				if (checkObjectInCamera(xDraw, yDraw)) {
+				//if (checkObjectInCamera(xDraw, yDraw)) {
 					Tiles.at(index)->Draw(xDraw, yDraw);
-				}
+				//}
 			}
 		}
 }
@@ -92,8 +93,8 @@ void CMap::ExtractTileFromTileSet()
 	{
 		int left = TileNum % TotalColumnsOfTileSet * TILE_WIDTH;
 		int top = TileNum / TotalColumnsOfTileSet * TILE_HEIGHT;
-		int right = left + TILE_WIDTH - 1;
-		int bottom = top + TILE_HEIGHT - 1;
+		int right = left + TILE_WIDTH;
+		int bottom = top + TILE_HEIGHT;
 		LPSPRITE NewTile = new CSprite(TileNum, left, top, right, bottom, TileSet); // get tile from tileset
 		this->Tiles.push_back(NewTile);
 	}
@@ -106,5 +107,6 @@ int CMap::GetMapWidth()
 
 int CMap::GetMapHeight()
 {
+	//DebugOut("");
 	return TotalRowsOfMap * TILE_HEIGHT;
 }
