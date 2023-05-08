@@ -138,6 +138,7 @@
     <ClCompile Include="Animations.cpp" />
     <ClCompile Include="Bill.cpp" />
     <ClCompile Include="BillBullet.cpp" />
+    <ClCompile Include="BlockObject.cpp" />
     <ClCompile Include="BossStage1.cpp" />
     <ClCompile Include="Bridge.cpp" />
     <ClCompile Include="Bullet.cpp" />
@@ -184,6 +185,7 @@
     <ClInclude Include="AssetID.h" />
     <ClInclude Include="Bill.h" />
     <ClInclude Include="BillBullet.h" />
+    <ClInclude Include="BlockObject.h" />
     <ClInclude Include="BossStage1.h" />
     <ClInclude Include="Bridge.h" />
     <ClInclude Include="Bullet.h" />
