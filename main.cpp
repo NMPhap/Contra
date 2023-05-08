@@ -19,8 +19,8 @@
 #include "Canon.h"
 #define TEXTURE_PATH L"./Resources/Images/bill_animation.png"
 #define BACKGROUND_COLOR D3DXCOLOR(0.0f, 0.0f, 0.0f, 0.0f)
-#define SCREEN_WIDTH 750
-#define SCREEN_HEIGHT 448
+#define SCREEN_WIDTH 500
+#define SCREEN_HEIGHT 264
 
 CTextures* tex;
 CAnimations* animation;
@@ -137,8 +137,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPreInstance, LPSTR lpCmdLine,
 	CSoldier::LoadAnimation();
 	CSniper::LoadAnimation();
 	//game->InitKeyboard();
-	//SetWindowPos(game->GetHWnd(), 0, 0, 0, SCREEN_WIDTH * 2, SCREEN_HEIGHT * 2, SWP_NOMOVE | SWP_NOOWNERZORDER | SWP_NOZORDER);
-	SetWindowPos(game->GetHWnd(), 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, SWP_NOMOVE | SWP_NOOWNERZORDER | SWP_NOZORDER);
+	SetWindowPos(game->GetHWnd(), 0, 0, 0, SCREEN_WIDTH * 2, SCREEN_HEIGHT * 2, SWP_NOMOVE | SWP_NOOWNERZORDER | SWP_NOZORDER);
+	//SetWindowPos(game->GetHWnd(), 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, SWP_NOMOVE | SWP_NOOWNERZORDER | SWP_NOZORDER);
 
 	Run(); 
 	return 0;
