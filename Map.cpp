@@ -75,7 +75,7 @@ void CMap::Render()
 				float xDraw = float(CurrentColumn * TILE_WIDTH) + float(startX * TILE_WIDTH);
 				float yDraw = float(CurrentRow * TILE_HEIGHT) - float(startY * TILE_HEIGHT);
 				//if (checkObjectInCamera(xDraw, yDraw)) {
-					Tiles.at(index)->Draw(xDraw, yDraw);
+					Tiles.at(index)->Draw(xDraw + 8, yDraw + 45);
 				//}
 			}
 		}

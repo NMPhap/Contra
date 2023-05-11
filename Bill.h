@@ -32,7 +32,7 @@ public:
 	void SetHandler(CBillInputHandler* inputHandler) { handler = inputHandler; }
 	static void LoadAnimation();
 	void SetGun(CGun* newGun) { gun = newGun; }
-	void OnCollisionWith(LPCOLLISIONEVENT e);
+	void OnCollisionWith(LPCOLLISIONEVENT e, DWORD dt = 0);
 	void OnNoCollision(DWORD dt);
 	void GetBoundingBox(float& left, float& top, float& right, float& bottom);
 	int IsCollidable() { return 1; }

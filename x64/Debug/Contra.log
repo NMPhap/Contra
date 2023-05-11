@@ -1,22 +1,11 @@
-﻿  Game.cpp
+﻿  Animation.cpp
   C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
 C:\300baicodethieunhi\NMPTG\contra\Game.h(6,1): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h(48,1): message : see previous definition of 'DIRECTINPUT_VERSION'
-C:\300baicodethieunhi\NMPTG\contra\AssetID.h(18,14): warning C4083: expected 'newline'; found identifier 'ANIMATION_ID'
-C:\300baicodethieunhi\NMPTG\contra\AssetID.h(49,14): warning C4083: expected 'newline'; found identifier 'ANIMATION_DURATION'
-C:\300baicodethieunhi\NMPTG\contra\Gun.h(8,40): warning C4244: '=': conversion from 'ULONGLONG' to 'int', possible loss of data
-  main.cpp
-  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-C:\300baicodethieunhi\NMPTG\contra\Game.h(6,1): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h(48,1): message : see previous definition of 'DIRECTINPUT_VERSION'
-C:\300baicodethieunhi\NMPTG\contra\AssetID.h(18,14): warning C4083: expected 'newline'; found identifier 'ANIMATION_ID'
-C:\300baicodethieunhi\NMPTG\contra\AssetID.h(49,14): warning C4083: expected 'newline'; found identifier 'ANIMATION_DURATION'
-C:\300baicodethieunhi\NMPTG\contra\Gun.h(8,40): warning C4244: '=': conversion from 'ULONGLONG' to 'int', possible loss of data
-C:\300baicodethieunhi\NMPTG\contra\Sniper.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\300baicodethieunhi\NMPTG\contra\Sniper.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\300baicodethieunhi\NMPTG\contra\main.cpp(20,1): warning C4005: 'SCREEN_WIDTH': macro redefinition
-C:\300baicodethieunhi\NMPTG\contra\Game.h(12,1): message : see previous definition of 'SCREEN_WIDTH'
-C:\300baicodethieunhi\NMPTG\contra\main.cpp(21,1): warning C4005: 'SCREEN_HEIGHT': macro redefinition
-C:\300baicodethieunhi\NMPTG\contra\Game.h(13,1): message : see previous definition of 'SCREEN_HEIGHT'
-  Generating Code...
+C:\300baicodethieunhi\NMPTG\contra\AssetID.h(20,14): warning C4083: expected 'newline'; found identifier 'ANIMATION_ID'
+C:\300baicodethieunhi\NMPTG\contra\AssetID.h(51,14): warning C4083: expected 'newline'; found identifier 'ANIMATION_DURATION'
+C:\300baicodethieunhi\NMPTG\contra\AssetID.h(186,1): warning C4005: 'BOSS_STAGE_1_GUN_1_DEAD': macro redefinition
+C:\300baicodethieunhi\NMPTG\contra\AssetID.h(179,1): message : see previous definition of 'BOSS_STAGE_1_GUN_1_DEAD'
+C:\300baicodethieunhi\NMPTG\contra\AssetID.h(188,1): warning C4005: 'BOSS_STAGE_1_GUN_2_DEAD': macro redefinition
+C:\300baicodethieunhi\NMPTG\contra\AssetID.h(181,1): message : see previous definition of 'BOSS_STAGE_1_GUN_2_DEAD'
   Contra.vcxproj -> C:\300baicodethieunhi\NMPTG\contra\x64\Debug\Contra.exe

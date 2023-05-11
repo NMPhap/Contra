@@ -254,9 +254,7 @@ void CCollision::Process(LPGAMEOBJECT objSrc, DWORD dt, vector<LPGAMEOBJECT>* co
 			{
 				y += colY->t * dy + colY->ny * BLOCK_PUSH_FACTOR;
 				objSrc->SetPosition(x, y);
-
-				objSrc->OnCollisionWith(colY);
-
+				objSrc->OnCollisionWith(colY, dt);
 				//
 				// see if after correction on Y, is there still a collision on X ? 
 				//
