@@ -184,7 +184,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 
 		//debugout(l"[info] player object has been created!\n");
 		break;
-	case ID_BLOCKOBJECT: obj = new CBlockObject(x,y, atoi(tokens[3].c_str())); break;
+	case ID_GRASS: obj = new CGrass(x,y); break;
 	case TEXTURE_SODIER_ID: obj = new CSoldier(x, y); break;
 
 	default:
