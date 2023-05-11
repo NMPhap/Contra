@@ -185,7 +185,11 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 		//debugout(l"[info] player object has been created!\n");
 		break;
 	case ID_GRASS: obj = new CGrass(x,y); break;
-	case TEXTURE_SODIER_ID: obj = new CSoldier(x, y); break;
+	case ID_SODIER: obj = new CSoldier(x, y); break;
+	case ID_BLOCK_OBJECT: obj = new CBlockObject(x, y, atoi(tokens[3].c_str())); break;
+	case ID_SNIPER: obj = new CSniper(x, y); break;
+	case ID_GUNROTATION: obj = new CGunRotation(x, y); break;
+	case ID_SNIPER_HIDDEN: obj = new CHiddenSniper(x, y); break;
 
 	default:
 		//debugout(l"[error] invalid object type: %d\n", object_type);
