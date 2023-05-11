@@ -389,13 +389,19 @@ void CBill::LoadAnimation()
 	animation->Add(ID_ANI_BILL_LAYDOWN_LEFT, ani);
 }
 
-void CBill::OnCollisionWith(LPCOLLISIONEVENT e)
+void CBill::OnCollisionWith(LPCOLLISIONEVENT e, DWORD dt)
 {
-	if (e->ny != 0 && e->obj->IsBlocking())
+	if (e->ny > 0 && e->obj->IsBlocking())
 	{
 		vy = 0;
 		if (state == BILL_STATE_JUMP)
 			SetState(BILL_STATE_IDLE);
+		
+	}
+	if (e->ny > 0 && e->obj->IsBlocking())
+	{
+		x = x + dt * vx;
+		y = y + dt * vy;
 	}
 	if (e->nx != 0 && e->obj->IsBlocking())
 		vx = 0;

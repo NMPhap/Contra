@@ -50,7 +50,7 @@ public:
 	virtual void OnNoCollision(DWORD dt) {};
 
 	// When collision with an object has been detected (triggered by CCollision::Process)
-	virtual void OnCollisionWith(LPCOLLISIONEVENT e) {};
+	virtual void OnCollisionWith(LPCOLLISIONEVENT e, DWORD dt = 0) {};
 	virtual int IsBlocking() { return 0; };
 
 

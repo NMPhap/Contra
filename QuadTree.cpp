@@ -53,7 +53,7 @@ vector<LPTREENODE>* TreeNode::NodeInCam()
 	float bottom = top;
 	top = top + CGame::GetInstance()->GetScreenHeight();
 	if (!IsIntersac(left, top, right, bottom, this))
-		return NULL;
+		return new vector<LPTREENODE>();
 	if(child != NULL)
 	{
 		vector<LPTREENODE>* a = new vector<LPTREENODE>();
@@ -67,7 +67,7 @@ vector<LPTREENODE>* TreeNode::NodeInCam()
 		}
 		return a;
 	}
-	return NULL;
+	return new vector<LPTREENODE>();
 }
 void TreeNode::Split()
 {
