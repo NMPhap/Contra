@@ -17,6 +17,7 @@
 #include "Sniper.h"
 #include <unordered_set>
 #include "HiddenSniper.h"
+#include "BlockObject.h"
 
 using namespace std;
 
@@ -183,7 +184,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 
 		//debugout(l"[info] player object has been created!\n");
 		break;
-	case ID_GRASS: obj = new CGrass(x, y); break;
+	case ID_BLOCKOBJECT: obj = new CBlockObject(x,y, atoi(tokens[3].c_str())); break;
 	case TEXTURE_SODIER_ID: obj = new CSoldier(x, y); break;
 
 	default:
@@ -237,7 +238,6 @@ void CPlayScene::Load()
 {
 
 	//DebugOut(L"[INFO] Start loading scene from : %s \n", sceneFilePath);
-	QuadTree = new TreeNode(0, 1000, 1000, 1000);
 	ifstream f;
 	f.open(sceneFilePath);
 
@@ -251,7 +251,7 @@ void CPlayScene::Load()
 
 		if (line[0] == '#') continue;	// skip comment lines	
 		if (line == "[ASSETS]") { section = SCENE_SECTION_ASSETS; continue; };
-		if (line == "[OBJECTS]") { section = SCENE_SECTION_OBJECTS; continue; };
+		if (line == "[OBJECTS]") { section = SCENE_SECTION_OBJECTS; QuadTree = new TreeNode(0, 0, current_map->GetMapWidth(), current_map->GetMapWidth()); continue; };
 		if (line == "[TILEMAP]") { section = SCENE_SECTION_TILEMAP_DATA; continue; }
 		if (line == "[HIDDENMAP]") { section = SCENE_SECTION_TILEMAP_HIDDEN; continue; }
 		if (line[0] == '[') { section = SCENE_SECTION_UNKNOWN; continue; }

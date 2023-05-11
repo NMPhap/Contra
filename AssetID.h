@@ -155,7 +155,7 @@
 ///////////////////////////////////////////////////////////////////////
 //MISC
 #define TEXTURE_GRASS_ID 5
-#define ID_GRASS 9999
+#define ID_BLOCKOBJECT 9999
 #define AIRCRAFT_TEXTURE_ID 6
 #define PI 3.141517
 

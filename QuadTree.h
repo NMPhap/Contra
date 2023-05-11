@@ -36,9 +36,9 @@ public:
 	void GetBoundingBox(float& left, float& top, float& right, float& down)
 	{
 		left = x;
-		top = y;
+		down = y;
 		right = x + width;
-		down = y - height;
+		top = y + height;
 	}
 	vector<LPTREENODE>* NodeInCam();
 	vector<LPGAMEOBJECT>* GetObject() {
