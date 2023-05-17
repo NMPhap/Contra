@@ -1,15 +1,12 @@
 #include <iostream>
 #include <fstream>
-#include "AssetID.h"
 
-#include "Scene.h"
 #include "PlayScreen.h"
-#include "Utils.h"
-#include "Textures.h"
-#include "Sprites.h"
-#include "Map.h"
-#include "BillInputHandler.h"
 #include "Game.h"
+#include "Bullet.h"
+#include "Utils.h"
+#include "Sprites.h"
+#include "BillInputHandler.h"
 #include "Soldier.h"
 #include "Bill.h"
 #include "Grass.h"
@@ -46,6 +43,7 @@ CPlayScene::CPlayScene(int id, LPCWSTR filePath) :
 
 void CPlayScene::AddObject(LPGAMEOBJECT object)
 {
+	AddObjectToQuadTree(object);
 	objects.insert(objects.begin() + 1, object);
 
 }
@@ -272,8 +270,8 @@ void CPlayScene::Load()
 
 		}
 	}
-
 	f.close();
+	ammo = new vector<CBullet*>();
 	//DebugOut(L"[INFO] Done loading scene  %s\n", sceneFilePath);
 	QuadTree->Split();
 	QuadTree->Split();
@@ -306,7 +304,8 @@ void CPlayScene::Update(DWORD dt)
 	// Update camera to follow marioD
 	float cx, cy;
 	player->GetPosition(cx, cy);
-
+	for (int i = 0; i < ammo->size(); i++)
+		ammo->at(i)->Update(dt, &object);
 	CGame* game = CGame::GetInstance();
 	cx -= game->GetBackBufferWidth() / 2;
 	cy = 0;
@@ -331,7 +330,6 @@ void CPlayScene::Render()
 	CGame* game = CGame::GetInstance();
 
 	current_map->Render();
-	//hidden_map->Render();
 
 	unordered_set<LPGAMEOBJECT> coObjects;
 	vector<LPTREENODE>* treeNodeList = QuadTree->NodeInCam();
@@ -345,6 +343,8 @@ void CPlayScene::Render()
 		}
 	}
 	for (auto i = coObjects.begin(); i != coObjects.end(); ++i)
+		(*i)->Render();
+	for (auto i = ammo->begin(); i != ammo->end(); ++i)
 		(*i)->Render();
 	player->Render();
 }

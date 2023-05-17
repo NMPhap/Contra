@@ -22,9 +22,9 @@ void CSniper::Render()
 		if (state == SNIPER_STATE_NORMAl)
 			aniID = ID_ANI_SNIPER_NORMAL;
 		else if (state = SNIPER_STATE_SHOT)
-			if (bill->GetY() - y <= -50)
+			if (bill->GetY() - y >= -100)
 				aniID = ID_ANI_SNIPER_SHOT_UP;
-			else if (bill->GetY() - y >= 50)
+			else if (bill->GetY() - y <= 100)
 				aniID = ID_ANI_SNIPER_SHOT_DOWN;
 			else aniID = ID_ANI_SNIPER_SHOT;
 	}
@@ -34,9 +34,9 @@ void CSniper::Render()
 		if (state == SNIPER_STATE_NORMAl)
 			aniID = ID_ANI_SNIPER_NORMAL_RIGHT;
 		else if (state = SNIPER_STATE_SHOT)
-			if (bill->GetY() - y <= -50)
+			if (bill->GetY() - y >= -100)
 				aniID = ID_ANI_SNIPER_SHOT_UP_RIGHT;
-			else if (bill->GetY() - y >= 50)
+			else if (bill->GetY() - y <= 100)
 				aniID = ID_ANI_SNIPER_SHOT_DOWN_RIGHT;
 			else aniID = ID_ANI_SNIPER_SHOT_RIGHT;
 	}

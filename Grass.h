@@ -24,9 +24,9 @@ public:
 	void GetBoundingBox(float& left, float& top, float& right, float& bottom)
 	{
 		left = x;
-		bottom = y + 20;
+		bottom = y - 20;
 		right = x + 31;
-		top = y + 30;
+		top = y;
 	}
 };
 

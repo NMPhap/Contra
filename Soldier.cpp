@@ -9,34 +9,18 @@ void CSoldier::Update(DWORD dt, vector<LPGAMEOBJECT>* gameObject)
 		faceDirection = -1;
 	else
 		faceDirection = 1;
-	if (bill->GetY() <= y + 10 && bill->GetY() >= y && abs(bill->GetX() - x) <= 150)
-		SetState(SODIER_STATE_SHOT);
-	else
-		SetState(SODIER_STATE_RUNNING);
 	CCollision::GetInstance()->Process(this, dt, gameObject);
 }
 
 void CSoldier::Render()
 {
 	int aniID = -1;
-	if (faceDirection == 1)
-	{
-		if (state == SODIER_STATE_RUNNING)
-			aniID = ID_ANI_SODIER_RUNNING_RIGHT;
-		else if (state == SODIER_STATE_SHOT)
-			aniID = ID_ANI_SODIER_SHOT_RIGHT;
-		else if (state == SODIER_STATE_LAYDOWN)
-			aniID = ID_ANI_SODIER_LAYDOWN_RIGHT;
-	}
-	else
-	{
-		if (state == SODIER_STATE_RUNNING)
-			aniID = ID_ANI_SODIER_RUNNING;
-		else if (state == SODIER_STATE_SHOT)
-			aniID = ID_ANI_SODIER_SHOT;
-		else if (state == SODIER_STATE_LAYDOWN)
-			aniID = ID_ANI_SODIER_LAYDOWN;
-	}
+	if (state == SODIER_STATE_RUNNING)
+		aniID = ID_ANI_SODIER_RUNNING;
+	else if (state == SODIER_STATE_SHOT)
+		aniID = ID_ANI_SODIER_SHOT;
+	else if (state == SODIER_STATE_LAYDOWN)
+		aniID = ID_ANI_SODIER_LAYDOWN;
 	if (aniID == -1)
 		aniID = ID_ANI_SODIER_RUNNING;
 	CAnimations::GetInstance()->Get(aniID)->Render(x, y);
@@ -127,12 +111,12 @@ void CSoldier::GetBoundingBox(float& left, float& top, float& right, float& bott
 	left = x;
 	top = y;
 	right = x + 16;
-	bottom = y + 32;
+	bottom = y - 24;
 }
 
 void CSoldier::OnNoCollision(DWORD dt)
 {
-	x += dt * vx;
+	x += -faceDirection * dt * vx;
 	y += vy * dt;
 	vy += Bill_GRAVITY * dt;
 	if (y > GROUND_Y)
@@ -144,10 +128,5 @@ void CSoldier::OnNoCollision(DWORD dt)
 
 void CSoldier::OnCollisionWith(LPCOLLISIONEVENT e)
 {
-	if (e->ny != 0 && e->obj->IsBlocking())
-	{
-		vy = 0;
-	}
-	if (e->nx != 0 && e->obj->IsBlocking())
-		vx = 0;
+
 }
