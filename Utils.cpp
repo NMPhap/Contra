@@ -36,7 +36,7 @@ wstring ToWSTR(string st)
 
 float Radius(float ax, float ay, float bx, float by)
 {
-	return atan((bx - ax) / (by - ay));
+	return atan((by - ay) / (bx - ax));
 }
 
 /*

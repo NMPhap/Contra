@@ -21,7 +21,8 @@ protected:
 	float vy;
 
 	int nx;	 
-	int state;									
+	int state;
+	int Deleted = 0;
 public: 
 	void SetPosition(float x, float y) { this->x = x, this->y = y; }
 	void SetSpeedX(float vx) { this->vx = vx; }
@@ -55,8 +56,9 @@ public:
 
 
 	void RenderBoundingBox();
-	int IsDeleted() { return 0; }
-	~CGameObject();
+	int IsDeleted() { return Deleted; }
+	void SetDeleted(int del) { Deleted = del; }
+	~CGameObject(); 
 };
 
 typedef CGameObject* LPGAMEOBJECT;

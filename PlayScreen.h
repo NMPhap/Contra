@@ -1,11 +1,10 @@
 #pragma once
-#include "Game.h"
-#include "Textures.h"
 #include "Scene.h"
 #include "Map.h"
 #include "QuadTree.h"
-
 #define CAM_CHANGE_TIME		30
+
+class CBullet;
 class CPlayScene : public CScene
 {
 protected:
@@ -14,6 +13,7 @@ protected:
 	CMap* current_map = NULL;
 	vector<LPGAMEOBJECT> objects;
 	LPTREENODE QuadTree;
+	vector<CBullet*>* ammo;
 	void _ParseSection_SPRITES(string line);
 	void _ParseSection_ANIMATIONS(string line);
 	void _ParseSection_TILEMAP_DATA(string line);
@@ -26,7 +26,7 @@ protected:
 public:
 	void AddObject(LPGAMEOBJECT object);
 	CPlayScene(int id, LPCWSTR filePath);
-	vector<LPGAMEOBJECT> GetListObject() { return objects; }
+	//vector<LPGAMEOBJECT> GetListObject() { return objects; }
 	virtual void Load();
 	virtual void Update(DWORD dt);
 	virtual void Render();
@@ -35,6 +35,8 @@ public:
 	void Clear();
 	void PurgeDeletedObjects();
 	static bool IsGameObjectDeleted(const LPGAMEOBJECT& o);
+	void AddObjectToQuadTree(LPGAMEOBJECT obj) { QuadTree->AddObjectToNode(obj); }
+	vector<CBullet*>* GetAmmo() { return ammo; }
 	LPGAMEOBJECT GetPlayer() { return player;  }
 };
 

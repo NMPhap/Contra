@@ -13,15 +13,15 @@ void CGunRotation::Update(DWORD dt, vector<LPGAMEOBJECT> *gameObject)
 			bill->GetBoundingBox(left, top, down, right);
 			float billWidth = right - left;
 			float billHeight = down - top;
-			radius = Radius(left + billWidth, top + billHeight, x + 16, y + 16);
+			radius = -Radius(left + billWidth / 2, top + billHeight / 2, x + 16, y + 16);
 		}
 	}
-	if (abs(bill->GetX() - x) <= 300 && state == GUNROTATION_STATE_HIDDEN)
+	if (abs(bill->GetX() - x) <= 100 && state == GUNROTATION_STATE_HIDDEN)
 	{
 		this->SetState(GUNROTATION_STATE_NORMAL);
 		lastTurn = GetTickCount64() + 200;
 	}
-	if (abs(bill->GetX() - x) > 300 && state == GUNROTATION_STATE_NORMAL)
+	if (abs(bill->GetX() - x) > 100 && state == GUNROTATION_STATE_NORMAL)
 		this->SetState(GUNROTATION_STATE_HIDDEN);
 }
 
@@ -48,15 +48,15 @@ void CGunRotation::Render()
 		else
 		{
 			if (radius >= (PI / 6) && radius < (PI / 4))
-				aniID = ID_ANI_GUNROTATION_SHOT_6;
+				aniID = ID_ANI_GUNROTATION_SHOT_10;
 			else if (radius >= (PI / 4) && radius < (5 * PI / 12))
 				aniID = ID_ANI_GUNROTATION_SHOT_7;
 			else if (radius >= -(PI / 6) && radius < (PI / 6))
-				aniID = ID_ANI_GUNROTATION_SHOT_8;
+				aniID = ID_ANI_GUNROTATION_SHOT_6;
 			else if (radius >= -(PI / 4) && radius < -(PI / 6))
 				aniID = ID_ANI_GUNROTATION_SHOT_9;
 			else if (radius >= -(5 * PI / 6) && radius < -(PI / 4))
-				aniID = ID_ANI_GUNROTATION_SHOT_10;
+				aniID = ID_ANI_GUNROTATION_SHOT_8;
 		}
 		if (aniID == -1)
 		{

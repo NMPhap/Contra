@@ -3,6 +3,7 @@
 #include "Textures.h"
 #include "Game.h"
 #include "BillBullet.h"
+#include "Soldier.h"
 void CBill::Update(DWORD dt, vector<LPGAMEOBJECT> *gameObject)
 {
 	if (isShotting)
@@ -138,6 +139,9 @@ void CBill::SetState(int state)
 				isSitting = false;
 			}
 			break;
+		case BILL_STATE_DEAD:
+			vx = -BILL_RUN_SPEED;
+			vy = BILL_JUMP_SPEED_Y;
 		default:
 			vx = 0;
 			isSitting = false;
@@ -387,21 +391,29 @@ void CBill::LoadAnimation()
 	ani = new CAnimation(100);
 	ani->Add(ID_ANI_BILL_LAYDOWN_LEFT);
 	animation->Add(ID_ANI_BILL_LAYDOWN_LEFT, ani);
+
+	//Load dead animation
+
+	sprite->Add(ID_ANI_BILL_DEAD, 2, 107, 31, 131, tex->Get(TEXTURE_RIGHT_ID));
+	sprite->Add(ID_ANI_BILL_DEAD + 1, 19, 112, 42, 131, tex->Get(TEXTURE_RIGHT_ID));
+	sprite->Add(ID_ANI_BILL_DEAD + 2, 43, 107, 59, 131, tex->Get(TEXTURE_RIGHT_ID));
+	sprite->Add(ID_ANI_BILL_DEAD + 3, 60, 120, 93, 131, tex->Get(TEXTURE_RIGHT_ID));
+	ani = new CAnimation(1000);
+	ani->Add(ID_ANI_BILL_DEAD);
+	ani->Add(ID_ANI_BILL_DEAD + 1);
+	ani->Add(ID_ANI_BILL_DEAD + 2);
+	ani->Add(ID_ANI_BILL_DEAD + 3);
+	animation->Add(ID_ANI_BILL_DEAD, ani);
 }
 
 void CBill::OnCollisionWith(LPCOLLISIONEVENT e, DWORD dt)
 {
-	if (e->ny > 0 && e->obj->IsBlocking())
+	if (e->ny != 0 && e->obj->IsBlocking())
 	{
 		vy = 0;
-		if (state == BILL_STATE_JUMP)
+		if (state == BILL_STATE_JUMP || state == BILL_STATE_DEAD)
 			SetState(BILL_STATE_IDLE);
 		
-	}
-	if (e->ny > 0 && e->obj->IsBlocking())
-	{
-		x = x + dt * vx;
-		y = y + dt * vy;
 	}
 	if (e->nx != 0 && e->obj->IsBlocking())
 		vx = 0;
@@ -429,22 +441,22 @@ void CBill::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 	if (state == BILL_STATE_IDLE)
 	{
 		right = x + 24;
-		bottom = y + 25;
+		bottom = y - 25;
 		return;
 	}
 	if (state == BILL_STATE_LAYDOWN)
 	{
 		right = x + 33;
-		bottom = y + 17;
+		bottom = y - 17;
 		return;
 	}
 	if (state == BILL_STATE_SWIM || state == BILL_STATE_SWIM_MOVE)
 	{
 		right = x + 17;
-		bottom = y + 17;
+		bottom = y - 17;
 		return;
 	}
 	right = x + 21;
-	bottom = y + 25;
+	bottom = y - 25;
 
 }
