@@ -17,6 +17,7 @@
 #include "HiddenSniper.h"
 #include "RockFall.h"
 #include "Canon.h"
+#include "Bridge.h"
 #define TEXTURE_PATH L"./Resources/Images/bill_animation.png"
 #define BACKGROUND_COLOR D3DXCOLOR(0.0f, 0.0f, 0.0f, 0.0f)
 #define SCREEN_WIDTH 500
