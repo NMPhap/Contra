@@ -65,5 +65,13 @@ public:
 		}
 		return __instance;
 	}
+
+	void GetBoundingBox(float& left, float& top, float& right, float& bottom)
+	{
+		left = x;
+		top = y;
+		right = x + 30;
+		bottom = y - 5;
+	}
 };
 

@@ -11,12 +11,6 @@ public:
 			bulletAnimation = CAnimations::GetInstance()->Get(ID_ANI_BULLET_NORMAL);
 		}
 	}
-
-	void Update(DWORD dt, vector<LPGAMEOBJECT> *gameObject = NULL)
-	{
-		CBullet::Update(dt, gameObject);
-	}
-	
 	static void LoadAnimation()
 	{
 		LPTEXTURE texture = CTextures::GetInstance()->Get(ID_BULLET_TEXTURE);
@@ -30,6 +24,13 @@ public:
 		LPANIMATION ani = new  CAnimation(100);
 		ani->Add(ID_ANI_BULLET_NORMAL);
 		CAnimations::GetInstance()->Add(ID_ANI_BULLET_NORMAL, ani);
+	}
+	void GetBoundingBox(float& left, float& top, float& right, float& bottom)
+	{
+		left = x;
+		top = y;
+		right = x + 4;
+		bottom = y - 4;
 	}
 };
 

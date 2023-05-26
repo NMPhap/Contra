@@ -111,7 +111,7 @@ void CSoldier::GetBoundingBox(float& left, float& top, float& right, float& bott
 	left = x;
 	top = y;
 	right = x + 16;
-	bottom = y - 24;
+	bottom = y - 32;
 }
 
 void CSoldier::OnNoCollision(DWORD dt)
@@ -128,5 +128,5 @@ void CSoldier::OnNoCollision(DWORD dt)
 
 void CSoldier::OnCollisionWith(LPCOLLISIONEVENT e)
 {
-
+	vy = 0;
 }

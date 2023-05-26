@@ -38,7 +38,7 @@ CSprite::CSprite(int id, int left, int top, int right, int bottom, LPTEXTURE tex
 		sprite.TexSize.y = sprite.TexSize.y * scaleY;
 	}
 
-	D3DXMatrixScaling(&this->matScaling, (FLOAT)spriteWidth, (FLOAT)spriteHeight, -1.0f);
+	D3DXMatrixScaling(&this->matScaling, (FLOAT)spriteWidth, (FLOAT)spriteHeight, 1.0f);
 }
 
 void CSprite::Draw(float x, float y ,float rotationDeg, float reSizeX, float reSizeY)
@@ -59,7 +59,7 @@ void CSprite::Draw(float x, float y ,float rotationDeg, float reSizeX, float reS
 	int spriteWidth = (this->right - this->left);
 	int spriteHeight = (this->bottom - this->top);
 	D3DXMATRIX matTranslation;
-	D3DXMatrixTranslation(&matTranslation, x - cx, (g->GetBackBufferHeight() - y + cy), 0.1f);
+	D3DXMatrixTranslation(&matTranslation, x - cx, (g->GetBackBufferHeight() - y + cy), 1.0f);
 	D3DXMATRIX matRotation;
 	D3DXMatrixRotationZ(&matRotation, rotationDeg);
 	D3DXMATRIX matScale;

@@ -1,0 +1,18 @@
+Tú:
+Login page
+HomePage(link with login page <= account)
+Add book
+Main Layout
+
+
+Phap:
+Member flow
+Borrow card flow
+Component books
+Top-Right User Tag
+
+Duy:
+Return card
+Fee card
+Remind card
+	

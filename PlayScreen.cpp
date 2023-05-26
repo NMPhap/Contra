@@ -295,7 +295,6 @@ void CPlayScene::Update(DWORD dt)
 	for (size_t i = 0; i < object.size(); i++)
 	{
 		object.at(i)->Update(dt, &object);
-		QuadTree->Update(object.at(i));
 	}
 	player->Update(dt, &object);
 	// skip the rest if scene was already unloaded (Mario::Update might trigger PlayScene::Unload)
@@ -306,6 +305,10 @@ void CPlayScene::Update(DWORD dt)
 	player->GetPosition(cx, cy);
 	for (int i = 0; i < ammo->size(); i++)
 		ammo->at(i)->Update(dt, &object);
+	for (size_t i = 0; i < object.size(); i++)
+	{
+		QuadTree->Update(object.at(i));
+	}
 	CGame* game = CGame::GetInstance();
 	cx -= game->GetBackBufferWidth() / 2;
 	cy = 0;
@@ -343,7 +346,8 @@ void CPlayScene::Render()
 		}
 	}
 	for (auto i = coObjects.begin(); i != coObjects.end(); ++i)
-		(*i)->Render();
+		if(*i != NULL)
+			(*i)->Render();
 	for (auto i = ammo->begin(); i != ammo->end(); ++i)
 		(*i)->Render();
 	player->Render();

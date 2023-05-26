@@ -60,5 +60,12 @@ public:
 		ani->Add(ID_ANI_BULLET_F);
 		CAnimations::GetInstance()->Add(ID_ANI_BULLET_F, ani);
 	}
+	void GetBoundingBox(float& left, float& top, float& right, float& bottom)
+	{
+		left = x;
+		top = y;
+		right = x + 7;
+		bottom = y - 7;
+	}
 };
 
