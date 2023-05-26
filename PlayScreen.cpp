@@ -15,6 +15,7 @@
 #include <unordered_set>
 #include "HiddenSniper.h"
 #include "BlockObject.h"
+#include "Bridge.h"
 
 using namespace std;
 
@@ -188,6 +189,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	case ID_SNIPER: obj = new CSniper(x, y); break;
 	case ID_GUNROTATION: obj = new CGunRotation(x, y); break;
 	case ID_SNIPER_HIDDEN: obj = new CHiddenSniper(x, y); break;
+	//case ID_BRIDGE: obj = new CBridge(x, y); break;
 
 	default:
 		//debugout(l"[error] invalid object type: %d\n", object_type);
@@ -308,16 +310,18 @@ void CPlayScene::Update(DWORD dt)
 		ammo->at(i)->Update(dt, &object);
 	CGame* game = CGame::GetInstance();
 	cx -= game->GetBackBufferWidth() / 2;
-	cy = 0;
+	cy += game->GetBackBufferHeight() / 2;
+	//cy = 0;
 	if (cx < 0) cx = 0;
 		if (cx > FULL_WEIGHT_1_1 - ADJUST_CAMERA_X) cx = FULL_WEIGHT_1_1 - ADJUST_CAMERA_X;
 
 
-		if (cy > ADJUST_CAM_MAX_Y) cy = ADJUST_CAM_MAX_Y;
-		else if ((ADJUST_CAM_MIN_Y < cy) && (cy < ADJUST_CAM_MAX_Y)) cy = ADJUST_CAM_MAX_Y;
-		else  cy = ADJUST_CAM_MAX_Y + cy - ADJUST_CAM_MIN_Y;
+	//if (cy > ADJUST_CAM_MAX_Y) cy = ADJUST_CAM_MAX_Y;
+	//	else if ((ADJUST_CAM_MIN_Y < cy) && (cy < ADJUST_CAM_MAX_Y)) cy = ADJUST_CAM_MAX_Y;
+	//	else  cy = ADJUST_CAM_MAX_Y + cy - ADJUST_CAM_MIN_Y;
 		//else if (cy < ADJUST_CAM_MAX_Y) cy =  cy+ ADJUST_CAM_MAX_Y ;
-		if (cy < 0) cy = 0;
+	if (cy < current_map->GetMapHeight()) cy = current_map->GetMapHeight();
+	if (cy > current_map->GetMapHeight()) cy = current_map->GetMapHeight();
 
 	CGame::GetInstance()->SetCamPos(cx, cy);
 

@@ -59,7 +59,9 @@ void CSprite::Draw(float x, float y ,float rotationDeg, float reSizeX, float reS
 	int spriteWidth = (this->right - this->left);
 	int spriteHeight = (this->bottom - this->top);
 	D3DXMATRIX matTranslation;
-	D3DXMatrixTranslation(&matTranslation, x - cx, (g->GetBackBufferHeight() - y + cy), 0.1f);
+	//D3DXMatrixTranslation(&matTranslation, (x - cx), (cy - y), 0.1f);
+	D3DXMatrixTranslation(&matTranslation, x - cx, (g->GetBackBufferHeight() - cy + y), 0.1f);
+
 	D3DXMATRIX matRotation;
 	D3DXMatrixRotationZ(&matRotation, rotationDeg);
 	D3DXMATRIX matScale;
