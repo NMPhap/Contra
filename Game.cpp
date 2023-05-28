@@ -296,6 +296,8 @@ HWND CGame::CreateGameWindow( int ScreenWidth, int ScreenHeight)
 	wc.hIconSm = NULL;
 	screen_width = ScreenWidth;
 	screen_height = ScreenHeight;
+	cam_x = 0.0f;
+	cam_y = screen_height;
 	ATOM result = RegisterClassEx(&wc);
 	HWND hWnd = CreateWindow(
 		CLASS_NAME,
@@ -584,7 +586,7 @@ CGame* CGame::GetInstance()
 
 void CGame::World2Cam(float& x, float& y)
 {
-	x = x;
+	x = x - GetCamX();
 	y = GetCamY() - y;
 }
 

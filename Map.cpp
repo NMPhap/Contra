@@ -90,7 +90,7 @@ void CMap::Render()
 				float yDraw = float(CurrentRow * TILE_HEIGHT) - float(startY * TILE_HEIGHT);
 				//if (checkObjectInCamera(xDraw, yDraw)) {
 				D3DXVECTOR2 pos = setWorldToSceen(D3DXVECTOR2(xDraw, yDraw));
-				Tiles.at(index)->Draw(xDraw + 9,pos.y - 9);
+				Tiles.at(index)->Draw(pos.x -9.0f,pos.y);
 				//}
 			}
 		}

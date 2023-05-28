@@ -27,6 +27,8 @@ void TreeNode::AddObjectToNode(LPGAMEOBJECT object)
 void TreeNode::Update(LPGAMEOBJECT object)
 {
 	vector<LPTREENODE>* treeNodeList = this->IsObjectInside(object);
+	if (treeNodeList == nullptr)
+		return;
 	for (int i = 0; i < treeNodeList->size(); i++)
 	{
 		if (!IsIntersac(object, treeNodeList->at(i)))
@@ -37,6 +39,8 @@ void TreeNode::Update(LPGAMEOBJECT object)
 				treeNodeList->at(i)->gameObjects = NULL;
 		}
 	}
+	if (object->IsDeleted())
+		return;
 	this->AddObjectToNode(object);
 }
 vector<LPTREENODE>* TreeNode::NodeInCam()

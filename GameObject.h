@@ -23,6 +23,7 @@ protected:
 	int nx;	 
 	int state;
 	int Deleted = 0;
+	int dieStart = 0;
 public: 
 	void SetPosition(float x, float y) { this->x = x, this->y = y; }
 	void SetSpeedX(float vx) { this->vx = vx; }

@@ -30,5 +30,12 @@ public:
 		ani->Add(ID_ANI_BULLET_RIFLE);
 		CAnimations::GetInstance()->Add(ID_ANI_BULLET_RIFLE, ani);
 	}
-};
 
+	void GetBoundingBox(float& left, float& top, float& right, float& bottom)
+	{
+		left = x;
+		top = y;
+		right = x + 2; 
+		bottom = y - 2;
+	}
+};

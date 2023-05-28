@@ -56,7 +56,7 @@ void CAnimation::Render(float x, float y, float rotationDeg)
 		//g->World2Cam(cam_pos.x, cam_pos.y);
 
 		//frames[currentFrame]->GetSprite()->Draw(cam_pos.x + 16, cam_pos.y + 39, rotationDeg);
-		frames[currentFrame]->GetSprite()->Draw(cam_pos.x , cam_pos.y, rotationDeg);
+		frames[currentFrame]->GetSprite()->Draw(x, y, rotationDeg);
 
 		//frames[currentFrame]->GetSprite()->Draw(x, y, rotationDeg);
 	}

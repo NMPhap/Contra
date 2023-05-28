@@ -297,7 +297,6 @@ void CPlayScene::Update(DWORD dt)
 	for (size_t i = 0; i < object.size(); i++)
 	{
 		object.at(i)->Update(dt, &object);
-		QuadTree->Update(object.at(i));
 	}
 	player->Update(dt, &object);
 	// skip the rest if scene was already unloaded (Mario::Update might trigger PlayScene::Unload)
@@ -308,9 +307,13 @@ void CPlayScene::Update(DWORD dt)
 	player->GetPosition(cx, cy);
 	for (int i = 0; i < ammo->size(); i++)
 		ammo->at(i)->Update(dt, &object);
+	for (size_t i = 0; i < object.size(); i++)
+	{
+		QuadTree->Update(object.at(i));
+	}
 	CGame* game = CGame::GetInstance();
-	cx -= game->GetBackBufferWidth() / 2;
-	cy += game->GetBackBufferHeight() / 2;
+	cx -= game->GetScreenWidth() / 2;
+	cy += game->GetScreenHeight() / 2;
 	//cy = 0;
 	if (cx < 0) cx = 0;
 		if (cx > FULL_WEIGHT_1_1 - ADJUST_CAMERA_X) cx = FULL_WEIGHT_1_1 - ADJUST_CAMERA_X;
@@ -347,9 +350,11 @@ void CPlayScene::Render()
 		}
 	}
 	for (auto i = coObjects.begin(); i != coObjects.end(); ++i)
-		(*i)->Render();
+		if(*i != NULL && !((*i)->IsDeleted()))
+			(*i)->Render();
 	for (auto i = ammo->begin(); i != ammo->end(); ++i)
-		(*i)->Render();
+		if (*i != NULL && !((*i)->IsDeleted()))
+			(*i)->Render();
 	player->Render();
 }
 
@@ -399,10 +404,22 @@ void CPlayScene::PurgeDeletedObjects()
 			*it = NULL;
 		}
 	}
-
+	vector<CBullet*>::iterator it2;
+	for (it2 = ammo->begin(); it2 != ammo->end(); it2++)
+	{
+		LPGAMEOBJECT o = *it2;
+		if (o->IsDeleted())
+		{
+			delete o;
+			*it2 = NULL;
+		}
+	}
 	// NOTE: remove_if will swap all deleted items to the end of the vector
 	// then simply trim the vector, this is much more efficient than deleting individual items
 	objects.erase(
 		std::remove_if(objects.begin(), objects.end(), CPlayScene::IsGameObjectDeleted),
 		objects.end());
+	ammo->erase(
+		std::remove_if(ammo->begin(), ammo->end(), CPlayScene::IsGameObjectDeleted),
+		ammo->end());
 }

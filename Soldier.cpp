@@ -1,7 +1,8 @@
 #include "Soldier.h"
 #include "Bill.h"
-
+#include "NormalExplosion.h"
 extern CBill* bill;
+#define DIETIMEOUT 300
 
 void CSoldier::Update(DWORD dt, vector<LPGAMEOBJECT>* gameObject)
 {
@@ -9,7 +10,17 @@ void CSoldier::Update(DWORD dt, vector<LPGAMEOBJECT>* gameObject)
 		faceDirection = -1;
 	else
 		faceDirection = 1;
-	CCollision::GetInstance()->Process(this, dt, gameObject);
+	if (state == SODIER_STATE_DEATH )
+	{
+		if (GetTickCount64() - dieStart >= DIETIMEOUT)
+		{
+			Deleted = 1;
+			((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->AddObjectToQuadTree(new CNormalExplosion(x, y));
+		}
+		OnNoCollision(dt);
+	}
+	else
+		CCollision::GetInstance()->Process(this, dt, gameObject);
 }
 
 void CSoldier::Render()
@@ -21,6 +32,8 @@ void CSoldier::Render()
 		aniID = ID_ANI_SODIER_SHOT;
 	else if (state == SODIER_STATE_LAYDOWN)
 		aniID = ID_ANI_SODIER_LAYDOWN;
+	else if (state == SODIER_STATE_DEATH)
+		aniID = ID_ANI_SODIER_SHOTED;
 	if (aniID == -1)
 		aniID = ID_ANI_SODIER_RUNNING;
 	CAnimations::GetInstance()->Get(aniID)->Render(x, y);
@@ -111,7 +124,7 @@ void CSoldier::GetBoundingBox(float& left, float& top, float& right, float& bott
 	left = x;
 	top = y;
 	right = x + 16;
-	bottom = y - 24;
+	bottom = y - 32;
 }
 
 void CSoldier::OnNoCollision(DWORD dt)
@@ -128,5 +141,5 @@ void CSoldier::OnNoCollision(DWORD dt)
 
 void CSoldier::OnCollisionWith(LPCOLLISIONEVENT e)
 {
-
+	vy = 0;
 }

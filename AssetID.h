@@ -179,6 +179,11 @@
 
 #define ID_ANI_ROCKFALL_STAY 3000
 #define ID_ANI_ROCKFALL_FALL 3020
+
+//Explosion
+#define TEXTURE_EXPLOSION_ID 20
+#define TEXTURE_EXPLOSION_PATH L"./Resources/Images/Explosion.png"
+#define ID_ANI_NORMAL_EXPLOSION 3100
 //////////////////////////////////////////////////////////////////////
 //TILEMAP
 #define TEXTURE_TILEMAP_STAGE_1_ID 10000
