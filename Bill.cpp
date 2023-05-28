@@ -441,7 +441,7 @@ void CBill::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 	if (state == BILL_STATE_IDLE)
 	{
 		right = x + 24;
-		bottom = y - 33;
+		bottom = y - 36;
 		return;
 	}
 	if (state == BILL_STATE_LAYDOWN)
@@ -457,6 +457,6 @@ void CBill::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 		return;
 	}
 	right = x + 21;
-	bottom = y - 33;
+	bottom = y - 36;
 
 }

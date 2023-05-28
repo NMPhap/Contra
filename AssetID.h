@@ -138,6 +138,11 @@
 //Bridge
 #define ID_BRIDGE 8
 #define TEXTURE_BRIDGE_ID 8
+#define TEXTURE_BRIDGE_ID_TOPLEFT 300
+#define TEXTURE_BRIDGE_ID_TOPRIGHT 301
+#define TEXTURE_BRIDGE_ID_BOTLEFT 302
+#define TEXTURE_BRIDGE_ID_BOTMID 303
+#define TEXTURE_BRIDGE_ID_BOTRIGHT 304
 #define BRIDGE_STATE_ALIVE 2300
 #define BRIDGE_STATE_EXPLOSIVE 2310
 
@@ -174,6 +179,11 @@
 
 #define ID_ANI_ROCKFALL_STAY 3000
 #define ID_ANI_ROCKFALL_FALL 3020
+
+//Explosion
+#define TEXTURE_EXPLOSION_ID 20
+#define TEXTURE_EXPLOSION_PATH L"./Resources/Images/Explosion.png"
+#define ID_ANI_NORMAL_EXPLOSION 3100
 //////////////////////////////////////////////////////////////////////
 //TILEMAP
 #define TEXTURE_TILEMAP_STAGE_1_ID 10000

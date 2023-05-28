@@ -44,7 +44,7 @@ public:
 		float camWidth, camHeight;
 		camWidth = CGame::GetInstance()->GetScreenWidth();
 		camHeight = CGame::GetInstance()->GetScreenHeight();
-		if (x < camX || x > camX + camWidth + 50 || y < camY || y > camY + camHeight + 50)
+		if (x < camX || x > camX + camWidth + 50 || y < camY - camHeight || y > camY + 50)
 			DeleteBullet();
 	}
 	int IsCollidable() { return 1; };

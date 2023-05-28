@@ -15,6 +15,7 @@
 #include <unordered_set>
 #include "HiddenSniper.h"
 #include "BlockObject.h"
+#include "Bridge.h"
 
 using namespace std;
 
@@ -188,6 +189,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	case ID_SNIPER: obj = new CSniper(x, y); break;
 	case ID_GUNROTATION: obj = new CGunRotation(x, y); break;
 	case ID_SNIPER_HIDDEN: obj = new CHiddenSniper(x, y); break;
+	//case ID_BRIDGE: obj = new CBridge(x, y); break;
 
 	default:
 		//debugout(l"[error] invalid object type: %d\n", object_type);
@@ -310,17 +312,19 @@ void CPlayScene::Update(DWORD dt)
 		QuadTree->Update(object.at(i));
 	}
 	CGame* game = CGame::GetInstance();
-	cx -= game->GetBackBufferWidth() / 2;
-	cy = 0;
+	cx -= game->GetScreenWidth() / 2;
+	cy += game->GetScreenHeight() / 2;
+	//cy = 0;
 	if (cx < 0) cx = 0;
 		if (cx > FULL_WEIGHT_1_1 - ADJUST_CAMERA_X) cx = FULL_WEIGHT_1_1 - ADJUST_CAMERA_X;
 
 
-		if (cy > ADJUST_CAM_MAX_Y) cy = ADJUST_CAM_MAX_Y;
-		else if ((ADJUST_CAM_MIN_Y < cy) && (cy < ADJUST_CAM_MAX_Y)) cy = ADJUST_CAM_MAX_Y;
-		else  cy = ADJUST_CAM_MAX_Y + cy - ADJUST_CAM_MIN_Y;
+	//if (cy > ADJUST_CAM_MAX_Y) cy = ADJUST_CAM_MAX_Y;
+	//	else if ((ADJUST_CAM_MIN_Y < cy) && (cy < ADJUST_CAM_MAX_Y)) cy = ADJUST_CAM_MAX_Y;
+	//	else  cy = ADJUST_CAM_MAX_Y + cy - ADJUST_CAM_MIN_Y;
 		//else if (cy < ADJUST_CAM_MAX_Y) cy =  cy+ ADJUST_CAM_MAX_Y ;
-		if (cy < 0) cy = 0;
+	if (cy < current_map->GetMapHeight()) cy = current_map->GetMapHeight();
+	if (cy > current_map->GetMapHeight()) cy = current_map->GetMapHeight();
 
 	CGame::GetInstance()->SetCamPos(cx, cy);
 
@@ -346,10 +350,11 @@ void CPlayScene::Render()
 		}
 	}
 	for (auto i = coObjects.begin(); i != coObjects.end(); ++i)
-		if(*i != NULL)
+		if(*i != NULL && !((*i)->IsDeleted()))
 			(*i)->Render();
 	for (auto i = ammo->begin(); i != ammo->end(); ++i)
-		(*i)->Render();
+		if (*i != NULL && !((*i)->IsDeleted()))
+			(*i)->Render();
 	player->Render();
 }
 
@@ -399,10 +404,22 @@ void CPlayScene::PurgeDeletedObjects()
 			*it = NULL;
 		}
 	}
-
+	vector<CBullet*>::iterator it2;
+	for (it2 = ammo->begin(); it2 != ammo->end(); it2++)
+	{
+		LPGAMEOBJECT o = *it2;
+		if (o->IsDeleted())
+		{
+			delete o;
+			*it2 = NULL;
+		}
+	}
 	// NOTE: remove_if will swap all deleted items to the end of the vector
 	// then simply trim the vector, this is much more efficient than deleting individual items
 	objects.erase(
 		std::remove_if(objects.begin(), objects.end(), CPlayScene::IsGameObjectDeleted),
 		objects.end());
+	ammo->erase(
+		std::remove_if(ammo->begin(), ammo->end(), CPlayScene::IsGameObjectDeleted),
+		ammo->end());
 }
