@@ -312,8 +312,8 @@ void CPlayScene::Update(DWORD dt)
 		QuadTree->Update(object.at(i));
 	}
 	CGame* game = CGame::GetInstance();
-	cx -= game->GetScreenWidth() / 2;
-	cy += game->GetScreenHeight() / 2;
+	cx -= game->GetBackBufferWidth() / 2;
+	cy += game->GetBackBufferHeight() / 2;
 	//cy = 0;
 	if (cx < 0) cx = 0;
 		if (cx > FULL_WEIGHT_1_1 - ADJUST_CAMERA_X) cx = FULL_WEIGHT_1_1 - ADJUST_CAMERA_X;

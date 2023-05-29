@@ -16,7 +16,7 @@ public:
 		if (state == SODIER_STATE_DEATH)
 		{
 			dieStart = GetTickCount64();
-			vx = 0.1;
+			vx = 0.02;
 			vy = 0.25;
 		}
 		CGameObject::SetState(state);

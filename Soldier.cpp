@@ -1,6 +1,6 @@
 #include "Soldier.h"
 #include "Bill.h"
-#include "NormalExplosion.h"
+#include "ObjectExplosion.h"
 extern CBill* bill;
 #define DIETIMEOUT 300
 
@@ -15,7 +15,7 @@ void CSoldier::Update(DWORD dt, vector<LPGAMEOBJECT>* gameObject)
 		if (GetTickCount64() - dieStart >= DIETIMEOUT)
 		{
 			Deleted = 1;
-			((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->AddObjectToQuadTree(new CNormalExplosion(x, y));
+			((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->AddObjectToQuadTree(new CObjectExplosion(x, y));
 		}
 		OnNoCollision(dt);
 	}
