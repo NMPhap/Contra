@@ -50,11 +50,13 @@ void CSprite::Draw(float x, float y ,float rotationDeg, float reSizeX, float reS
 	//D3DXVECTOR2 pos = g->setWorldToSceen(D3DXVECTOR2(x, y));
 	D3DXVECTOR2 camPos;
 	g->GetCamPos(camPos.x, camPos.y);
+	camPos.x = (FLOAT)floor(camPos.x);
+	camPos.y = (FLOAT)floor(camPos.y);
 	float spriteWidth = (this->right - this->left);
 	float spriteHeight = (this->bottom - this->top);
 	D3DXMATRIX matTranslation;
 	//D3DXMatrixTranslation(&matTranslation, (x - cx), (cy - y), 0.1f);
-	D3DXMatrixTranslation(&matTranslation, x + spriteWidth, y - spriteHeight / 2, 1.0f);
+	D3DXMatrixTranslation(&matTranslation, x + spriteWidth - camPos.x,y - spriteHeight / 2, 1.0f);
 
 	D3DXMATRIX matRotation;
 	D3DXMatrixRotationZ(&matRotation, rotationDeg);

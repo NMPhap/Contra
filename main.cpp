@@ -19,6 +19,7 @@
 #include "Canon.h"
 #include "Bridge.h"
 #include "NormalExplosion.h"
+#include "ObjectExplosion.h"
 #define TEXTURE_PATH L"./Resources/Images/bill_animation.png"
 #define BACKGROUND_COLOR D3DXCOLOR(0.0f, 0.0f, 0.0f, 0.0f)
 #define SCREEN_WIDTH 500
@@ -143,6 +144,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPreInstance, LPSTR lpCmdLine,
 	SetWindowPos(game->GetHWnd(), 0, 0, 0, SCREEN_WIDTH * 2, SCREEN_HEIGHT * 2, SWP_NOMOVE | SWP_NOOWNERZORDER | SWP_NOZORDER);
 	//SetWindowPos(game->GetHWnd(), 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, SWP_NOMOVE | SWP_NOOWNERZORDER | SWP_NOZORDER);
 	CNormalExplosion::LoadAniamtion();
+	CObjectExplosion::LoadAniamtion();
 	Run(); 
 	return 0;
 }
