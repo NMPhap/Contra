@@ -38,7 +38,7 @@ CSprite::CSprite(int id, int left, int top, int right, int bottom, LPTEXTURE tex
 		sprite.TexSize.y = sprite.TexSize.y * scaleY;
 	}
 
-	D3DXMatrixScaling(&this->matScaling, (FLOAT)spriteWidth, (FLOAT)spriteHeight, 1.0f);
+	D3DXMatrixScaling(&this->matScaling, (FLOAT)spriteWidth, (FLOAT)spriteHeight, -1.0f);
 }
 
 void CSprite::Draw(float x, float y ,float rotationDeg, float reSizeX, float reSizeY)
@@ -56,12 +56,14 @@ void CSprite::Draw(float x, float y ,float rotationDeg, float reSizeX, float reS
 	float spriteHeight = (this->bottom - this->top);
 	D3DXMATRIX matTranslation;
 	//D3DXMatrixTranslation(&matTranslation, (x - cx), (cy - y), 0.1f);
-	D3DXMatrixTranslation(&matTranslation, x + spriteWidth - camPos.x,y - spriteHeight / 2, 1.0f);
+	//D3DXMatrixTranslation(&matTranslation, x + spriteWidth - camPos.x,y - spriteHeight / 2, 1.0f);
+	D3DXMatrixTranslation(&matTranslation, x + spriteWidth - camPos.x, (g->GetBackBufferHeight() - camPos.y + y - spriteHeight / 2 ), 0.1f);
+	//D3DXMatrixTranslation(&matTranslation, x  - camPos.x, (g->GetBackBufferHeight() - camPos.y + y), 0.1f);
 
 	D3DXMATRIX matRotation;
 	D3DXMatrixRotationZ(&matRotation, rotationDeg);
 	D3DXMATRIX matScale;
 	D3DXMatrixScaling(&matScale, reSizeX, reSizeY, 1.0f);
-	this->sprite.matWorld = (this->matScaling * matRotation * matTranslation);
+	this->sprite.matWorld = (this->matScaling * matScale * matRotation * matTranslation);
 	g->GetSpriteHandler()->DrawSpritesImmediate(&sprite, 1, 0, 0);
 }
