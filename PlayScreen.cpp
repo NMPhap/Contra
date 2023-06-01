@@ -320,18 +320,14 @@ void CPlayScene::Update(DWORD dt)
 	CGame* game = CGame::GetInstance();
 	cx -= game->GetBackBufferWidth() / 2;
 	cy += game->GetBackBufferHeight() / 2;
-	//cy = 0;
-	if (cx < 0) cx = 0;
-	if (cx + game->GetBackBufferWidth() > current_map->GetMapWidth()) cx = current_map->GetMapWidth() - game->GetBackBufferWidth();
+
+	//if (cx < 0) cx = 0;
+	//if (cx + game->GetBackBufferWidth() > current_map->GetMapWidth()) cx = current_map->GetMapWidth() - game->GetBackBufferWidth();
 
 
-	//if (cy > ADJUST_CAM_MAX_Y) cy = ADJUST_CAM_MAX_Y;
-	//	else if ((ADJUST_CAM_MIN_Y < cy) && (cy < ADJUST_CAM_MAX_Y)) cy = ADJUST_CAM_MAX_Y;
-	//	else  cy = ADJUST_CAM_MAX_Y + cy - ADJUST_CAM_MIN_Y;
-		//else if (cy < ADJUST_CAM_MAX_Y) cy =  cy+ ADJUST_CAM_MAX_Y ;
 
-	if (cy - game->GetBackBufferHeight() < 0) cy = current_map->GetMapHeight();
-	if (cy > current_map->GetMapHeight()) cy = current_map->GetMapHeight();
+	//if (cy - game->GetBackBufferHeight() < 0) cy = current_map->GetMapHeight();
+	//if (cy > current_map->GetMapHeight()) cy = current_map->GetMapHeight();
 
 	CGame::GetInstance()->SetCamPos(cx, cy);
 
