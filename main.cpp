@@ -22,7 +22,7 @@
 #include "ObjectExplosion.h"
 #define TEXTURE_PATH L"./Resources/Images/bill_animation.png"
 #define BACKGROUND_COLOR D3DXCOLOR(0.0f, 0.0f, 0.0f, 0.0f)
-#define SCREEN_WIDTH 500
+#define SCREEN_WIDTH 302
 #define SCREEN_HEIGHT 264
 
 CTextures* tex;

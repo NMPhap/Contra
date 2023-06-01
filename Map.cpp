@@ -73,7 +73,7 @@ void CMap::Render()
 			if (index < TotalTiles)
 			{
 				float xDraw = float(CurrentColumn * TILE_WIDTH) + float(startX * TILE_WIDTH);
-				float yDraw = float((14 - CurrentRow )* TILE_HEIGHT) - float(startY * TILE_HEIGHT);
+				float yDraw = float((this->TotalRowsOfMap - CurrentRow )* TILE_HEIGHT) - float(startY * TILE_HEIGHT);
 				//if (checkObjectInCamera(xDraw, yDraw)) {
 					Tiles.at(index)->Draw(xDraw - 9.0f , yDraw - 1.0f);
 				//}

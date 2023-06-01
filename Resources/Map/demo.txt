@@ -7,7 +7,9 @@ start	1
 # type: 0: intro, 1: play scene 
 [SCENES]
 1	.\Resources\Map\stage1.txt	1
+2	.\Resources\Map\stage3.txt	1
 
 # id	file 
 [TEXTURES]
 10000	Resources\Map\rsz_1stage1_tilemap_bank.png
+10001	Resources\Map\stage3.png

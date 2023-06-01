@@ -43,7 +43,7 @@ void CGame::_ParseSection_SCENES(string line)
 	int id = atoi(tokens[0].c_str());
 	LPCWSTR path = ToLPCWSTR(tokens[1]);   // file: ASCII format (single-byte char) => Wide Char
 	int type = atoi(tokens[2].c_str());
-	DebugOut(L"TYPE CUA CAI VUA LOAD %d\n", type);
+	DebugOut(L"TYPE CUA MAP VUA LOAD %d\n", type);
 	switch (type) {
 	case 1:
 		scene = new CPlayScene(id, path);
@@ -132,6 +132,10 @@ void CGame::Load(LPCWSTR gameFile)
 
 void CGame::LoadDemo()
 {
+}
+void CGame::InitiateSwitchScene(int scene_id)
+{
+	next_scene = scene_id;
 }
 
 void CGame::SwitchScene()
