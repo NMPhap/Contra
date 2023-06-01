@@ -168,7 +168,6 @@
 #define TEXTURE_GRASS_ID 5
 #define ID_GRASS 9999
 #define ID_BLOCK_OBJECT 9998
-#define AIRCRAFT_TEXTURE_ID 6
 #define PI 3.141517
 
 //ROCKFALL
@@ -185,6 +184,11 @@
 #define TEXTURE_EXPLOSION_PATH L"./Resources/Images/Explosion.png"
 #define ID_ANI_NORMAL_EXPLOSION 3100
 #define ID_ANI_OBJECT_EXPLOSION 3150
+
+//AIRCRAFT
+#define AIRCRAFT_TEXTURE_ID 6
+#define ID_ANI_LARICRAFT 3200
+#define ID_ANI_HIDDENAIRCRAFT 3210
 //////////////////////////////////////////////////////////////////////
 //TILEMAP
 #define TEXTURE_TILEMAP_STAGE_1_ID 10000

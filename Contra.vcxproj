@@ -145,6 +145,7 @@
     <ClCompile Include="BillInputHandler.cpp" />
     <ClCompile Include="Canon.cpp" />
     <ClCompile Include="CircularGun.cpp" />
+    <ClCompile Include="HIddenAirCraft.cpp" />
     <ClCompile Include="NormalExplosion.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Explosion.cpp" />
@@ -194,6 +195,7 @@
     <ClInclude Include="BillInputHandler.h" />
     <ClInclude Include="Canon.h" />
     <ClInclude Include="CircularGun.h" />
+    <ClInclude Include="HIddenAirCraft.h" />
     <ClInclude Include="NormalExplosion.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Explosion.h" />
