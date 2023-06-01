@@ -27,5 +27,6 @@ public:
 
 	// When collision with an object has been detected (triggered by CCollision::Process)
 	void OnCollisionWith(LPCOLLISIONEVENT e);
+	void GetHit(int damage);
 };
 

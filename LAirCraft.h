@@ -1,6 +1,5 @@
 #pragma once
 #include "AirCraft.h"
-#define ID_ANI_LARICRAFT 1100
 class CLAirCraft: public CAirCraft
 {
 public:
