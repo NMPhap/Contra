@@ -5,12 +5,15 @@ class CBullet : public CGameObject
 {
 protected:
 	LPANIMATION bulletAnimation;
+	int isEnemy;
 public:
-	CBullet(float x, float y, float vx = 0.5f, float vy = 0.0f) :CGameObject(x,y){
+	virtual int GetDamage() { return 0; }
+	CBullet(float x, float y, float vx = 0.5f, float vy = 0.0f, int enemy = 0) :CGameObject(x,y){
 
 			this->vy = vy;
 			this->vx = vx;
 			bulletAnimation = NULL;
+			isEnemy = enemy;
 	}
 	void Update(DWORD dt, vector<LPGAMEOBJECT> *gameObject = NULL) 
 	{
@@ -32,23 +35,9 @@ public:
 		tex->Add(ID_BULLET_TEXTURE, TEXTURE_BULET_PATH);
 	}
 
-
-	// When no collision has been detected (triggered by CCollision::Process)
-	void OnNoCollision(DWORD dt)
-	{
-		x += vx * dt;
-		y += vy * dt;
-		CGame* game = CGame::GetInstance();
-		float camX, camY;
-		CGame::GetInstance()->GetCamPos(camX, camY);
-		float camWidth, camHeight;
-		camWidth = CGame::GetInstance()->GetScreenWidth();
-		camHeight = CGame::GetInstance()->GetScreenHeight();
-		if (x < camX || x > camX + camWidth + 50 || y < camY - camHeight || y > camY + 50)
-			DeleteBullet();
-	}
 	int IsCollidable() { return 1; };
 	// When collision with an object has been detected (triggered by CCollision::Process)
 	void OnCollisionWith(LPCOLLISIONEVENT e, DWORD dt = 0);
 	virtual void GetBoundingBox(float& left, float& top, float& right, float& bottom) = 0;
+	int IsEnemy() { return isEnemy; }
 };

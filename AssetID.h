@@ -185,13 +185,32 @@
 #define ID_ANI_NORMAL_EXPLOSION 3100
 #define ID_ANI_OBJECT_EXPLOSION 3150
 
+//FALCON
+#define TEXTURE_FALCON_ID 21
+#define TEXTURE_FALCON_PATH L"./Resources/Images/Falcon.png"
+#define ID_ANI_FALCON_CLOSE 3200
+#define ID_FALCON_CLOSE 3200
+#define ID_ANI_FALCON_SHOW 3210
+#define ID_FALCON_SHOW 3210
+#define ID_ANI_FALCON_OPEN 3220
+#define ID_FALCON_OPEN 3220
+
 //AIRCRAFT
 #define AIRCRAFT_TEXTURE_ID 6
 #define ID_ANI_LARICRAFT 3200
 #define ID_ANI_HIDDENAIRCRAFT 3210
+#define ID_LAIRCRAFT 1100
+#define ID_HIDDENAIRCRAFT 1101
+//LIFE
+#define TEXTURE_LIFE_ID 22
+#define TEXTURE_LIFE_PATH L"./Resources/Images/Life.png"
+#define ID_LIFE_SPRITE 0000
+//CURSOR
+#define IF_CURSOR 1712
 //////////////////////////////////////////////////////////////////////
 //TILEMAP
 #define TEXTURE_TILEMAP_STAGE_1_ID 10000
+#define TEXTURE_TILEMAP_STAGE_3_ID 10001
 
 //////////////////////////////////////////////////////////////////////
 //Boss

@@ -9,12 +9,12 @@ private:
 	float cycle;
 	float startX;
 public:
-	CHiddenAirCraft(float x, float y, float vx = 0.35f, float vy = 0.0f, float omega = 0.005f, float A = 50.0f) :CAirCraft(x, y)
+	CHiddenAirCraft(float x, float y, float vx = 0.1f, float vy = 0.0f, float omega = 0.005f, float A = 5.0f) :CAirCraft(x, y)
 	{
 		LPSPRITE sprite = CSprites::GetInstance()->Get(ID_ANI_HIDDENAIRCRAFT);
 		if (sprite == NULL)
 			this->LoadAnimation();
-		startX = x;
+		startX = y;
 		this->vx = vx;
 		this->vy = vy;
 		this->omega = omega;
@@ -45,8 +45,8 @@ public:
 	{
 		time += dt;
 		time = (float)((int)time % (int)cycle);
-		x += vx + dt;
-		y += startX + A * cos(omega * time);
+		x += vx  * dt;
+		y +=  A * cos(omega * time);
 	}
 	void OnCollisionWith(LPCOLLISIONEVENT e, DWORD dt)
 	{

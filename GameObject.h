@@ -24,6 +24,7 @@ protected:
 	int state;
 	int Deleted = 0;
 	int dieStart = 0;
+	int hp;
 public: 
 	void SetPosition(float x, float y) { this->x = x, this->y = y; }
 	void SetSpeedX(float vx) { this->vx = vx; }
@@ -39,8 +40,10 @@ public:
 	virtual void HandleInput() {};
 	virtual void Render() = 0;
 	virtual void DeleteFromGameObjects();
+	virtual void GetHit(int damage = 0) {}
 	void GetPosition(float& x, float& y) { x = this->x; y = this->y; }
 	float GetX() { return x; }
+	virtual int IsEnemy() { return 1; }
 	float GetY() { return y; }
 	virtual void GetBoundingBox(float& left, float& top, float& right, float& bottom) {}
 	//

@@ -145,12 +145,20 @@
     <ClCompile Include="BillInputHandler.cpp" />
     <ClCompile Include="Canon.cpp" />
     <ClCompile Include="CircularGun.cpp" />
+    <ClCompile Include="Font.cpp" />
+    <ClCompile Include="Fonts.cpp" />
+    <ClCompile Include="GameOverInputHandler.cpp" />
+    <ClCompile Include="GameOverScene.cpp" />
+    <ClCompile Include="IntroScene.cpp" />
+    <ClCompile Include="Life.cpp" />
     <ClCompile Include="HIddenAirCraft.cpp" />
     <ClCompile Include="NormalExplosion.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Explosion.cpp" />
     <ClCompile Include="GunRotation.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="ObjectExplosion.cpp" />
+    <ClCompile Include="PauseScene.cpp" />
     <ClCompile Include="PlayScreen.cpp" />
     <ClCompile Include="QuadTree.cpp" />
     <ClCompile Include="RifleBullet.cpp" />
@@ -177,6 +185,7 @@
     <ClCompile Include="SpreadGun.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Sprites.cpp" />
+    <ClCompile Include="Text.cpp" />
     <ClCompile Include="Textures.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
@@ -195,12 +204,20 @@
     <ClInclude Include="BillInputHandler.h" />
     <ClInclude Include="Canon.h" />
     <ClInclude Include="CircularGun.h" />
+    <ClInclude Include="Font.h" />
+    <ClInclude Include="Fonts.h" />
+    <ClInclude Include="GameOverInputHandler.h" />
+    <ClInclude Include="GameOverScene.h" />
     <ClInclude Include="HIddenAirCraft.h" />
+    <ClInclude Include="IntroScene.h" />
+    <ClInclude Include="Life.h" />
     <ClInclude Include="NormalExplosion.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Explosion.h" />
     <ClInclude Include="GunRotation.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="ObjectExplosion.h" />
+    <ClInclude Include="PauseScene.h" />
     <ClInclude Include="PlayScreen.h" />
     <ClInclude Include="QuadTree.h" />
     <ClInclude Include="RifleBullet.h" />
@@ -226,6 +243,7 @@
     <ClInclude Include="SpreadGun.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Sprites.h" />
+    <ClInclude Include="Text.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Textures.h" />
     <ClInclude Include="Utils.h" />

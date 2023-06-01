@@ -49,14 +49,16 @@ class CGame
 
 	HINSTANCE hInstance;
 	unordered_map<int, LPSCENE> scenes;
-	int current_scene;
-	int next_scene = -1;
+	int current_scene = -1;
+	int next_scene = 0;
 
 public:
 
 	LPSCENE GetCurrentScene() { return scenes[current_scene]; }
+	void _ParseSection_FONTS(string line);
 	void Load(LPCWSTR gameFile);
 	void LoadDemo();
+	void InitiateSwitchScene(int scene_id);
 	void SwitchScene();
 
 	void _ParseSection_SETTINGS(string line);
@@ -118,6 +120,6 @@ public:
 
 	int GetScreenWidth() { return screen_width; }
 	int GetScreenHeight() { return screen_height; }
-
+	bool IsSceneChange() { return (current_scene != next_scene); }
 	~CGame();
 };
