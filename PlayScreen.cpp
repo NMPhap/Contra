@@ -16,6 +16,7 @@
 #include "HiddenSniper.h"
 #include "BlockObject.h"
 #include "Bridge.h"
+#include "LAirCraft.h"
 
 using namespace std;
 
@@ -189,6 +190,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	case ID_SNIPER: obj = new CSniper(x, y); break;
 	case ID_GUNROTATION: obj = new CGunRotation(x, y); break;
 	case ID_SNIPER_HIDDEN: obj = new CHiddenSniper(x, y); break;
+	case ID_LAIRCRAFT: obj = new CLAirCraft(x, y); break;
 	//case ID_BRIDGE: obj = new CBridge(x, y); break;
 
 	default:
@@ -299,14 +301,17 @@ void CPlayScene::Update(DWORD dt)
 		object.at(i)->Update(dt, &object);
 	}
 	player->Update(dt, &object);
-	// skip the rest if scene was already unloaded (Mario::Update might trigger PlayScene::Unload)
 	if (player == NULL) return;
 
-	// Update camera to follow marioD
 	float cx, cy;
 	player->GetPosition(cx, cy);
+	object.push_back(player);
 	for (int i = 0; i < ammo->size(); i++)
+	{
 		ammo->at(i)->Update(dt, &object);
+		
+	}
+	object.pop_back();
 	for (size_t i = 0; i < object.size(); i++)
 	{
 		QuadTree->Update(object.at(i));
@@ -327,7 +332,6 @@ void CPlayScene::Update(DWORD dt)
 	if (cy > current_map->GetMapHeight()) cy = current_map->GetMapHeight();
 
 	CGame::GetInstance()->SetCamPos(cx, cy);
-
 
 	PurgeDeletedObjects();
 }

@@ -145,11 +145,13 @@
     <ClCompile Include="BillInputHandler.cpp" />
     <ClCompile Include="Canon.cpp" />
     <ClCompile Include="CircularGun.cpp" />
+    <ClCompile Include="Life.cpp" />
     <ClCompile Include="NormalExplosion.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Explosion.cpp" />
     <ClCompile Include="GunRotation.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="ObjectExplosion.cpp" />
     <ClCompile Include="PlayScreen.cpp" />
     <ClCompile Include="QuadTree.cpp" />
     <ClCompile Include="RifleBullet.cpp" />
@@ -194,11 +196,13 @@
     <ClInclude Include="BillInputHandler.h" />
     <ClInclude Include="Canon.h" />
     <ClInclude Include="CircularGun.h" />
+    <ClInclude Include="Life.h" />
     <ClInclude Include="NormalExplosion.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Explosion.h" />
     <ClInclude Include="GunRotation.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="ObjectExplosion.h" />
     <ClInclude Include="PlayScreen.h" />
     <ClInclude Include="QuadTree.h" />
     <ClInclude Include="RifleBullet.h" />

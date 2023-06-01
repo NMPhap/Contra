@@ -32,4 +32,6 @@ Resources\Map\stage1_tilemap.txt
 #GUNROTATION
 4	400	150
 4	1250	80
+#LAIRCRAFT
+1100	90	400
 
