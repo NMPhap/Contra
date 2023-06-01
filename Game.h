@@ -59,6 +59,7 @@ public:
 	void LoadDemo();
 	void InitiateSwitchScene(int scene_id);
 	void SwitchScene();
+	int GetCurrentSceneID() { return current_scene; }
 
 	void _ParseSection_SETTINGS(string line);
 	void _ParseSection_SCENES(string line);

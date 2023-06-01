@@ -289,14 +289,19 @@ void CPlayScene::Update(DWORD dt)
 		if (gameObjectsList != NULL)
 		{
 			for (int i = 0; i < gameObjectsList->size(); i++)
-				coObjects.insert(gameObjectsList->at(i));
+			{
+				if (!IsGameObjectDeleted(gameObjectsList->at(i)))
+				
+					coObjects.insert(gameObjectsList->at(i));
+
+			}
 		}
 	}
 	vector<LPGAMEOBJECT> object;
 	object.insert(object.end(), coObjects.begin(), coObjects.end());
 	for (size_t i = 0; i < object.size(); i++)
 	{
-		if(object.at(i) != NULL)
+		if(!object.at(i)->IsDeleted())
 			object.at(i)->Update(dt, &object);
 	}
 	player->Update(dt, &object);

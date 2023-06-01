@@ -19,6 +19,7 @@ CBillInputHandler::CBillInputHandler(): CInputHandler()
 	KeyToListen.push_back(DIK_3);
 	KeyToListen.push_back(DIK_5);
 	KeyToListen.push_back(DIK_A);
+	KeyToListen.push_back(DIK_K);
 }
 void CBillInputHandler::HandleInput(CInput* input)
 {
@@ -129,6 +130,11 @@ void CBillInputHandler::onKeyPress(int keyCode)
 	if (keyCode == DIK_4)
 	{
 		CGame::GetInstance()->gameObjects.push_back(new CLAirCraft(bill->GetX(), 0));
+	}
+	if (keyCode == DIK_K) {
+		CGame::GetInstance()->InitiateSwitchScene(CGame::GetInstance()->GetCurrentSceneID() + 1);
+		CGame::GetInstance()->SwitchScene();
+		return;
 	}
 }
 
