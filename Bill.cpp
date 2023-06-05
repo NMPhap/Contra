@@ -156,9 +156,15 @@ void CBill::SetState(int state)
 			}
 			break;
 		case BILL_STATE_DEAD:
+			isShotting = 0;
 			dieStart = GetTickCount64();
 			vx = -BILL_RUN_SPEED;
-			life->pop_back();
+			if (life->size() == 0)
+			{
+				CGame::GetInstance()->InitiateSwitchScene(99);
+			}
+			else
+				life->pop_back();
 			vy = BILL_JUMP_SPEED_Y;
 		default:
 			vx = 0;

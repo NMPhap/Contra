@@ -17,8 +17,12 @@
 #include "BlockObject.h"
 #include "Bridge.h"
 #include "LAirCraft.h"
+#include "HIddenAirCraft.h"
+#include "NormalExplosion.h"
+#include "ObjectExplosion.h"
 
 using namespace std;
+extern CBill* bill;
 
 CPlayScene::CPlayScene(int id, LPCWSTR filePath) :
 	CScene(id, filePath)
@@ -26,6 +30,7 @@ CPlayScene::CPlayScene(int id, LPCWSTR filePath) :
 	player = NULL;
 	key_handler = new CBillInputHandler();
 	QuadTree = NULL;
+	paused = 0;
 }
 
 #define FULL_WEIGHT_1_1 2816
@@ -160,6 +165,14 @@ void CPlayScene::_ParseSection_ANIMATIONS(string line)
 */
 void CPlayScene::_ParseSection_OBJECTS(string line)
 {
+	CNormalExplosion::LoadAniamtion();
+	CObjectExplosion::LoadAniamtion();
+	CBill::LoadAnimation();
+
+	CGrass::LoadAnimation();
+	CGunRotation::LoadAnimation();
+	CSoldier::LoadAnimation();
+	CSniper::LoadAnimation();
 	vector<string> tokens = split(line);
 
 	// skip invalid lines - an object set must have at least id, x, y
@@ -181,7 +194,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 		}
 		obj = new CBill(x, y);
 		player = (CBill*)obj;
-
+		bill = (CBill*)player;
 		//debugout(l"[info] player object has been created!\n");
 		break;
 	case ID_GRASS: obj = new CGrass(x,y); break;
@@ -191,6 +204,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	case ID_GUNROTATION: obj = new CGunRotation(x, y); break;
 	case ID_SNIPER_HIDDEN: obj = new CHiddenSniper(x, y); break;
 	case ID_LAIRCRAFT: obj = new CLAirCraft(x, y); break;
+	case ID_HIDDENAIRCRAFT: obj = new CHiddenAirCraft(x, y); break;
 	//case ID_BRIDGE: obj = new CBridge(x, y); break;
 
 	default:
@@ -301,17 +315,17 @@ void CPlayScene::Update(DWORD dt)
 	}
 	vector<LPGAMEOBJECT> object;
 	object.insert(object.end(), coObjects.begin(), coObjects.end());
+	object.push_back(player);
 	for (size_t i = 0; i < object.size(); i++)
 	{
 		if(!object.at(i)->IsDeleted())
 			object.at(i)->Update(dt, &object);
 	}
-	player->Update(dt, &object);
+	//player->Update(dt, &object);
 	if (player == NULL) return;
 
 	float cx, cy;
 	player->GetPosition(cx, cy);
-	object.push_back(player);
 	for (int i = 0; i < ammo->size(); i++)
 	{
 		ammo->at(i)->Update(dt, &object);
@@ -330,9 +344,12 @@ void CPlayScene::Update(DWORD dt)
 	//if (cx + game->GetBackBufferWidth() > current_map->GetMapWidth()) cx = current_map->GetMapWidth() - game->GetBackBufferWidth();
 
 
+	D3DXVECTOR2 cam;
+	game->GetCamPos(cam.x, cam.y);
+	if (cy - game->GetBackBufferHeight() < 0) cy = current_map->GetMapHeight();
+	if (cy > current_map->GetMapHeight()) cy = current_map->GetMapHeight();
 
-	//if (cy - game->GetBackBufferHeight() < 0) cy = current_map->GetMapHeight();
-	//if (cy > current_map->GetMapHeight()) cy = current_map->GetMapHeight();
+	if (cx < 0) cx = 0;
 
 	CGame::GetInstance()->SetCamPos(cx, cy);
 

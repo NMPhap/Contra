@@ -1,7 +1,8 @@
 #include "debug.h"
 #include "Game.h"
 #include <fstream>
-
+#include "IntroScene.h"
+#include "GameOverScene.h"
 #define CLASS_NAME L"CONTRA"
 #define WINDOW_ICON_PATH L"/Resources/Images/yellowfalcon.png"
 #define MAIN_WINDOW_TITLE L"Contra"
@@ -11,6 +12,7 @@
 #define GAME_FILE_SECTION_SCENES 888
 #define GAME_FILE_SECTION_TEXTURES 889
 #define GAME_FILE_SECTION_SETTINGS 890
+#define GAME_FILE_SECTION_FONTS 887
 
 #include "Bill.h"
 extern CBill* bill;
@@ -54,8 +56,8 @@ void CGame::_ParseSection_SCENES(string line)
 		//scenes[id] = scene;
 		break;
 	case 3:
-		//scene = new CIntroScene(id, path);
-		//scenes[id] = scene;
+		scene = new CIntroScene(id, path);
+		scenes[id] = scene;
 		break;
 	}
 }
@@ -84,7 +86,12 @@ void CGame::_ParseSection_TEXTURES(string line)
 	CTextures::GetInstance()->Add(texID, path.c_str());
 }
 
-
+void CGame::_ParseSection_FONTS(string line) {
+	vector<string> tokens = split(line);
+	int id = atoi(tokens[0].c_str());
+	wstring path = ToWSTR(tokens[1]);
+	CFonts::GetInstance()->Add(id, new CFont(id,path.c_str()));
+}
 void CGame::Load(LPCWSTR gameFile)
 {
 	DebugOut(L"[INFO] Start loading game file : %s\n", gameFile);
@@ -105,6 +112,7 @@ void CGame::Load(LPCWSTR gameFile)
 		if (line == "[SETTINGS]") { section = GAME_FILE_SECTION_SETTINGS; continue; }
 		if (line == "[TEXTURES]") { section = GAME_FILE_SECTION_TEXTURES; continue; }
 		if (line == "[SCENES]") { section = GAME_FILE_SECTION_SCENES; continue; }
+		if (line == "[FONTS]") { section = GAME_FILE_SECTION_FONTS; continue; }
 		if (line[0] == '[')
 		{
 			section = GAME_FILE_SECTION_UNKNOWN;
@@ -120,12 +128,13 @@ void CGame::Load(LPCWSTR gameFile)
 		case GAME_FILE_SECTION_SETTINGS: _ParseSection_SETTINGS(line); break;
 		case GAME_FILE_SECTION_SCENES: _ParseSection_SCENES(line); break;
 		case GAME_FILE_SECTION_TEXTURES: _ParseSection_TEXTURES(line); break;
+		case GAME_FILE_SECTION_FONTS: _ParseSection_FONTS(line); break;
 		}
 	}
 	f.close();
 
 	DebugOut(L"[INFO] Loading game file : %s has been loaded successfully\n", gameFile);
-
+	scenes[99] = new CGameOverScene(99,L"");
 	SwitchScene();
 
 }
@@ -148,7 +157,8 @@ void CGame::SwitchScene()
 
 	CSprites::GetInstance()->Clear();
 	CAnimations::GetInstance()->Clear();
-
+	cam_x = 0.0f;
+	cam_y = GetScreenHeight();
 	current_scene = next_scene;
 	LPSCENE s = scenes[next_scene];
 	
@@ -554,7 +564,9 @@ void CGame::ProcessKeyboard()
 		return;
 	}
 	CBill* player = ((CBill*)scenes[current_scene]->GetPlayer());
-	CBillInputHandler* handler = player->handler;
+	CInputHandler* handler = scenes[current_scene]->GetKeyEventHandler();
+	if (handler == NULL)
+		return;
 	std::vector<int> keys = CInputHandler::KeyToListen;
 	for(int i =0; i < keys.size(); i++)
 		if(IsKeyDown(keys[i]))
@@ -566,10 +578,10 @@ void CGame::ProcessKeyboard()
 		int KeyState = keyEvents[i].dwData;
 		if ((KeyState & 0x80) > 0)
 		{
-			((CBill*)scenes[current_scene]->GetPlayer())->handler->HandleInput(new CInput(KeyCode, KEY_DOWN));
+			handler->HandleInput(new CInput(KeyCode, KEY_DOWN));
 		}
 		else 
-			((CBill*)scenes[current_scene]->GetPlayer())->handler->HandleInput(new CInput(KeyCode, KEY_UP));
+			handler->HandleInput(new CInput(KeyCode, KEY_UP));
 	}
 }
 CGame::~CGame()

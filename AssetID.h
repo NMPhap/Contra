@@ -168,9 +168,6 @@
 #define TEXTURE_GRASS_ID 5
 #define ID_GRASS 9999
 #define ID_BLOCK_OBJECT 9998
-#define AIRCRAFT_TEXTURE_ID 6
-#define ID_LAIRCRAFT 1100
-#define ID_ANI_LARICRAFT 1100
 #define PI 3.141517
 
 //ROCKFALL
@@ -198,10 +195,18 @@
 #define ID_ANI_FALCON_OPEN 3220
 #define ID_FALCON_OPEN 3220
 
+//AIRCRAFT
+#define AIRCRAFT_TEXTURE_ID 6
+#define ID_ANI_LARICRAFT 3200
+#define ID_ANI_HIDDENAIRCRAFT 3210
+#define ID_LAIRCRAFT 1100
+#define ID_HIDDENAIRCRAFT 1101
 //LIFE
 #define TEXTURE_LIFE_ID 22
 #define TEXTURE_LIFE_PATH L"./Resources/Images/Life.png"
 #define ID_LIFE_SPRITE 0000
+//CURSOR
+#define IF_CURSOR 1712
 //////////////////////////////////////////////////////////////////////
 //TILEMAP
 #define TEXTURE_TILEMAP_STAGE_1_ID 10000

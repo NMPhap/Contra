@@ -145,7 +145,6 @@ LPCOLLISIONEVENT CCollision::SweptAABB(LPGAMEOBJECT objSrc, DWORD dt, LPGAMEOBJE
 
 	objSrc->GetBoundingBox(ml, mt, mr, mb);
 	objDest->GetBoundingBox(sl, st, sr, sb);
-
 	SweptAABB(
 		ml, mt, mr, mb,
 		dx, dy,
@@ -355,7 +354,5 @@ void CCollision::Process(LPGAMEOBJECT objSrc, DWORD dt, vector<LPGAMEOBJECT>* co
 
 		objSrc->OnCollisionWith(e);			
 	}
-
-
 	for (UINT i = 0; i < coEvents.size(); i++) delete coEvents[i];
 }

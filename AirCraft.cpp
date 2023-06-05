@@ -7,13 +7,3 @@ void CAirCraft::GetBoundingBox(float& left, float& top, float& right, float& bot
 	right = left + 25;
 	bottom = top - 15;
 }
-
-void CAirCraft::OnCollisionWith(LPCOLLISIONEVENT e, DWORD dt)
-{
-	if (e->ny != 0 && e->obj->IsBlocking())
-	{
-		vy = 0;
-		A = 0;
-		omega = 0;
-	}
-}

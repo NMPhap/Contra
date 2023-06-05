@@ -6,9 +6,9 @@ private:
 	float rotation;
 public:
 	static CFireBullet* __instance;
-	CFireBullet(float x, float y, float vx = 0.5f, float vy = 0.5f, int enemy = 0) :CBullet(x, y, vx, vy, enemy) 
+	CFireBullet(float x, float y, float vx = 0.5f, float vy = 0.5f, int enemy = 0):CBullet(x, y, vx, vy, enemy) 
 	{
-		rotation = -atan(vy / vx);
+		rotation = atan(vy / vx);
 		bulletAnimation = CAnimations::GetInstance()->Get(ID_ANI_BULLET_L);
 		if (bulletAnimation == NULL)
 		{
@@ -68,7 +68,7 @@ public:
 				__instance->y = y;
 				__instance->vx = vx;
 				__instance->vy = vy;
-				__instance->rotation = -atan(vy / vx);
+				__instance->rotation = atan(vy / vx);
 			}
 		}
 		return __instance;

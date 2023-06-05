@@ -3,14 +3,14 @@
 #include "RifleBullet.h"
 #include "Utils.h"
 extern CBill* bill;
-#define GUN_RECOIL_TIME 500
+#define GUN_RECOIL_TIME 3000
 void CGunRotation::Update(DWORD dt, vector<LPGAMEOBJECT> *gameObject)
 {
 	CCollision::GetInstance()->Process(this, dt, gameObject);
 	if (state == GUNROTATION_STATE_NORMAL && GetTickCount64() - lastShoot > GUN_RECOIL_TIME)
 	{
 		lastShoot = GetTickCount64();
-		((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->GetAmmo()->push_back(new CRifleBullet(x + 10.0f, y - 8.0f , -0.35, 0.0f, 1));
+		((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->GetAmmo()->push_back(new CRifleBullet(x + 10.0f, y - 8.0f , -0.2, 0.0f, 1));
 	}
 }
 
@@ -212,7 +212,7 @@ void CGunRotation::GetBoundingBox(float& left, float& top, float& right, float& 
 	left = x + 10.0f;
 	top = y;
 	right = left + 23.0f;
-	bottom = top - 16;
+	bottom = top - 32.0f;
 }
 
 void CGunRotation::GetHit(int damage)
