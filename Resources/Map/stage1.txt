@@ -17,8 +17,7 @@ Resources\Map\stage1_tilemap.txt
 
 
 #SOLDIER
-3	120	200
-3	32	200
+3	400	200
 3	200	200
 3	320	200
 
@@ -32,4 +31,8 @@ Resources\Map\stage1_tilemap.txt
 #GUNROTATION
 4	400	150
 4	1250	80
+#LAIRCRAFT
+1100	130	300
+#HIDDENAIRCRAFT
+1101	0	200
 

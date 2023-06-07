@@ -25,6 +25,19 @@ public:
 		ani->Add(ID_ANI_BULLET_NORMAL);
 		CAnimations::GetInstance()->Add(ID_ANI_BULLET_NORMAL, ani);
 	}
+	void OnNoCollision(DWORD dt)
+	{
+		x += vx * dt;
+		y += vy * dt;
+		CGame* game = CGame::GetInstance();
+		float camX, camY;
+		CGame::GetInstance()->GetCamPos(camX, camY);
+		float camWidth, camHeight;
+		camWidth = CGame::GetInstance()->GetScreenWidth();
+		camHeight = CGame::GetInstance()->GetScreenHeight();
+		if (x < camX || x > camX + camWidth + 50 || y < camY - camHeight || y > camY + 50)
+			Deleted = 1;
+	}
 	void GetBoundingBox(float& left, float& top, float& right, float& bottom)
 	{
 		left = x;
@@ -32,5 +45,7 @@ public:
 		right = x + 4;
 		bottom = y - 4;
 	}
+
+	int GetDamage() { return 1; }
 };
 

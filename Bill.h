@@ -3,12 +3,15 @@
 #include "BillInputHandler.h"
 #include "NormalGun.h"
 #include "AssetID.h"
+#include "Life.h"
 
 
 class CBill : public CGameObject
 {
 private:
 	CGun* gun;
+	int invincibleDuration;
+	vector<CLife*>* life;
 public:
 	BOOLEAN isSitting;
 	BOOLEAN isShotting;
@@ -24,9 +27,13 @@ public:
 		state = BILL_STATE_IDLE;
 		this->handler = new CBillInputHandler();
 		gun = new CNormalGun();
+		life = new vector<CLife*>();
+		life->push_back(new CLife());
+		life->push_back(new CLife());
 	}
 	void Update(DWORD dt, vector<LPGAMEOBJECT> *gameObject = NULL);
 	void Render();
+	int IsEnemy() { return 0; }
 	void SetState(int state);
 	void SetFaceDirection(int faceD) { faceDirection = faceD; if (vx > 0) vx = faceDirection * vx; else vx = -faceDirection * vx; }
 	void SetHandler(CBillInputHandler* inputHandler) { handler = inputHandler; }
@@ -36,4 +43,6 @@ public:
 	void OnNoCollision(DWORD dt);
 	void GetBoundingBox(float& left, float& top, float& right, float& bottom);
 	int IsCollidable() { return 1; }
+	int IsBlocking() { return 1; }
+	void GetHit(int damage) { SetState(BILL_STATE_DEAD); }
 };

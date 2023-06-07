@@ -1,21 +1,17 @@
 #include "Soldier.h"
 #include "Bill.h"
-#include "ObjectExplosion.h"
+#include "NormalExplosion.h"
 extern CBill* bill;
 #define DIETIMEOUT 300
 
 void CSoldier::Update(DWORD dt, vector<LPGAMEOBJECT>* gameObject)
 {
-	if (bill->GetX() < x)
-		faceDirection = -1;
-	else
-		faceDirection = 1;
-	if (state == SODIER_STATE_DEATH )
+	if (state == SODIER_STATE_DEATH)
 	{
 		if (GetTickCount64() - dieStart >= DIETIMEOUT)
 		{
 			Deleted = 1;
-			((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->AddObjectToQuadTree(new CObjectExplosion(x, y));
+			((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->AddObjectToQuadTree(new CNormalExplosion(x, y));
 		}
 		OnNoCollision(dt);
 	}
@@ -132,14 +128,14 @@ void CSoldier::OnNoCollision(DWORD dt)
 	x += -faceDirection * dt * vx;
 	y += vy * dt;
 	vy += Bill_GRAVITY * dt;
-	if (y > GROUND_Y)
-	{
-		vy = 0;
-		y = GROUND_Y;
-	}
 }
 
 void CSoldier::OnCollisionWith(LPCOLLISIONEVENT e)
 {
 	vy = 0;
+}
+
+void CSoldier::GetHit(int damage)
+{
+	SetState(SODIER_STATE_DEATH);
 }

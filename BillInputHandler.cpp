@@ -23,6 +23,8 @@ CBillInputHandler::CBillInputHandler(): CInputHandler()
 }
 void CBillInputHandler::HandleInput(CInput* input)
 {
+	if (bill->GetState() == BILL_STATE_DEAD)
+		return;
 	switch (input->GetType())
 	{
 	case KEY_CLICK:
@@ -157,7 +159,7 @@ void CBillInputHandler::onKeyRelease(int keyCode)
 		bill->shotDirection = 0;
 	if (keyCode == DIK_Z)
 	{
-		bill->SetPosition(bill->GetX(), bill->GetY() - 10);
+		bill->SetPosition(bill->GetX(), bill->GetY() + 20.0f);
 		bill->SetState(BILL_STATE_IDLE);
 	}
 }
