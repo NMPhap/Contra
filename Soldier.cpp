@@ -13,7 +13,8 @@ void CSoldier::Update(DWORD dt, vector<LPGAMEOBJECT>* gameObject)
 			Deleted = 1;
 			((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->AddObjectToQuadTree(new CNormalExplosion(x, y));
 		}
-		OnNoCollision(dt);
+		else
+			OnNoCollision(dt);
 	}
 	else
 		CCollision::GetInstance()->Process(this, dt, gameObject);

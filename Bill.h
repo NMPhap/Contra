@@ -13,6 +13,7 @@ private:
 	int invincibleDuration;
 	vector<CLife*>* life;
 public:
+	BOOLEAN isOnPlatform;
 	BOOLEAN isSitting;
 	BOOLEAN isShotting;
 	int shotDirection;

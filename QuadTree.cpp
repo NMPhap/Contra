@@ -31,7 +31,7 @@ void TreeNode::Update(LPGAMEOBJECT object)
 		return;
 	for (int i = 0; i < treeNodeList->size(); i++)
 	{
-		if (!IsIntersac(object, treeNodeList->at(i)))
+		if (!IsIntersac(object, treeNodeList->at(i)) || object->IsDeleted())
 		{
 			vector<LPGAMEOBJECT>* objectList = treeNodeList->at(i)->gameObjects;
 			objectList->erase(std::remove(objectList->begin(), objectList->end(), object));
@@ -54,8 +54,7 @@ vector<LPTREENODE>* TreeNode::NodeInCam()
 	float left, top;
 	CGame::GetInstance()->GetCamPos(left, top);
 	float right = left + CGame::GetInstance()->GetScreenWidth();
-	float bottom = top;
-	top = top + CGame::GetInstance()->GetScreenHeight();
+	float bottom = top - CGame::GetInstance()->GetScreenHeight();
 	if (!IsIntersac(left, top, right, bottom, this))
 		return new vector<LPTREENODE>();
 	if(child != NULL)
