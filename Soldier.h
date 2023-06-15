@@ -22,6 +22,7 @@ public:
 		CGameObject::SetState(state);
 	}
 	int IsCollidable() { return 1; }
+	int IsBlocking() { return 1; }
 	// When no collision has been detected (triggered by CCollision::Process)
 	void OnNoCollision(DWORD dt);
 

@@ -1,9 +1,10 @@
-
+#include "BlockObject.h"
 #include "Bill.h"
 #include "Textures.h"
 #include "Game.h"
 #include "BillBullet.h"
 #include "Soldier.h"
+#include "debug.h"
 #define DIE_TIMEOUT 2000
 #define DEAD_BARRIER_TIME 2000
 void CBill::Update(DWORD dt, vector<LPGAMEOBJECT> *gameObject)
@@ -432,24 +433,62 @@ void CBill::LoadAnimation()
 
 void CBill::OnCollisionWith(LPCOLLISIONEVENT e, DWORD dt)
 {
-	if (e->ny != 0 && e->obj->IsBlocking())
-	{
-		vy = 0;
-		if (state == BILL_STATE_JUMP)
-			SetState(BILL_STATE_IDLE);
-		
-	}
-	//if (e->ny < 0 && e->obj->IsBlocking())
+	//if (e->ny > 0 && e->obj->IsBlocking())
 	//{
-	//	SetPosition(x, y + 50.0f);
+	//	vy = 0;
 	//	if (state == BILL_STATE_JUMP)
 	//		SetState(BILL_STATE_IDLE);
-
+	//	
 	//}
+	////if (e->ny < 0 && e->obj->IsBlocking())
+	////{
+	////	SetPosition(x, y + 1.0f);
+	////}
+	if (dynamic_cast<CBlockObject*>(e->obj))
+	{
+		CBlockObject* blkobj = dynamic_cast<CBlockObject*>(e->obj);
+		if (vy > 0) {
+			blkobj->setIsBlocking(0);
+		}
+		else
+		{
+				if ((blkobj->GetY() - 3.0f >= GetY()))
+					blkobj->setIsBlocking(0);
+				else if (blkobj->GetY() >= GetY() - 36.0f)
+				{
+					blkobj->setIsBlocking(0);
+				}
+				else {
+					blkobj->setIsBlocking(1);
+					vy = 0;
+					if (state == BILL_STATE_JUMP)
+						SetState(BILL_STATE_IDLE);
+				}
+		}
+	}
+	else {
+		if (e->ny != 0 && e->obj->IsBlocking())
+		{
+			vy = 0;
+			if (e->ny > 0) {
+				if (state == BILL_STATE_JUMP)
+					SetState(BILL_STATE_IDLE);
+			}
+			if (e->ny < 0) {
+
+			}
+		}
+		else if ((e->nx != 0) && (e->obj->IsBlocking()))
+		{
+			vx = 0;
+		}
+
+	}
 	if (dynamic_cast<CSoldier*>(e->obj) && state != BILL_STATE_DEAD && invincibleDuration <= 0)
 	{
 		SetState(BILL_STATE_DEAD);
 	}
+	
 }
 
 void CBill::OnNoCollision(DWORD dt)
