@@ -433,54 +433,33 @@ void CBill::LoadAnimation()
 
 void CBill::OnCollisionWith(LPCOLLISIONEVENT e, DWORD dt)
 {
-	//if (e->ny > 0 && e->obj->IsBlocking())
-	//{
-	//	vy = 0;
-	//	if (state == BILL_STATE_JUMP)
-	//		SetState(BILL_STATE_IDLE);
-	//	
-	//}
-	////if (e->ny < 0 && e->obj->IsBlocking())
-	////{
-	////	SetPosition(x, y + 1.0f);
-	////}
-	if (dynamic_cast<CBlockObject*>(e->obj))
+	if (dynamic_cast<CBlockObject*>(e->obj)) 
 	{
-		CBlockObject* blkobj = dynamic_cast<CBlockObject*>(e->obj);
-		if (vy > 0) {
-			blkobj->setIsBlocking(0);
-		}
-		else
-		{
-				if ((blkobj->GetY() - 3.0f >= GetY()))
-					blkobj->setIsBlocking(0);
-				else if (blkobj->GetY() >= GetY() - 36.0f)
-				{
-					blkobj->setIsBlocking(0);
-				}
-				else {
-					blkobj->setIsBlocking(1);
-					vy = 0;
-					if (state == BILL_STATE_JUMP)
-						SetState(BILL_STATE_IDLE);
-				}
-		}
-	}
-	else {
-		if (e->ny != 0 && e->obj->IsBlocking())
+		if (e->ny > 0 )
 		{
 			vy = 0;
-			if (e->ny > 0) {
-				if (state == BILL_STATE_JUMP)
-					SetState(BILL_STATE_IDLE);
-			}
-			if (e->ny < 0) {
+			setIsOnGround(1);
+			if (state == BILL_STATE_JUMP)
+				SetState(BILL_STATE_IDLE);
 
-			}
 		}
-		else if ((e->nx != 0) && (e->obj->IsBlocking()))
+		else if (e->ny < 0)
 		{
-			vx = 0;
+			setIsOnGround(0);
+		}
+	}
+	else 
+	{
+		if (e->ny > 0 && e->obj->IsBlocking())
+		{
+			vy = 0;
+			if (state == BILL_STATE_JUMP)
+				SetState(BILL_STATE_IDLE);
+
+		}
+		if (e->ny <= 0 && e->obj->IsBlocking())
+		{
+			vy = 0;			
 		}
 
 	}
@@ -493,16 +472,17 @@ void CBill::OnCollisionWith(LPCOLLISIONEVENT e, DWORD dt)
 
 void CBill::OnNoCollision(DWORD dt)
 {
+	setIsOnGround(0);
 	x += dt * vx;
 	y += dt * vy;
-	vy += Bill_GRAVITY * dt;
-	if (y > GROUND_Y)
-	{
-		vy = 0;
-		y = GROUND_Y;
-		if (state == BILL_STATE_JUMP) CGame::GetInstance()->ProcessKeyboard();
-		if (state == BILL_STATE_JUMP) SetState(BILL_STATE_IDLE);
-	}
+	vy += Bill_GRAVITY * dt / 2;
+	//if (y > GROUND_Y)
+	//{
+	//	vy = 0;
+	//	y = GROUND_Y;
+	//	if (state == BILL_STATE_JUMP) CGame::GetInstance()->ProcessKeyboard();
+	//	if (state == BILL_STATE_JUMP) SetState(BILL_STATE_IDLE);
+	//}
 
 }
 
@@ -519,7 +499,7 @@ void CBill::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 	if (state == BILL_STATE_LAYDOWN)
 	{
 		right = x + 33;
-		bottom = y - 20;
+		bottom = y - 18;
 		return;
 	}
 	if (state == BILL_STATE_SWIM || state == BILL_STATE_SWIM_MOVE)

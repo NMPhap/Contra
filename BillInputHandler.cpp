@@ -71,11 +71,22 @@ void CBillInputHandler::onKeyClick(int keyCode)
 				bill->SetState(BILL_STATE_RUN);
 		return;
 	}
-	if (keyCode == DIK_S && bill->GetState() != BILL_STATE_JUMP)
+	if (keyCode == DIK_S && bill->GetState() == BILL_STATE_LAYDOWN)
 	{
+		bill->setIsOnGround(0);
+		bill->SetPosition(bill->GetX(), bill->GetY() - 1.0f);
+		CAnimations::GetInstance()->Get(ID_ANI_BILL_IDLE_LEFT)->SetStartAnimation(CAnimations::GetInstance()->Get(ID_ANI_BILL_SWIMMING_START));
+		bill->SetState(BILL_STATE_IDLE);
+		return;
+	}
+
+	if (keyCode == DIK_S && bill->GetState() != BILL_STATE_JUMP && bill->IsOnGround() == 1)
+	{
+		bill->setIsOnGround(0);
 		bill->SetState(BILL_STATE_JUMP);
 		return;
 	}
+
 	if (keyCode == DIK_0)
 	{
 		bill->SetGun(new CNormalGun());
@@ -125,7 +136,6 @@ void CBillInputHandler::onKeyPress(int keyCode)
 			CAnimations::GetInstance()->Get(ID_ANI_BILL_SWIMMING_LEFT)->SetStartAnimation(CAnimations::GetInstance()->Get(ID_ANI_BILL_SWIMMING_START));
 		bill->SetState(BILL_STATE_SWIM);
 		return;
-
 	}
 	if (keyCode == DIK_Z)
 		bill->SetState(BILL_STATE_LAYDOWN);
