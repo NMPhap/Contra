@@ -1,4 +1,8 @@
 #include "BlockObject.h"
+#include "WaterObject.h"
+#include "DeathObject.h"
+#include "JumpObject.h"
+#include "Bridge.h"
 #include "Bill.h"
 #include "Textures.h"
 #include "Game.h"
@@ -106,7 +110,15 @@ void CBill::Render()
 		else
 			aniID = ID_ANI_BILL_LAYDOWN_LEFT;
 
-	animations->Get(aniID)->Render(x, y);
+	if (aniID == ID_ANI_BILL_IDLE_SHOT_UP_LEFT || aniID == ID_ANI_BILL_IDLE_SHOT_UP_RIGHT )
+		animations->Get(aniID)->Render(x, y + 11.0f);
+	else if ( aniID == ID_ANI_BILL_SWIMMING_SHOT_UP_STAND_LEFT || aniID == ID_ANI_BILL_SWIMMING_SHOT_UP_STAND_RIGHT)
+		animations->Get(aniID)->Render(x, y + 11.0f);
+	else if (aniID == ID_ANI_BILL_LAYDOWN_LEFT || aniID == ID_ANI_BILL_LAYDOWN_RIGHT)
+		animations->Get(aniID)->Render(x, y - 11.0f);
+
+	else
+		animations->Get(aniID)->Render(x, y);
 	D3DXVECTOR2 cam;
 	CGame::GetInstance()->GetCamPos(cam.x, cam.y);
 	for (int i = 0; i < life->size(); i++)
@@ -435,17 +447,66 @@ void CBill::OnCollisionWith(LPCOLLISIONEVENT e, DWORD dt)
 {
 	if (dynamic_cast<CBlockObject*>(e->obj)) 
 	{
-		if (e->ny > 0 )
+			
+			if (e->ny > 0)
+			{
+				vy = 0;
+				setIsSwimming(0);
+				setIsOnGround(1);
+				if (state == BILL_STATE_JUMP)
+					SetState(BILL_STATE_IDLE);
+
+			}
+			else if (e->ny < 0)
+			{
+				setIsSwimming(0);
+				setIsOnGround(0);
+			}
+			if (e->nx > 0 || e->nx < 0){
+				SetState(BILL_STATE_IDLE);
+				setIsSwimming(0);
+				setIsOnGround(1);
+			}
+	}
+	if (dynamic_cast<CWaterObject*>(e->obj))
+	{
+		if (e->ny > 0) {
+			if (IsSwimming() == 0) {
+				//if (faceDirection == 1)
+				//	CAnimations::GetInstance()->Get(ID_ANI_BILL_SWIMMING_RIGHT)->SetStartAnimation(CAnimations::GetInstance()->Get(ID_ANI_BILL_SWIMMING_START));
+				//else
+				//	CAnimations::GetInstance()->Get(ID_ANI_BILL_SWIMMING_LEFT)->SetStartAnimation(CAnimations::GetInstance()->Get(ID_ANI_BILL_SWIMMING_START));
+			}
+			setIsOnGround(0);
+			setIsSwimming(1);
+			SetState(BILL_STATE_SWIM);
+		}
+	}
+	if (dynamic_cast<CBridgePart*>(e->obj)) {
+		if (e->ny > 0)
 		{
 			vy = 0;
+			setIsSwimming(0);
 			setIsOnGround(1);
-			if (state == BILL_STATE_JUMP)
-				SetState(BILL_STATE_IDLE);
-
 		}
-		else if (e->ny < 0)
+	}
+	if (dynamic_cast<CDeathObject*>(e->obj)) {
+		if (e->ny > 0) {
+			SetState(BILL_STATE_DEAD);
+		}
+	}
+	if (dynamic_cast<CJumpObject*>(e->obj)) {
+		if (e->nx > 0 )
 		{
 			setIsOnGround(0);
+			setIsSwimming(0);
+			SetState(BILL_STATE_JUMP);
+		}
+		if (e->nx <  0)
+		{
+			setIsOnGround(0);
+			setIsSwimming(0);
+			SetState(BILL_STATE_JUMP);
 		}
 	}
 	else 
@@ -498,8 +559,9 @@ void CBill::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 	}
 	if (state == BILL_STATE_LAYDOWN)
 	{
+		top = y - 11;
 		right = x + 33;
-		bottom = y - 18;
+		bottom = y - (18+11);
 		return;
 	}
 	if (state == BILL_STATE_SWIM || state == BILL_STATE_SWIM_MOVE)

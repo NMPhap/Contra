@@ -26,10 +26,19 @@ void CNormalGun::Shoot()
 					((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->GetAmmo()->push_back(new CBillBullet( right, bottom + (top - bottom) / 2 + 6.0f, 0.35f, 0.0f));
 			}
 			else
+				if (bill->GetState() == BILL_STATE_SWIM_MOVE) {
+					if (bill->shotDirection == 1)//Run shot up
+						((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->GetAmmo()->push_back(new CBillBullet(right, top - 6.0f, 0.35f, 0.35f));			
+					else 
+						((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->GetAmmo()->push_back(new CBillBullet(right, bottom + (top - bottom) / 2 + 6.0f, 0.35f, 0.0f));
+				}
+			
+				else {
 				if (bill->shotDirection == 1)
-					((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->GetAmmo()->push_back(new CBillBullet(left + (right - left) / 2, top,  0, 0.35f));
+					((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->GetAmmo()->push_back(new CBillBullet(left + (right - left) / 2, top, 0, 0.35f));
 				else
-					((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->GetAmmo()->push_back(new CBillBullet(right, (top + bottom)/2 + 6.0f, 0.35f, 0.0f));
+					((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->GetAmmo()->push_back(new CBillBullet(right, (top + bottom) / 2 + 6.0f, 0.35f, 0.0f));
+			}
 	else
 		if(bill->GetState() == BILL_STATE_LAYDOWN)
 			((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->GetAmmo()->push_back(new CBillBullet(left, bottom + (top - bottom) / 2,  -0.35f, 0.0f));
@@ -43,9 +52,16 @@ void CNormalGun::Shoot()
 				if (bill->shotDirection == 0)
 					((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->GetAmmo()->push_back(new CBillBullet(left, bottom + (top - bottom) / 2 + 6.0f, -0.35f, 0.0f));
 			}
-			else
+			else if (bill->GetState() == BILL_STATE_SWIM_MOVE) {
+				if (bill->shotDirection == 1)
+					((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->GetAmmo()->push_back(new CBillBullet(left, top - 6.0f, -0.35f, 0.35f));
+				else
+					((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->GetAmmo()->push_back(new CBillBullet(left, bottom + (top - bottom) / 2 + 6.0f, -0.35f, 0.0f));
+			}
+			else {
 				if (bill->shotDirection == 1)
 					((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->GetAmmo()->push_back(new CBillBullet(left + (right - left) / 2, top, 0, 0.35f));
 				else
 					((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->GetAmmo()->push_back(new CBillBullet(left, bottom + (top - bottom) / 2 + 6.0f, -0.35f, 0.0f));
+			}
 }	
