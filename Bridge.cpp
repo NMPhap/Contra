@@ -1,4 +1,6 @@
 #include "Bridge.h"
+#include "Bill.h"
+extern CBill* bill;
 #define WAVE 4
 int _matrixIndex[2][WAVE * 2] =
 {
@@ -9,6 +11,12 @@ int _matrixIndex[2][WAVE * 2] =
 
 void CBridge::Update(DWORD dt, vector<LPGAMEOBJECT>* gameObject)
 {
+	if (bill->GetX() == this->x) {
+		for (int i = 0; i < 2; i++)
+			for (int j = 0; j < 8; j++) {
+				Tiles[i][j]->SetState(BRIDGE_STATE_EXPLOSIVE);
+			}
+	}
 	for (int i = 0;i<2;i++)
 		for (int j = 0; j < 8; j++) {
 			Tiles[i][j]->Update(dt,gameObject);

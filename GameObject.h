@@ -32,7 +32,13 @@ public:
 	void SetState(int state) { this->state = state; }
 	void GetSpeed(float& vx, float& vy) { vx = this->vx; vy = this->vy; }
 	int GetState() { return this->state; }
+	void SetDieStart(int value) {
+		dieStart = value;
+	}
 
+	int GetDieStart() {
+		return dieStart;
+	}
 	CGameObject();
 	CGameObject(float x, float y) :CGameObject() { this->x = x; this->y = y; this->vx = 0; this->vy = 0; }
 

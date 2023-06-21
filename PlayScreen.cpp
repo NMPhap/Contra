@@ -223,6 +223,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	obj->SetPosition(x, y);
 	if (dynamic_cast<CBridge*>(obj))
 	{
+		objects.push_back(obj);
 		CBridge* b = dynamic_cast<CBridge*>(obj);
 		for (int i = 0; i < 2; i++)
 		{

@@ -485,16 +485,20 @@ void CBill::OnCollisionWith(LPCOLLISIONEVENT e, DWORD dt)
 	if (dynamic_cast<CBridgePart*>(e->obj)) {
 		if (e->ny > 0)
 		{
-			vy = 0;
 			setIsSwimming(0);
 			setIsOnGround(1);
+			CBridgePart* b = dynamic_cast<CBridgePart*>(e->obj);
+			CBridge* p = b->bridge;
+			p->SetState(BRIDGE_STATE_EXPLOSIVE);
 		}
+
 	}
 	if (dynamic_cast<CDeathObject*>(e->obj)) {
 		if (e->ny > 0) {
 			SetState(BILL_STATE_DEAD);
 		}
 	}
+
 	if (dynamic_cast<CJumpObject*>(e->obj)) {
 		if (e->nx > 0 )
 		{

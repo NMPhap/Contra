@@ -2,10 +2,10 @@
 Resources\Map\stage1_tilemap.txt
 [OBJECTS]
 #BILL
-1	90	200
+1	30	200
 
 #BRIGDE OBJECT
-8	770	127
+8	754	127
 #WATER OBJECT
 9997	0	2	117
 
@@ -21,7 +21,7 @@ Resources\Map\stage1_tilemap.txt
 9998	240	58	2
 9998	280	26	4
 9998	336	58	2
-9998	892	127	10
+9998	892	122	10
 9998	1190	127	15
 
 #GRASS
