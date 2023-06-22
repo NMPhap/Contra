@@ -5,9 +5,11 @@ class CFalcon: public CGameObject
 {
 	int showStart;
 public:
-	CFalcon(float x, float y) : CGameObject(x, y) {
+	int powerup;
+	CFalcon(float x, float y, int pow) : CGameObject(x, y) {
 		state = ID_FALCON_CLOSE;
 		hp = 99999999;
+		powerup = pow;
 	}
 	void Update(DWORD dt, vector<LPGAMEOBJECT>* gameObject);
 	static void LoadAnimation();

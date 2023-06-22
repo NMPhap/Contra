@@ -9,6 +9,12 @@ void CSoldier::Update(DWORD dt, vector<LPGAMEOBJECT>* gameObject)
 	if (x < 0 || y < 0) {
 		Deleted = 1;
 	}
+	if (this->GetX() - bill->GetX() < 200) {
+		this->hp = 1;
+		vx = -0.03;
+	}
+	else
+		this->hp = 99999999;
 	if (state == SODIER_STATE_DEATH)
 	{
 		if (GetTickCount64() - dieStart >= DIETIMEOUT)
@@ -141,5 +147,7 @@ void CSoldier::OnCollisionWith(LPCOLLISIONEVENT e)
 
 void CSoldier::GetHit(int damage)
 {
-	SetState(SODIER_STATE_DEATH);
+	hp -= 1;
+	if (hp <= 0)
+		SetState(SODIER_STATE_DEATH);
 }

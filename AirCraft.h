@@ -6,11 +6,12 @@
 #include "Game.h"
 #include "ObjectExplosion.h"
 #include "Bill.h"
+#include "BlockObject.h"
 class CAirCraft: public CGameObject
 {
 private:
 public:
-	CAirCraft(float x, float y) : CGameObject(x, y){}
+	CAirCraft(float x, float y) : CGameObject(x, y) { vy = 0.2; }
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT> *gameObject = NULL)
 	{
 		CCollision::GetInstance()->Process(this, dt, gameObject);
@@ -26,13 +27,17 @@ public:
 	virtual int IsCollidable() { return 1; }
 	virtual int IsBlocking() { return 0; }
 	virtual void OnNoCollision(DWORD dt) {
-		x += vx * dt;
-		y += vy * dt;
-		vy += Bill_GRAVITY;
+		x += dt * vx;
+		y += dt * vy;
+		vy += Bill_GRAVITY * dt / 2;
 	}
 
 	virtual void OnCollisionWith(LPCOLLISIONEVENT e, DWORD dt)
 	{
+		if (dynamic_cast<CBlockObject*>(e->obj))
+		{
+		}
+		else
 		if (e->ny != 0 && e->obj->IsBlocking())
 			vy = 0;
 		if (dynamic_cast<CBill*>(e->obj))

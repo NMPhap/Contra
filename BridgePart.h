@@ -17,13 +17,13 @@ public:
 		bridge = b;
 		this->wave = wave;
 		if (wave == 1)
-			dietimeout = 100;
-		else if (wave == 2)
 			dietimeout = 500;
+		else if (wave == 2)
+			dietimeout = 1000;
 		else if (wave == 3)
-			dietimeout = 900;
+			dietimeout = 1500;
 		else
-			dietimeout = 1300;
+			dietimeout = 2000;
 
 		state = BRIDGE_STATE_ALIVE;
 		dieStart = 0;

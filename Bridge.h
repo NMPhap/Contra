@@ -7,6 +7,7 @@
 class CBridge  : public CGameObject
 {
 public:
+	int CanSetState = 1;
 	LPGAMEOBJECT Tiles[2][8];
 	int _matrixIndex[2][4 * 2] =
 	{
@@ -70,11 +71,14 @@ public:
 	void Render();
 	void OnCollisionWith(LPCOLLISIONEVENT e);
 	void SetState(int state) {
-		for (int i = 0; i < 2; i++)
-			for (int j = 0; j < 8; j++) {
-				Tiles[i][j]->SetDieStart(GetTickCount64());
-				Tiles[i][j]->SetState(state);
-			}
+		if (CanSetState) {
+			for (int i = 0; i < 2; i++)
+				for (int j = 0; j < 8; j++) {
+					Tiles[i][j]->SetDieStart(GetTickCount64());
+					Tiles[i][j]->SetState(state);
+				}
+			CanSetState = 0;
+		}
 	}
 	void GetBoundingBox(float& left, float& top, float& right, float& bottom)
 	{

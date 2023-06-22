@@ -1,6 +1,11 @@
 #include "Falcon.h"
 #include "Bill.h"
 #include "ObjectExplosion.h"
+#include "BAirCraft.h"
+#include "LAirCraft.h"
+#include "FAirCraft.h"
+#include "MAirCraft.h"
+#include "SAirCraft.h"
 
 extern CBill* bill;
 #define SHOW_DURATION 100
@@ -103,6 +108,26 @@ void CFalcon::GetHit(int damage)
 	{
 		Deleted = 1;
 		((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->AddObjectToQuadTree(new CObjectExplosion(x, y));
-		
+		switch (powerup)
+		{
+		case 1:
+			((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->AddObject(new CMAirCraft(x, y));
+			((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->AddObjectToQuadTree(new CMAirCraft(x, y));
+			break;
+		case 2:
+			break;
+
+		case 3:
+			break;
+
+		case 4:
+			break;
+
+		case 5:
+			break;
+
+		default:
+			break;
+		}
 	}
 }
