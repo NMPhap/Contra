@@ -2,6 +2,7 @@
 #include "GameObject.h"
 #include "BillInputHandler.h"
 #include "NormalGun.h"
+#include "RifleGun.h"
 #include "AssetID.h"
 #include "Life.h"
 
@@ -13,6 +14,7 @@ private:
 	int invincibleDuration;
 	vector<CLife*>* life;
 public:
+	int isSwimming;
 	int isOnGround;
 	int isBlocking;
 	BOOLEAN isSitting;
@@ -22,13 +24,14 @@ public:
 	CBillInputHandler* handler;
 	CBill(float x, float y): CGameObject(x,y)
 	{
+		isSwimming = 0;
 		isSitting = false;
 		isShotting = false;
 		shotDirection = 0;
 		faceDirection = 1;
 		state = BILL_STATE_IDLE;
 		this->handler = new CBillInputHandler();
-		gun = new CNormalGun();
+		gun = new CRifleGun();
 		life = new vector<CLife*>();
 		life->push_back(new CLife());
 		life->push_back(new CLife());
@@ -47,7 +50,9 @@ public:
 	int IsCollidable() { return 1; }
 	int IsBlocking() { return 1; }
 	int IsOnGround() { return isOnGround; }
+	int IsSwimming() { return isSwimming; }
 	void setIsOnGround(int value) { isOnGround = value; }
 	void setIsBlocking(int value) { isBlocking = value; }
+	void setIsSwimming(int value) { isSwimming = value; }
 	void GetHit(int damage) { SetState(BILL_STATE_DEAD); }
 };

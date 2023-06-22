@@ -1,9 +1,34 @@
 #include "Falcon.h"
 #include "Bill.h"
 #include "ObjectExplosion.h"
+#include "BAirCraft.h"
+#include "LAirCraft.h"
+#include "FAirCraft.h"
+#include "MAirCraft.h"
+#include "SAirCraft.h"
 
 extern CBill* bill;
 #define SHOW_DURATION 100
+void CFalcon::Update(DWORD dt, vector<LPGAMEOBJECT>* gameObject)
+{
+	//if (state == ID_FAL)
+	if (state == ID_FALCON_SHOW && GetTickCount64() - showStart >= SHOW_DURATION)
+	{
+		SetState(ID_FALCON_OPEN);
+		hp = 2;
+	}
+	if (abs(x - bill->GetX()) < 100)
+		if (state == ID_FALCON_CLOSE)
+		{
+			SetState(ID_FALCON_SHOW);
+			showStart = GetTickCount64();
+		}
+		else {}
+	else
+	{
+		SetState(ID_FALCON_CLOSE);
+	}
+}
 void CFalcon::LoadAnimation()
 {
 	if (CTextures::GetInstance()->Get(TEXTURE_FALCON_ID) != NULL)
@@ -83,6 +108,26 @@ void CFalcon::GetHit(int damage)
 	{
 		Deleted = 1;
 		((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->AddObjectToQuadTree(new CObjectExplosion(x, y));
-		
+		switch (powerup)
+		{
+		case 1:
+			((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->AddObject(new CMAirCraft(x, y));
+			((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->AddObjectToQuadTree(new CMAirCraft(x, y));
+			break;
+		case 2:
+			break;
+
+		case 3:
+			break;
+
+		case 4:
+			break;
+
+		case 5:
+			break;
+
+		default:
+			break;
+		}
 	}
 }

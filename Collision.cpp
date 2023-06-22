@@ -3,6 +3,7 @@
 #include "Bullet.h"
 #include "Bill.h"
 #include "BlockObject.h"
+#include "JumpObject.h"
 #include "debug.h"
 
 #define BLOCK_PUSH_FACTOR 0.4f
@@ -199,7 +200,12 @@ void CCollision::Filter( LPGAMEOBJECT objSrc,
 		if (c->isDeleted) continue;
 		if (c->obj->IsDeleted()) continue; 
 
-		if (( dynamic_cast<CBlockObject*>(c->obj)) &&   (c->ny < 0 || c->nx < 0 || c->nx > 0) )
+		// ignore collision event with block object when jumping over it 
+		if (( dynamic_cast<CBlockObject*>(c->obj)) &&   (c->ny < 0 || c->nx > 0 || c-> nx < 0) )
+		{
+			continue;
+		}
+		if ((dynamic_cast<CJumpObject*>(c->obj)) && (c->ny < 0 || c->ny > 0 ))
 		{
 			continue;
 		}

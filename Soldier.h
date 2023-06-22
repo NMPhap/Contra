@@ -7,12 +7,13 @@ class CSoldier: public CGameObject
 private:
 	int faceDirection = -1;
 public:
-	CSoldier(float x, float y) : CGameObject(x, y) { state = SODIER_STATE_RUNNING; vx = -0.03; }
+	CSoldier(float x, float y) : CGameObject(x, y) { state = SODIER_STATE_RUNNING; }
 	void Update(DWORD dt, vector<LPGAMEOBJECT>* gameObject);
 	void Render();
 	static void LoadAnimation();
 	void GetBoundingBox(float& left, float& top, float& right, float& bottom);
 	void SetState(int state) {
+		
 		if (state == SODIER_STATE_DEATH)
 		{
 			dieStart = GetTickCount64();

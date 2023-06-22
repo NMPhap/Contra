@@ -41,12 +41,12 @@ void CHiddenSniper::GetBoundingBox(float& left, float& top, float& right, float&
 	if (state == SNIPER_STATE_HIDDEN)
 	{
 		right = x + 7;
-		bottom = y + 38;
+		bottom = y - 38;
 	}
 	else
 	{
 		right = x + 23;
-		bottom = y + 38;
+		bottom = y - 38;
 	}
 }
 

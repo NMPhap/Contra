@@ -15,11 +15,15 @@
 #include <unordered_set>
 #include "HiddenSniper.h"
 #include "BlockObject.h"
+#include "WaterObject.h"
+#include "DeathObject.h"
+#include "JumpObject.h"
 #include "Bridge.h"
 #include "LAirCraft.h"
 #include "HIddenAirCraft.h"
 #include "NormalExplosion.h"
 #include "ObjectExplosion.h"
+#include "Falcon.h"
 #include "debug.h"
 
 using namespace std;
@@ -166,10 +170,11 @@ void CPlayScene::_ParseSection_ANIMATIONS(string line)
 */
 void CPlayScene::_ParseSection_OBJECTS(string line)
 {
+	CFalcon::LoadAnimation();
 	CNormalExplosion::LoadAniamtion();
 	CObjectExplosion::LoadAniamtion();
 	CBill::LoadAnimation();
-
+	CBridge::LoadAnimation();
 	CGrass::LoadAnimation();
 	CGunRotation::LoadAnimation();
 	CSoldier::LoadAnimation();
@@ -202,11 +207,15 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	case ID_SODIER: obj = new CSoldier(x, y); break;
 	case ID_BLOCK_OBJECT: obj = new CBlockObject(x, y, atoi(tokens[3].c_str())); break;
 	case ID_SNIPER: obj = new CSniper(x, y); break;
+	case ID_FALCON_OPEN: obj = new CFalcon(x, y, atoi(tokens[3].c_str())); break;
 	case ID_GUNROTATION: obj = new CGunRotation(x, y); break;
 	case ID_SNIPER_HIDDEN: obj = new CHiddenSniper(x, y); break;
 	case ID_LAIRCRAFT: obj = new CLAirCraft(x, y); break;
-	case ID_HIDDENAIRCRAFT: obj = new CHiddenAirCraft(x, y); break;
-	//case ID_BRIDGE: obj = new CBridge(x, y); break;
+	case ID_HIDDENAIRCRAFT: obj = new CHiddenAirCraft(x, y, atoi(tokens[3].c_str())); break;
+	case (ID_BLOCK_OBJECT - 1): obj = new CWaterObject(x, y, atoi(tokens[3].c_str())); break;
+	case (ID_BLOCK_OBJECT - 2): obj = new CDeathObject(x, y, atoi(tokens[3].c_str())); break;
+	case (ID_BLOCK_OBJECT - 3): obj = new CJumpObject(x, y); break;
+	case ID_BRIDGE: obj = new CBridge(x, y); break;
 
 	default:
 		//debugout(l"[error] invalid object type: %d\n", object_type);
@@ -215,9 +224,24 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 
 	// General object setup
 	obj->SetPosition(x, y);
-	if(!dynamic_cast<CBill*>(obj))
-		QuadTree->AddObjectToNode(obj);
-	objects.push_back(obj);
+	if (dynamic_cast<CBridge*>(obj))
+	{
+		objects.push_back(obj);
+		CBridge* b = dynamic_cast<CBridge*>(obj);
+		for (int i = 0; i < 2; i++)
+		{
+			for (int j = 0; j < 8; j++) {
+				QuadTree->AddObjectToNode(b->Tiles[i][j]);
+				objects.push_back(b->Tiles[i][j]);
+			}
+		}
+	}
+	else
+	{
+		if (!dynamic_cast<CBill*>(obj))
+			QuadTree->AddObjectToNode(obj);
+		objects.push_back(obj);
+	}
 }
 
 void CPlayScene::LoadAssets(LPCWSTR assetFile)

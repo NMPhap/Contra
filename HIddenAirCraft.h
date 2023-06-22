@@ -9,19 +9,23 @@ private:
 	float cycle;
 	float startX;
 public:
-	CHiddenAirCraft(float x, float y, float vx = 0.1f, float vy = 0.0f, float omega = 0.005f, float A = 5.0f) :CAirCraft(x, y)
+	int powerup;
+	CHiddenAirCraft(float x, float y, int pow, float vx = 0.1f, float vy = 0.0f, float omega = 0.005f, float A = 5.0f) :CAirCraft(x, y)
 	{
 		LPSPRITE sprite = CSprites::GetInstance()->Get(ID_ANI_HIDDENAIRCRAFT);
 		if (sprite == NULL)
 			this->LoadAnimation();
 		startX = y;
+		powerup = pow;
 		this->vx = vx;
 		this->vy = vy;
 		this->omega = omega;
 		cycle = 2 * PI / omega;
 		time = 0;
 		this->A = A;
+		
 	}
+	int IsEnemy() { return 1; }
 	void Render()
 	{
 		CAnimations::GetInstance()->Get(ID_ANI_HIDDENAIRCRAFT)->Render(x, y);
@@ -53,5 +57,6 @@ public:
 		if (e->obj->IsBlocking() && e->nx != 0)
 			vx = -vx;
 	}
+	void GetHit(int damage);
 };
 

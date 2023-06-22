@@ -71,7 +71,7 @@ void CBillInputHandler::onKeyClick(int keyCode)
 				bill->SetState(BILL_STATE_RUN);
 		return;
 	}
-	if (keyCode == DIK_S && bill->GetState() == BILL_STATE_LAYDOWN)
+	if (keyCode == DIK_S && bill->GetState() == BILL_STATE_LAYDOWN && bill->IsOnGround() == 1)
 	{
 		bill->setIsOnGround(0);
 		bill->SetPosition(bill->GetX(), bill->GetY() - 1.0f);
