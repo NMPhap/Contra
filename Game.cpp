@@ -2,6 +2,7 @@
 #include "Game.h"
 #include <fstream>
 #include "IntroScene.h"
+#include "MenuScene.h"
 #include "GameOverScene.h"
 #define CLASS_NAME L"CONTRA"
 #define WINDOW_ICON_PATH L"/Resources/Images/yellowfalcon.png"
@@ -52,8 +53,8 @@ void CGame::_ParseSection_SCENES(string line)
 		scenes[id] = scene;
 		break;
 	case 2:
-		//scene = new CWorldMapScene(id, path);
-		//scenes[id] = scene;
+		scene = new CMenuScene(id, path);
+		scenes[id] = scene;
 		break;
 	case 3:
 		scene = new CIntroScene(id, path);

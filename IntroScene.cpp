@@ -50,9 +50,8 @@ void CIntroScene::Unload()
 
 void CIntroScene::Update(DWORD dt)
 {
-	CGame::GetInstance()->InitiateSwitchScene(1);
 	if (GetTickCount64() - introDuration >= INTRO_DURATION)
-		CGame::GetInstance()->SwitchScene();
+		CGame::GetInstance()->InitiateSwitchScene(CGame::GetInstance()->GetCurrentSceneID() + 1);
 }
 
 void CIntroScene::Render()
