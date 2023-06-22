@@ -2,6 +2,7 @@
 #include "GameObject.h"
 #include "BillInputHandler.h"
 #include "NormalGun.h"
+#include "RifleGun.h"
 #include "AssetID.h"
 #include "Life.h"
 
@@ -30,7 +31,7 @@ public:
 		faceDirection = 1;
 		state = BILL_STATE_IDLE;
 		this->handler = new CBillInputHandler();
-		gun = new CNormalGun();
+		gun = new CRifleGun();
 		life = new vector<CLife*>();
 		life->push_back(new CLife());
 		life->push_back(new CLife());

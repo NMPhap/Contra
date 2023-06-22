@@ -2,6 +2,7 @@
 #include "GameObject.h";
 #include "AssetID.h";
 #include "RifleGun.h"
+#include "NormalExplosion.h"
 class CSniper: public CGameObject
 {
 protected:
@@ -9,7 +10,7 @@ protected:
 	long lastShot;
 
 public:
-	CSniper(float x, float y) : CGameObject(x, y) { state = SNIPER_STATE_NORMAl; lastShot = -1; }
+	CSniper(float x, float y) : CGameObject(x, y) { state = SNIPER_STATE_NORMAl; lastShot = -1; hp = 1; }
 	void Update(DWORD dt, vector<LPGAMEOBJECT>* gameObject);
 	void Render();
 	void SetState(int state) {
@@ -18,6 +19,8 @@ public:
 			dieStart = GetTickCount64();
 			vx = 0.02;
 			vy = 0.25;
+			Deleted = 1;
+			((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->AddObjectToQuadTree(new CNormalExplosion(x, y));
 		}
 		CGameObject::SetState(state);
 	}

@@ -6,6 +6,9 @@ extern CBill* bill;
 
 void CSoldier::Update(DWORD dt, vector<LPGAMEOBJECT>* gameObject)
 {
+	if (x < 0 || y < 0) {
+		Deleted = 1;
+	}
 	if (state == SODIER_STATE_DEATH)
 	{
 		if (GetTickCount64() - dieStart >= DIETIMEOUT)

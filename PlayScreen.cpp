@@ -23,6 +23,7 @@
 #include "HIddenAirCraft.h"
 #include "NormalExplosion.h"
 #include "ObjectExplosion.h"
+#include "Falcon.h"
 #include "debug.h"
 
 using namespace std;
@@ -169,6 +170,7 @@ void CPlayScene::_ParseSection_ANIMATIONS(string line)
 */
 void CPlayScene::_ParseSection_OBJECTS(string line)
 {
+	CFalcon::LoadAnimation();
 	CNormalExplosion::LoadAniamtion();
 	CObjectExplosion::LoadAniamtion();
 	CBill::LoadAnimation();
@@ -205,6 +207,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	case ID_SODIER: obj = new CSoldier(x, y); break;
 	case ID_BLOCK_OBJECT: obj = new CBlockObject(x, y, atoi(tokens[3].c_str())); break;
 	case ID_SNIPER: obj = new CSniper(x, y); break;
+	case ID_FALCON_OPEN: obj = new CFalcon(x, y); break;
 	case ID_GUNROTATION: obj = new CGunRotation(x, y); break;
 	case ID_SNIPER_HIDDEN: obj = new CHiddenSniper(x, y); break;
 	case ID_LAIRCRAFT: obj = new CLAirCraft(x, y); break;

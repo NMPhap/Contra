@@ -4,6 +4,8 @@ Resources\Map\stage1_tilemap.txt
 #BILL
 1	30	200
 
+#FALCON OBJECT
+3220	285	40
 #BRIGDE OBJECT
 8	754	127
 #WATER OBJECT

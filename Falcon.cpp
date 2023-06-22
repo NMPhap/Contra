@@ -4,6 +4,26 @@
 
 extern CBill* bill;
 #define SHOW_DURATION 100
+void CFalcon::Update(DWORD dt, vector<LPGAMEOBJECT>* gameObject)
+{
+	//if (state == ID_FAL)
+	if (state == ID_FALCON_SHOW && GetTickCount64() - showStart >= SHOW_DURATION)
+	{
+		SetState(ID_FALCON_OPEN);
+		hp = 2;
+	}
+	if (abs(x - bill->GetX()) < 100)
+		if (state == ID_FALCON_CLOSE)
+		{
+			SetState(ID_FALCON_SHOW);
+			showStart = GetTickCount64();
+		}
+		else {}
+	else
+	{
+		SetState(ID_FALCON_CLOSE);
+	}
+}
 void CFalcon::LoadAnimation()
 {
 	if (CTextures::GetInstance()->Get(TEXTURE_FALCON_ID) != NULL)

@@ -9,6 +9,7 @@ public:
 		state = ID_FALCON_CLOSE;
 		hp = 99999999;
 	}
+	void Update(DWORD dt, vector<LPGAMEOBJECT>* gameObject);
 	static void LoadAnimation();
 	void Render();
 	void GetBoundingBox(float& left, float& top, float& right, float& bottom);
