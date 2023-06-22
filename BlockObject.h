@@ -8,7 +8,7 @@ private:
 	int isBlock;
 public:
 	CBlockObject(float x, float y, int tileLength = 1) :CGameObject(x, y) { state = BRIDGE_STATE_ALIVE; tile_length = tileLength; isBlock = 1; }
-	void GetBoundingBox(float& left, float& top, float& right, float& bottom) { left = x, top = y; right = x + 15.7f * tile_length, bottom = y - 0.5f; }
+	void GetBoundingBox(float& left, float& top, float& right, float& bottom) { left = x, top = y; right = x + 15.5f * tile_length, bottom = y - 0.5f; }
 	int IsCollidable() { return 1; };
 	virtual int IsBlocking() { return isBlock; };
 	void setIsBlocking(int value) { isBlock = value; };

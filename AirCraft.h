@@ -7,6 +7,8 @@
 #include "ObjectExplosion.h"
 #include "Bill.h"
 #include "BlockObject.h"
+extern CBill* bill;
+
 class CAirCraft: public CGameObject
 {
 private:
@@ -14,7 +16,8 @@ public:
 	CAirCraft(float x, float y) : CGameObject(x, y) { vy = 0.2; }
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT> *gameObject = NULL)
 	{
-		CCollision::GetInstance()->Process(this, dt, gameObject);
+		if (this->GetX() - bill->GetX() < 200) 
+			CCollision::GetInstance()->Process(this, dt, gameObject);
 	}
 	static void LoadAnimation()
 	{
