@@ -106,28 +106,39 @@ void CFalcon::GetHit(int damage)
 	hp -= damage;
 	if (hp <= 0)
 	{
-		Deleted = 1;
-		((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->AddObjectToQuadTree(new CObjectExplosion(x, y));
 		switch (powerup)
 		{
 		case 1:
 			((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->AddObject(new CMAirCraft(x, y));
-			((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->AddObjectToQuadTree(new CMAirCraft(x, y));
+			//((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->AddObjectToQuadTree(new CMAirCraft(x, y));
 			break;
 		case 2:
+			((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->AddObject(new CBAirCraft(x, y));
+			//((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->AddObjectToQuadTree(new CBAirCraft(x, y));
 			break;
 
 		case 3:
+			((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->AddObject(new CLAirCraft(x, y));
+			//((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->AddObjectToQuadTree(new CLAirCraft(x, y));
+
 			break;
 
 		case 4:
+			((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->AddObject(new CFAirCraft(x, y));
+			//((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->AddObjectToQuadTree(new CFAirCraft(x, y));
 			break;
 
 		case 5:
+			((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->AddObject(new CSAirCraft(x, y));
+			//((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->AddObjectToQuadTree(new CSAirCraft(x, y));
+
 			break;
 
 		default:
 			break;
 		}
+		((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->AddObjectToQuadTree(new CObjectExplosion(x, y));
+
+		Deleted = 1;
 	}
 }

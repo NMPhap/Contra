@@ -21,6 +21,11 @@ void CSniper::Update(DWORD dt, vector<LPGAMEOBJECT>* gameObject)
 	}
 	else {
 		{
+			if (this->GetX() - bill->GetX() < 200) {
+				this->hp = 1;
+			}
+			else
+				this->hp = 99999999;
 			if (state == SNIPER_STATE_SHOT && GetTickCount64() - lastShot >= RECOIL_TIME)
 			{
 				lastShot = GetTickCount64();
@@ -32,9 +37,16 @@ void CSniper::Update(DWORD dt, vector<LPGAMEOBJECT>* gameObject)
 					((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->GetAmmo()->push_back(new CRifleBullet(x, y, faceDirection * 0.1f, 0.0f, 1));
 			}
 			if (abs(bill->GetX() - x) <= 100)
+			{
 				SetState(SNIPER_STATE_SHOT);
+			}
 			else if (state != SNIPER_STATE_NORMAl)
 				SetState(SNIPER_STATE_NORMAl);
+
+			if (bill->GetX() < x)
+				faceDirection = -1;
+			else
+				faceDirection = 1;
 			CCollision::GetInstance()->Process(this, dt, gameObject);
 		}
 
@@ -180,7 +192,9 @@ void CSniper::OnNoCollision(DWORD dt)
 
 void CSniper::GetHit(int damage)
 {
-	SetState(SNIPER_STATE_DIE);
+	hp -= damage;
+	if (hp <= 0)
+	 SetState(SNIPER_STATE_DIE);
 }
 
 void CSniper::OnCollisionWith(LPCOLLISIONEVENT e)

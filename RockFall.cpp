@@ -68,7 +68,7 @@ void CRockFall::GetBoundingBox(float& left, float& top, float& right, float& bot
 	left = x;
 	top = y;
 	right = x + 26;
-	bottom = y + 26;
+	bottom = y - 26;
 }
 
 void CRockFall::SetState(int state)

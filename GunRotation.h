@@ -6,11 +6,12 @@
 #define GUN_ROTATION_DELAY 1000
 class CGunRotation : public CGameObject
 {
+	int pos;
 	ULONG lastTurn;
 	float radius;
 	float lastShoot;
 public:
-	CGunRotation(float x, float y) : CGameObject(x, y) { state = GUNROTATION_STATE_HIDDEN; lastTurn = -1; radius = PI; hp = 9999999; lastShoot = -1; }
+	CGunRotation(float x, float y) : CGameObject(x, y) { pos = 7; state = GUNROTATION_STATE_HIDDEN; lastTurn = -1; radius = PI; hp = 9999999; lastShoot = -1; }
 	void Update(DWORD dt, vector<LPGAMEOBJECT>* gameObject = NULL);
 	void Render();
 	static void LoadAnimation();

@@ -10,6 +10,7 @@ void CGunRotation::Update(DWORD dt, vector<LPGAMEOBJECT> *gameObject)
 	if (state == GUNROTATION_STATE_NORMAL && GetTickCount64() - lastShoot > GUN_RECOIL_TIME)
 	{
 		lastShoot = GetTickCount64();
+		 
 		((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->GetAmmo()->push_back(new CRifleBullet(x + 10.0f, y - 8.0f , -0.2, 0.0f, 1));
 	}
 }
@@ -23,10 +24,13 @@ void CGunRotation::Render()
 	{
 		if (bill->GetX() < x)
 		{
-			if (radius >= (PI / 6) && radius < (PI / 4))
+			if (radius >= (PI / 6) && radius < (PI / 4)) {
 				aniID = ID_ANI_GUNROTATION_SHOT_1;
-			else if (radius >= (PI / 4) && radius < (5 * PI / 12))
+				pos = 8;
+			}
+			else if (radius >= (PI / 4) && radius < (5 * PI / 12)) {
 				aniID = ID_ANI_GUNROTATION_SHOT_0;
+			}
 			else if (radius >= -(PI / 6) && radius < (PI / 6))
 				aniID = ID_ANI_GUNROTATION_SHOT_2;
 			else if (radius >= -(PI / 4) && radius < -(PI / 6))
@@ -177,7 +181,7 @@ void CGunRotation::SetState(int state)
 		case GUNROTATION_STATE_NORMAL:
 		{
 			CAnimations::GetInstance()->Get(ID_ANI_GUNROTATION_SHOT_0)->SetStartAnimation(CAnimations::GetInstance()->Get(ID_ANI_GUNROTATION_SHOW));
-			hp = 3;
+			hp = 8;
 			break;
 		}
 	}

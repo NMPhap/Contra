@@ -13,7 +13,7 @@ class CAirCraft: public CGameObject
 {
 private:
 public:
-	CAirCraft(float x, float y) : CGameObject(x, y) { vy = 0.2; }
+	CAirCraft(float x, float y) : CGameObject(x, y) { vy = 0.23; }
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT> *gameObject = NULL)
 	{
 		if (this->GetX() - bill->GetX() < 200) 
